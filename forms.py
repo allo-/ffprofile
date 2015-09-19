@@ -13,6 +13,12 @@ class AnnoyancesForm(forms.Form):
     pocket_intro = forms.BooleanField(
         label='Disable pocket intro',
         initial=True, required=False)
+    aboutconfig_warning = forms.BooleanField(
+        label='Disable about:config warning',
+        initial=True, required=False)
+    default_browser = forms.BooleanField(
+        label='Disable checking if Firefox is the default browser',
+        initial=True, required=False)
 
     def get_config_and_addons(self):
         config = {}
@@ -21,6 +27,10 @@ class AnnoyancesForm(forms.Form):
                 config['browser.newtabpage.introShown'] = True
             if self.cleaned_data['pocket_intro']:
                 config['browser.toolbarbuttons.introduced.pocket-button'] = True
+            if self.cleaned_data['aboutconfig_warning']:
+                config['general.warnOnAboutConfig'] = False
+            if self.cleaned_data['default_browser']:
+                config['browser.shell.checkDefaultBrowser'] = False
         return config, []
 
 

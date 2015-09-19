@@ -1,35 +1,56 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.core.urlresolvers import reverse
 from forms import *
 from django import forms
 
 
-def get_form(request, FormClass):
+def get_forms(request, FormClasses):
 
-    name = FormClass.id
-    data = request.session.get(name+"_data", None)
-    print "posted name", request.POST.get("form_name", "")
-    print "name", name
-    if request.POST.get("form_name", "") == name:
-        data = request.POST
-        print "post", name
-    form = FormClass(data)
-    if form.is_valid():
-        request.session[name+"_data"] = data
-    return form
+    forms = []
+    invalid_data = False
+    for i in range(len(FormClasses)):
+        FormClass = FormClasses[i]
+        name = FormClass.id
+        session_data = request.session.get(name+"_data", None)
+        print "posted name", request.POST.get("form_name", "")
+        print "name", name
+        if request.POST.get("form_name", "") == name:
+            post_data = request.POST
+            print "post", name
+            form = FormClass(post_data)
+            if not form.is_valid():
+                invalid_data = True
+            # we save the invalid data anyway,
+            # so the state which forms were valid is correct
+            request.session[name+"_data"] = post_data
+        else:
+            form = FormClass(session_data)
+        if not i == len(FormClasses) -1:  # last item
+            form.next = FormClasses[i+1].id
+        else:
+            form.next = "finish"
+        forms.append(form)
+    return forms, invalid_data
 
 def main(request):
-    annoyances_form = get_form(request, AnnoyancesForm)
-    privacy_form = get_form(request, PrivacyForm)
-    features_form = get_form(request, FeaturesForm)
-    bloatware_form = get_form(request, BloatwareForm)
-    forms = [privacy_form, bloatware_form, annoyances_form, features_form]
+    forms, invalid_data = get_forms(request,
+        [PrivacyForm, BloatwareForm, AnnoyancesForm, FeaturesForm])
     finished = True
     for form in forms:
         if not form.is_valid():
             finished = False
             break
 
-    return render(request, "main.html", {
-        'forms': forms,
-        'finished': finished
-    })
+    print invalid_data
+    if request.POST and not invalid_data:
+        next = request.POST.get("next", "")
+        form_name = request.POST.get("form_name", "")
+        if next:
+            return redirect(reverse(main) + "#" + next)
+        else:
+            return redirect(reverse(main) + "#" + form_name)
+    else:
+        return render(request, "main.html", {
+            'forms': forms,
+            'finished': finished
+        })

@@ -8,6 +8,8 @@ import zipfile
 from StringIO import StringIO
 
 
+FORMS = [PrivacyForm, BloatwareForm, AnnoyancesForm]
+
 def get_forms(request, FormClasses):
 
     forms = []
@@ -34,8 +36,7 @@ def get_forms(request, FormClasses):
     return forms, invalid_data
 
 def main(request):
-    forms, invalid_data = get_forms(request,
-        [PrivacyForm, BloatwareForm, AnnoyancesForm, FeaturesForm])
+    forms, invalid_data = get_forms(request, FORMS)
 
     # are all forms finished?
     finished = True
@@ -64,8 +65,8 @@ def main(request):
         })
 
 def download(request):
-    forms, invalid_data = get_forms(request,
-        [PrivacyForm, BloatwareForm, AnnoyancesForm, FeaturesForm])
+    forms, invalid_data = get_forms(request, FORMS)
+
     if invalid_data:
         return redirect(reverse(main) + "#finish")
 

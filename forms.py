@@ -85,18 +85,18 @@ class BloatwareForm(forms.Form):
         return config, []
 
 
-class FeaturesForm(forms.Form):
-    id="features"
-    name="Useful Features"
-    form_name = forms.CharField(initial="features", widget=forms.widgets.HiddenInput)
-    xclear = forms.BooleanField(
-        label='Install <a href="https://addons.mozilla.org/en-US/firefox/addon/xclear/">xclear</a> extension.',
-        help_text="Adds a little [x] icon to urlbar and searchbar to clear the text.",
-        initial=False, required=False)
-
-    def get_config_and_addons(self):
-        addons = []
-        if self.is_valid():
-            if self.cleaned_data['xclear']:
-                addons = ["xclear.xpi"]
-        return {}, addons
+#class FeaturesForm(forms.Form):
+#    id="features"
+#    name="Useful Features"
+#    form_name = forms.CharField(initial="features", widget=forms.widgets.HiddenInput)
+#    xclear = forms.BooleanField(
+#        label='Install <a href="https://addons.mozilla.org/en-US/firefox/addon/xclear/">xclear</a> extension.',
+#        help_text="Adds a little [x] icon to urlbar and searchbar to clear the text.",
+#        initial=False, required=False)
+#
+#    def get_config_and_addons(self):
+#        addons = []
+#        if self.is_valid():
+#            if self.cleaned_data['xclear']:
+#                addons = ["xclear.xpi"]
+#        return {}, addons

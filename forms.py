@@ -35,10 +35,10 @@ class AnnoyancesForm(forms.Form):
 
 
 
-class PrivacyForm(forms.Form):
-    id="privacy"
-    name="Privacy"
-    form_name = forms.CharField(initial="privacy", widget=forms.widgets.HiddenInput)
+class TrackingForm(forms.Form):
+    id="tracking"
+    name="Tracking Features"
+    form_name = forms.CharField(initial="tracking", widget=forms.widgets.HiddenInput)
     phishing_protection = forms.BooleanField(
         label="Disable phishing protection",
         help_text='The phishing protection contacts google with an unique key:'
@@ -46,7 +46,11 @@ class PrivacyForm(forms.Form):
         initial=True, required=False)
     health_report = forms.BooleanField(
         label="Disable health report",
-        help_text='Disable sending ''<a href="https://www.mozilla.org/en-US/privacy/firefox/#health-report">Firefox health reports</a> to mozilla',
+        help_text='Disable sending <a href="https://www.mozilla.org/en-US/privacy/firefox/#health-report">Firefox health reports</a> to mozilla',
+        initial=True, required=False)
+    addon_data = forms.BooleanField(
+        label="Opt out metadata updates",
+        help_text='Firefox sends data about installed addons as <a href="https://blog.mozilla.org/addons/how-to-opt-out-of-add-on-metadata-updates/">metadata updates</a>, so mozilla is able to recommend you other addons.',
         initial=True, required=False)
 
     def get_config_and_addons(self):
@@ -57,6 +61,87 @@ class PrivacyForm(forms.Form):
                 config['browser.safebrowsing.malware.enabled'] = False
             if self.cleaned_data['health_report']:
                 config['datareporting.healthreport.uploadEnabled'] = False
+            if self.cleaned_data['addon_data']:
+                config['extensions.getAddons.cache.enabled'] = False
+        return config, []
+
+
+class PrivacyForm(forms.Form):
+    id='privacy'
+    name='Privacy'
+    form_name = forms.CharField(initial='privacy', widget=forms.widgets.HiddenInput)
+
+    useragent = forms.CharField(
+        label='Fake another Useragent',
+        help_text='Using a <a href="https://techblog.willshouse.com/2012/01/03/most-common-user-agents/">popular useragent string</a> '
+            'avoids to attract attention i.e. with an Iceweasel UA. (keep blank to use the default)',
+        initial="", required=False)
+    thirdparty_cookies = forms.BooleanField(
+        label='Block thirdparty cookies',
+        help_text='Block cookies, which are not from the site you\'re visiting. '
+            'You will rarely notice that something is missing, but it hugely improves your privacy.',
+        initial=True, required=False)
+    all_cookies = forms.BooleanField(
+        label='Block all cookies',
+        help_text='Block all cookies. Many sites will not work without cookies.',
+        initial=False, required=False)
+    referer = forms.ChoiceField(
+        label='Block Referer',
+        help_text='Firefox tells a website, from which site you\'re coming '
+            '(the so called <a href="http://kb.mozillazine.org/Network.http.sendRefererHeader">referer</a>).',
+        choices = [(0, 'Disable'), (1, 'Allow only when clicking a link'), (2, 'Allow for links and loaded images')],
+        initial=0, required=False,
+    )
+    dom_storage = forms.BooleanField(
+        label='Disable DOM storage',
+        help_text='Disables DOM storage, which enables so called "supercookies". Some modern sites will not fully not work (i.e. missing "save" functions).',
+        initial=False, required=False)
+    prefetch = forms.BooleanField(
+        label='Disable Link Prefetching',
+        help_text='Firefox prefetches the next site on some links, so the site is loaded even when you never click.',
+        initial=True, required=False)
+    ping = forms.BooleanField(
+        label='Disable Browser Pings',
+        help_text='Firefox sends <a href="http://kb.mozillazine.org/Browser.send_pings">"ping" requests</a>, '
+            'when a website requests to be informed when a user clicks on a link.',
+        initial=True, required=False)
+    webrtc = forms.BooleanField(
+        label='Disable WebRTC',
+        help_text='Disables the WebRTC function, which gives away your local ips.',
+        initial=True, required=False)
+    keyword_search = forms.BooleanField(
+        label='Disable Search Keyword',
+        help_text='When you mistype some url, firefox starts a search even from urlbar. '
+            'This feature is useful for quick searching, but may harm your privacy, when it\'s unintended.',
+        initial=False, required=False)
+    fixup_url = forms.BooleanField(
+        label='Disable Fixup URLs',
+        help_text='When you type "something" in the urlbar and press enter, firefox tries "something.com", if Fixup URLs is enabled.',
+        initial=False, required=False)
+
+    def get_config_and_addons(self):
+        config = {}
+        if self.is_valid():
+            if self.cleaned_data['useragent']:
+                config['general.useragent.override'] = self.cleaned_data['useragent']
+            if self.cleaned_data['all_cookies']:
+                config['network.cookie.cookieBehavior'] = 2
+            elif self.cleaned_data['thirdparty_cookies']:
+                config['network.cookie.cookieBehavior'] = 1
+            if self.cleaned_data['referer']:
+                config['network.http.sendRefererHeader'] = self.cleaned_data['referer']
+            if self.cleaned_data['dom_storage']:
+                config['dom.storage.enabled'] = False
+            if self.cleaned_data['prefetch']:
+                config['network.prefetch-next'] = False
+            if self.cleaned_data['ping']:
+                config['browser.send_pings'] = False
+            if self.cleaned_data['webrtc']:
+                config['media.peerconnection.enabled'] = False
+            if self.cleaned_data['keyword_search']:
+                config['keyword.enabled'] = False
+            if self.cleaned_data['fixup_url']:
+                config['browser.fixup.alternate.enabled'] = False
         return config, []
 
 

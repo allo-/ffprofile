@@ -92,7 +92,7 @@ def download(request):
             value = "true" if value else "false"
         else:
             value = str(value)
-        prefs += 'user_pref("{key}", {value});\n'.format(key=key, value=value)
+        prefs += 'user_pref("{key}", {value});\r\n'.format(key=key, value=value)
     zip_file.writestr("prefs.js", prefs, compress_type=zipfile.ZIP_DEFLATED)
 
     for addon in addons:

@@ -1,0 +1,95 @@
+{% load bootstrap3 %}
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<meta charset="UTF-8">
+	<title>Firefox Profilemaker</title>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Firefox Profilemaker</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav nav-tabs">
+                    <li class="active"><a href="#start" data-toggle="tab">Start</a></li>
+                    {% for form in forms %}
+                    <li>
+                        <a href="#{{ form.id }}" data-toggle="tab">{% if form.is_valid %}{% bootstrap_icon "star" %} {% endif %}{{ form.name }}</a>
+                    </li>
+                    {% endfor %}
+                    <li><a href="#finish" data-toggle="tab">{% if finished %}{% bootstrap_icon "star" %} {% endif %}Finish</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        {% bootstrap_messages %}
+
+        <div class="tab-content">
+            <div id="start" class="tab-pane fade in active">
+                <h1>Firefox Profilemaker</h1>
+                Welcome to the Firefox Profilemaker!<br />
+                This tool will help you to create a firefox profile with the defaults you like.
+                <p />
+                You select which features you want to enable and disable and in the end
+                you get a download link for a zip-file with your profile template.
+                You can for example disable some functions, which send data to mozilla and google,
+                or disable several annoying firefox functions like Mozilla Hello or the Pocket integration.
+            </div>
+        {% for form in forms %}
+            <div id="{{ form.id }}" class="tab-pane fade">
+                <h1>{{ form.name }}</h1>
+                <form action="#{{ form.id }}" method="post" class="form">
+                  {% csrf_token %}
+                  {% bootstrap_form form %}
+                  {% buttons %}
+                    <button type="submit" class="btn">
+                      {% bootstrap_icon "star" %} save
+                    </button>
+                    <button type="submit" class="btn btn-primary" name="next">
+                      {% bootstrap_icon "ok" %} save &amp; next
+                    </button>
+                  {% endbuttons %}
+                </form>
+            </div>
+            {% endfor %}
+            <div id="finish" class="tab-pane fade">
+                <h1>Download</h1>
+                {% if finished %}
+                <form action="#" method="post" class="form">
+                  {% csrf_token %}
+                  {% buttons %}
+                    <button type="submit" class="btn btn-primary">
+                      {% bootstrap_icon "download" %} Download profile
+                    </button>
+                  {% endbuttons %}
+                </form>
+                {% else %}
+                    Please fill in all questions before downloading your profile.
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% bootstrap_javascript %}
+    <script>
+        // Javascript to enable link to tab
+        var url = document.location.toString();
+        if (url.match('#')) {
+                $('.nav-tabs a[href=#'+url.split('#')[1]+']').tab('show') ;
+        }
+
+        // Change hash for page-reload
+        $('.nav-tabs a').on('shown.bs.tab', function (e) {
+                window.location.hash = e.target.hash;
+        })
+    </script>
+</body>
+</html>

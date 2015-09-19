@@ -20,6 +20,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav nav-tabs">
                     <li class="active"><a href="#start" data-toggle="tab" style="color: white">Start</a></li>
+
                     {% for form in forms %}
                     <li>
                         <a href="#{{ form.id }}" data-toggle="tab" style="{% if form.is_valid %}color: white{% endif %}">{% if form.is_valid %}{% bootstrap_icon "star" %}{% else %}{% bootstrap_icon "star-empty" %}{% endif %} {{ form.name }}</a>
@@ -45,7 +46,7 @@
                 or disable several annoying firefox functions like Mozilla Hello or the Pocket integration.
                 <p />
                 <a href="#{{ forms.0.id }}" data-toggle="tab">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" onclick="$('.nav-tabs a[href=#{{ forms.0.id }}]').tab('show');">
                         Start
                     </button>
                 </a>
@@ -99,13 +100,12 @@
         // Javascript to enable link to tab
         var url = document.location.toString();
         if (url.match('#')) {
-                $('.nav-tabs a[href=#'+url.split('#')[1]+']').tab('show') ;
+            $('.nav-tabs a[href=#'+url.split('#')[1]+']').tab('show');
         }
-
         // Change hash for page-reload
         $('.nav-tabs a').on('shown.bs.tab', function (e) {
-                window.location.hash = e.target.hash;
-        })
+            window.location.hash = e.target.hash;
+        });
     </script>
 </body>
 </html>

@@ -19,13 +19,13 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav nav-tabs">
-                    <li class="active"><a href="#start" data-toggle="tab">Start</a></li>
+                    <li class="active"><a href="#start" data-toggle="tab" style="color: white">Start</a></li>
                     {% for form in forms %}
                     <li>
-                        <a href="#{{ form.id }}" data-toggle="tab">{% if form.is_valid %}{% bootstrap_icon "star" %} {% endif %}{{ form.name }}</a>
+                        <a href="#{{ form.id }}" data-toggle="tab" style="{% if form.is_valid %}color: white{% endif %}">{% if form.is_valid %}{% bootstrap_icon "star" %}{% else %}{% bootstrap_icon "star-empty" %}{% endif %} {{ form.name }}</a>
                     </li>
                     {% endfor %}
-                    <li><a href="#finish" data-toggle="tab">{% if finished %}{% bootstrap_icon "star" %} {% endif %}Finish</a></li>
+                    <li><a href="#finish" data-toggle="tab" style="{% if finished %}color: white{% endif %}">{% if finished %}{% bootstrap_icon "star" %} {% endif %}Finish</a></li>
                 </ul>
             </div>
         </div>
@@ -43,6 +43,12 @@
                 you get a download link for a zip-file with your profile template.
                 You can for example disable some functions, which send data to mozilla and google,
                 or disable several annoying firefox functions like Mozilla Hello or the Pocket integration.
+                <p />
+                <a href="#{{ forms.0.id }}" data-toggle="tab">
+                    <button type="submit" class="btn btn-primary">
+                        Start
+                    </button>
+                </a>
             </div>
         {% for form in forms %}
             <div id="{{ form.id }}" class="tab-pane fade">
@@ -63,18 +69,26 @@
             {% endfor %}
             <div id="finish" class="tab-pane fade">
                 <h1>Download</h1>
-                {% if finished %}
+                {% if not finished %}
+                    Please fill in all questions before downloading your profile.
+                    <p />
+                {% endif %}
                 <form action="#" method="post" class="form">
                   {% csrf_token %}
                   {% buttons %}
-                    <button type="submit" class="btn btn-primary">
+                  <button type="submit" class="btn btn-primary"{% if not finished %} disabled="disabled"{% endif %}>
                       {% bootstrap_icon "download" %} Download profile
                     </button>
                   {% endbuttons %}
                 </form>
-                {% else %}
-                    Please fill in all questions before downloading your profile.
-                {% endif %}
+                <form action="#" method="post" class="form">
+                  {% csrf_token %}
+                  {% buttons %}
+                    <button type="submit" class="btn btn-primary" name="reset" value="reset">
+                      {% bootstrap_icon "trash" %} Start over again 
+                    </button>
+                  {% endbuttons %}
+                </form>
             </div>
         </div>
     </div>

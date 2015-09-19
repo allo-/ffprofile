@@ -12,11 +12,8 @@ def get_forms(request, FormClasses):
         FormClass = FormClasses[i]
         name = FormClass.id
         session_data = request.session.get(name+"_data", None)
-        print "posted name", request.POST.get("form_name", "")
-        print "name", name
         if request.POST.get("form_name", "") == name:
             post_data = request.POST
-            print "post", name
             form = FormClass(post_data)
             if not form.is_valid():
                 invalid_data = True
@@ -35,21 +32,28 @@ def get_forms(request, FormClasses):
 def main(request):
     forms, invalid_data = get_forms(request,
         [PrivacyForm, BloatwareForm, AnnoyancesForm, FeaturesForm])
+
+    # are all forms finished?
     finished = True
     for form in forms:
         if not form.is_valid():
             finished = False
             break
 
-    print invalid_data
-    if request.POST and not invalid_data:
+    if request.POST:
+        # start over again
+        if request.POST.get("reset", None) == "reset":
+            request.session.clear()
+
+        # redirect to the current form or to the next one?
         next = request.POST.get("next", "")
         form_name = request.POST.get("form_name", "")
-        if next:
+        if next and not invalid_data:
             return redirect(reverse(main) + "#" + next)
         else:
             return redirect(reverse(main) + "#" + form_name)
     else:
+        # nothing posted, just render the current page
         return render(request, "main.html", {
             'forms': forms,
             'finished': finished

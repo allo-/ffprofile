@@ -2,6 +2,10 @@ from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from forms import *
 from django import forms
+from django.http import HttpResponse
+import os
+import zipfile
+from StringIO import StringIO
 
 
 def get_forms(request, FormClasses):
@@ -58,3 +62,44 @@ def main(request):
             'forms': forms,
             'finished': finished
         })
+
+def download(request):
+    forms, invalid_data = get_forms(request,
+        [PrivacyForm, BloatwareForm, AnnoyancesForm, FeaturesForm])
+    if invalid_data:
+        return redirect(reverse(main) + "#finish")
+
+    config = {}
+    addons = []
+    for form in forms:
+        form_config, form_addons = form.get_config_and_addons()
+        for key in form_config:
+            config[key] = form_config[key]
+        addons += form_addons
+
+    memoryFile = StringIO()
+    zip_file = zipfile.ZipFile(memoryFile, "w", zipfile.ZIP_DEFLATED)
+
+    prefs = ""
+    if addons:
+        config['extensions.autoDisableScopes'] = 0  # allow preinstalled addons
+    for key in config:
+        value = config[key]
+        if isinstance(value, basestring):
+            value = '"{0}"'.format(value)
+        elif isinstance(value, bool):
+            value = "true" if value else "false"
+        else:
+            value = str(value)
+        prefs += 'user_pref("{key}", {value});\n'.format(key=key, value=value)
+    zip_file.writestr("prefs.js", prefs, compress_type=zipfile.ZIP_DEFLATED)
+
+    for addon in addons:
+        zip_file.write(os.path.join("extensions", addon),
+            compress_type=zipfile.ZIP_DEFLATED)
+    zip_file.close()
+
+    memoryFile.seek(0)
+    response = HttpResponse(memoryFile.read(), content_type="application/zip")
+    response['Content-Disposition'] = 'attachment; filename="profile.zip"'
+    return response

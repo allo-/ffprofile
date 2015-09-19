@@ -2,13 +2,27 @@ from django import forms
 
 
 class AnnoyancesForm(forms.Form):
-    id="annoyances"
-    name="Annoyances"
-    form_name = forms.CharField(initial="annoyances", widget=forms.widgets.HiddenInput)
+    id='annoyances'
+    name='Annoyances'
+    form_name = forms.CharField(initial='annoyances', widget=forms.widgets.HiddenInput)
+
     newtabpage_intro = forms.BooleanField(
-        label="Disable new tab page intro",
-        help_text="Disable the intro to the newtab page on the first run",
+        label='Disable new tab page intro',
+        help_text='Disable the intro to the newtab page on the first run',
         initial=True, required=False)
+    pocket_intro = forms.BooleanField(
+        label='Disable pocket intro',
+        initial=True, required=False)
+
+    def get_config_and_addons(self):
+        config = {}
+        if self.is_valid():
+            if self.cleaned_data['newtabpage_intro']:
+                config['browser.newtabpage.introShown'] = True
+            if self.cleaned_data['pocket_intro']:
+                config['browser.toolbarbuttons.introduced.pocket-button'] = True
+        return config, []
+
 
 
 class PrivacyForm(forms.Form):
@@ -24,6 +38,16 @@ class PrivacyForm(forms.Form):
         label="Disable health report",
         help_text='Disable sending ''<a href="https://www.mozilla.org/en-US/privacy/firefox/#health-report">Firefox health reports</a> to mozilla',
         initial=True, required=False)
+
+    def get_config_and_addons(self):
+        config = {}
+        if self.is_valid():
+            if self.cleaned_data['phishing_protection']:
+                config['browser.safebrowsing.enabled'] = False
+                config['browser.safebrowsing.malware.enabled'] = False
+            if self.cleaned_data['health_report']:
+                config['datareporting.healthreport.uploadEnabled'] = False
+        return config, []
 
 
 class BloatwareForm(forms.Form):
@@ -41,6 +65,15 @@ class BloatwareForm(forms.Form):
         'called <a href=https://www.mozilla.org/en-US/firefox/hello/"">hello</a>. Most users do not need it.',
         initial=False, required=False)
 
+    def get_config_and_addons(self):
+        config = {}
+        if self.is_valid():
+            if self.cleaned_data['pocket']:
+                config['browser.pocket.enabled'] = False
+            if self.cleaned_data['hello']:
+                config['loop.enabled'] = False
+        return config, []
+
 
 class FeaturesForm(forms.Form):
     id="features"
@@ -50,3 +83,10 @@ class FeaturesForm(forms.Form):
         label='Install <a href="https://addons.mozilla.org/en-US/firefox/addon/xclear/">xclear</a> extension.',
         help_text="Adds a little [x] icon to urlbar and searchbar to clear the text.",
         initial=False, required=False)
+
+    def get_config_and_addons(self):
+        addons = []
+        if self.is_valid():
+            if self.cleaned_data['xclear']:
+                addons = ["xclear.xpi"]
+        return {}, addons

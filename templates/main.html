@@ -70,10 +70,12 @@
             <div id="finish" class="tab-pane fade">
                 <h1>Download</h1>
                 {% if not finished %}
-                    Please fill in all questions before downloading your profile.
+                    <div class="alert alert-danger" role="alert">
+                        Please fill in all questions before downloading your profile.
+                    </div>
                     <p />
                 {% endif %}
-                <form action="#" method="post" class="form">
+                <form action="{% url 'profilemaker.views.download' %}" method="post" class="form">
                   {% csrf_token %}
                   {% buttons %}
                   <button type="submit" class="btn btn-primary"{% if not finished %} disabled="disabled"{% endif %}>

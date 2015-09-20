@@ -84,6 +84,10 @@ class TrackingForm(forms.Form):
         help_text='With the do not track feature, you tell websites, that you do not want to be tracked. '
             'Most websites ignore this, so you need other privacy options as well.',
         initial=True, required=False)
+    trackingprotection = forms.BooleanField(
+        label='Enable Mozilla Trackingprotection',
+        help_text='Firefox has a builtin <a href="https://support.mozilla.org/en-US/kb/tracking-protection-firefox">tracking protection</a>, which blocks a list of known tracking sites.',
+        initial=True, required=False)
     ping = forms.BooleanField(
         label='Disable Browser Pings',
         help_text='Firefox sends <a href="http://kb.mozillazine.org/Browser.send_pings">"ping" requests</a>, '
@@ -100,6 +104,8 @@ class TrackingForm(forms.Form):
             if self.cleaned_data['dnt']:
                 config['privacy.donottrackheader.enabled'] = True
                 config['privacy.donottrackheader.value'] = 1
+            if self.cleaned_data['trackingprotection']:
+                config['privacy.trackingprotection.enabled'] = True
             if self.cleaned_data['ping']:
                 config['browser.send_pings'] = False
             if self.cleaned_data['beacon']:

@@ -203,6 +203,10 @@ class BloatwareForm(forms.Form):
         help_text='To show what WebRTC can do, mozilla created a VoIP client '
         'called <a href=https://www.mozilla.org/en-US/firefox/hello/"">hello</a>. Most users do not need it.',
         initial=False, required=False)
+    pdfjs = forms.BooleanField(
+        label='Disable the Firefox PDF-REader',
+        help_text='Mozilla integrated a pdf reader. It works good for a quick preview, but is too slow for reading longer documents.',
+        initial=False, required=False)
 
     def get_config_and_addons(self):
         config = {}
@@ -211,6 +215,8 @@ class BloatwareForm(forms.Form):
                 config['browser.pocket.enabled'] = False
             if self.cleaned_data['hello']:
                 config['loop.enabled'] = False
+            if self.cleaned_data['pdfjs']:
+                config['pdfjs.disabled'] = True
         return config, []
 
 

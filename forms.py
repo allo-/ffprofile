@@ -45,10 +45,10 @@ class FirefoxTrackingForm(forms.Form):
     id="firefox_tracking"
     name="Firefox Tracking"
     form_name = forms.CharField(initial="firefox_tracking", widget=forms.widgets.HiddenInput)
-    phishing_protection = forms.BooleanField(
-        label="Disable phishing protection",
-        help_text='The phishing protection contacts google with an unique key:'
-        ' <a href="http://electroholiker.de/?p=1594">wrkey</a>.',
+    telemetry = forms.BooleanField(
+        label="Disable Telemetry",
+        help_text='The <a href="https://support.mozilla.org/en-US/kb/share-telemetry-data-mozilla-help-improve-firefox">telemetry feature</a> '
+            'sends data about the performance and responsiveness of firefox to mozilla.',
         initial=True, required=False)
     health_report = forms.BooleanField(
         label="Disable health report",
@@ -58,10 +58,17 @@ class FirefoxTrackingForm(forms.Form):
         label="Opt out metadata updates",
         help_text='Firefox sends data about installed addons as <a href="https://blog.mozilla.org/addons/how-to-opt-out-of-add-on-metadata-updates/">metadata updates</a>, so mozilla is able to recommend you other addons.',
         initial=True, required=False)
+    phishing_protection = forms.BooleanField(
+        label="Disable phishing protection",
+        help_text='The phishing protection contacts google with an unique key:'
+        ' <a href="http://electroholiker.de/?p=1594">wrkey</a>.',
+        initial=True, required=False)
 
     def get_config_and_addons(self):
         config = {}
         if self.is_valid():
+            if self.cleaned_data['health_report']:
+                config['toolkit.telemetry.enabled'] = False
             if self.cleaned_data['phishing_protection']:
                 config['browser.safebrowsing.enabled'] = False
                 config['browser.safebrowsing.malware.enabled'] = False

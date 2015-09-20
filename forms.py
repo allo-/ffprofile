@@ -60,6 +60,8 @@ class FirefoxTrackingForm(forms.Form):
                 config['browser.safebrowsing.malware.enabled'] = False
             if self.cleaned_data['health_report']:
                 config['datareporting.healthreport.uploadEnabled'] = False
+                config['datareporting.healthreport.uploadEnabled'] = False
+                config['datareporting.policy.dataSubmissionEnabled'] = False
             if self.cleaned_data['addon_data']:
                 config['extensions.getAddons.cache.enabled'] = False
         return config, []

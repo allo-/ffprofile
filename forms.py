@@ -160,6 +160,7 @@ class PrivacyForm(forms.Form):
                 config['dom.storage.enabled'] = False
             if self.cleaned_data['prefetch']:
                 config['network.prefetch-next'] = False
+                config['network.dns.disablePrefetch'] = True
             if self.cleaned_data['webrtc']:
                 config['media.peerconnection.enabled'] = False
             if self.cleaned_data['keyword_search']:

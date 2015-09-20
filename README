@@ -3,3 +3,11 @@ Currently they are:
 
 xclear.xpi
 from https://addons.mozilla.org/en-US/firefox/addon/xclear/
+
+Things, that will not be included:
+
+- Some cool addons. The addons list should be short and mostly privacy addons and important tweaks like classic theme restorer. Smaller addons like xclear are okay, but not too much.
+- Your favourite performance setting. It's not the scope of the project to enable http pipelining because some site may load faster.
+
+You're welcome to fork the project to create profiles with such features enabled.
+Later some plugin system may be added. Then additional settings / addons could just be added via a config file.

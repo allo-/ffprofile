@@ -34,11 +34,10 @@ class AnnoyancesForm(forms.Form):
         return config, []
 
 
-
-class TrackingForm(forms.Form):
-    id="tracking"
-    name="Tracking Features"
-    form_name = forms.CharField(initial="tracking", widget=forms.widgets.HiddenInput)
+class FirefoxTrackingForm(forms.Form):
+    id="firefox_tracking"
+    name="Firefox Tracking"
+    form_name = forms.CharField(initial="firefox_tracking", widget=forms.widgets.HiddenInput)
     phishing_protection = forms.BooleanField(
         label="Disable phishing protection",
         help_text='The phishing protection contacts google with an unique key:'
@@ -66,16 +65,43 @@ class TrackingForm(forms.Form):
         return config, []
 
 
-class PrivacyForm(forms.Form):
-    id='privacy'
-    name='Privacy'
-    form_name = forms.CharField(initial='privacy', widget=forms.widgets.HiddenInput)
+class TrackingForm(forms.Form):
+    id="tracking"
+    name="Website Tracking"
+    form_name = forms.CharField(initial="tracking", widget=forms.widgets.HiddenInput)
 
     dnt = forms.BooleanField(
         label='Enable Do-not-Track',
         help_text='With the do not track feature, you tell websites, that you do not want to be tracked. '
             'Most websites ignore this, so you need other privacy options as well.',
         initial=True, required=False)
+    ping = forms.BooleanField(
+        label='Disable Browser Pings',
+        help_text='Firefox sends <a href="http://kb.mozillazine.org/Browser.send_pings">"ping" requests</a>, '
+            'when a website requests to be informed when a user clicks on a link.',
+        initial=True, required=False)
+    beacon = forms.BooleanField(
+        label='Disable Beacons',
+        help_text='The <a href="https://w3c.github.io/beacon/">Beacon</a> feature allows websites to send tracking data after you left the website.',
+        initial=True, required=False)
+
+    def get_config_and_addons(self):
+        config = {}
+        if self.is_valid():
+            if self.cleaned_data['dnt']:
+                config['privacy.donottrackheader.enabled'] = True
+                config['privacy.donottrackheader.value'] = 1
+            if self.cleaned_data['ping']:
+                config['browser.send_pings'] = False
+            if self.cleaned_data['beacon']:
+                config['beacon.enabled'] = False
+        return config, []
+
+class PrivacyForm(forms.Form):
+    id='privacy'
+    name='Privacy'
+    form_name = forms.CharField(initial='privacy', widget=forms.widgets.HiddenInput)
+
     useragent = forms.CharField(
         label='Fake another Useragent',
         help_text='Using a <a href="https://techblog.willshouse.com/2012/01/03/most-common-user-agents/">popular useragent string</a> '
@@ -105,15 +131,6 @@ class PrivacyForm(forms.Form):
         label='Disable Link Prefetching',
         help_text='Firefox prefetches the next site on some links, so the site is loaded even when you never click.',
         initial=True, required=False)
-    ping = forms.BooleanField(
-        label='Disable Browser Pings',
-        help_text='Firefox sends <a href="http://kb.mozillazine.org/Browser.send_pings">"ping" requests</a>, '
-            'when a website requests to be informed when a user clicks on a link.',
-        initial=True, required=False)
-    beacon = forms.BooleanField(
-        label='Disable Beacons',
-        help_text='The <a href="https://w3c.github.io/beacon/">Beacon</a> feature allows websites to send tracking data after you left the website.',
-        initial=True, required=False)
     webrtc = forms.BooleanField(
         label='Disable WebRTC',
         help_text='Disables the WebRTC function, which gives away your local ips.',
@@ -131,9 +148,6 @@ class PrivacyForm(forms.Form):
     def get_config_and_addons(self):
         config = {}
         if self.is_valid():
-            if self.cleaned_data['dnt']:
-                config['privacy.donottrackheader.enabled'] = True
-                config['privacy.donottrackheader.value'] = 1
             if self.cleaned_data['useragent']:
                 config['general.useragent.override'] = self.cleaned_data['useragent']
             if self.cleaned_data['all_cookies']:
@@ -146,16 +160,31 @@ class PrivacyForm(forms.Form):
                 config['dom.storage.enabled'] = False
             if self.cleaned_data['prefetch']:
                 config['network.prefetch-next'] = False
-            if self.cleaned_data['ping']:
-                config['browser.send_pings'] = False
-            if self.cleaned_data['beacon']:
-                config['beacon.enabled'] = False
             if self.cleaned_data['webrtc']:
                 config['media.peerconnection.enabled'] = False
             if self.cleaned_data['keyword_search']:
                 config['keyword.enabled'] = False
             if self.cleaned_data['fixup_url']:
                 config['browser.fixup.alternate.enabled'] = False
+        return config, []
+
+
+class SecurityForm(forms.Form):
+    id='security'
+    name='Security'
+    form_name = forms.CharField(initial='security', widget=forms.widgets.HiddenInput)
+
+    webgl = forms.BooleanField(
+        label='Disable WebGL',
+        help_text='Disables the WebGL function, to prevent websites from <a href="https://isc.sans.edu/forums/diary/Time+to+disable+WebGL/10867">(ab)using the full power of the graphics card</a>. '
+            'Some interactive websites will not work, mostly games.',
+        initial=False, required=False)
+
+    def get_config_and_addons(self):
+        config = {}
+        if self.is_valid():
+            if self.cleaned_data['webgl']:
+                config['webgl.disabled'] = True
         return config, []
 
 

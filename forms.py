@@ -19,6 +19,11 @@ class AnnoyancesForm(forms.Form):
     default_browser = forms.BooleanField(
         label='Disable checking if Firefox is the default browser',
         initial=True, required=False)
+    heartbeat = forms.BooleanField(
+        label='Disable Heartbeat Userrating',
+        help_text='With Firefox 37, Mozilla integrated the <a href="https://wiki.mozilla.org/Advocacy/heartbeat">Heartbeat</a> '
+            'system to ask users from time to time about their experience with firefox.',
+        initial=True, required=False)
 
     def get_config_and_addons(self):
         config = {}
@@ -31,6 +36,8 @@ class AnnoyancesForm(forms.Form):
                 config['general.warnOnAboutConfig'] = False
             if self.cleaned_data['default_browser']:
                 config['browser.shell.checkDefaultBrowser'] = False
+            if self.cleaned_data['heartbeat']:
+                config['browser.selfsupport.url '] = ""
         return config, []
 
 

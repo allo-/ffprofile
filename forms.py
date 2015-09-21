@@ -104,6 +104,10 @@ class TrackingForm(forms.Form):
         label='Disable Beacons',
         help_text='The <a href="https://w3c.github.io/beacon/">Beacon</a> feature allows websites to send tracking data after you left the website.',
         initial=True, required=False)
+    dom_battery = forms.BooleanField(
+        label='Disable the Battery API',
+        help_text='Firefox allows websites to read the charge level of the battery. This may be used for fingerprinting.',
+        initial=True, required=False)
 
     def get_config_and_addons(self):
         config = {}
@@ -117,6 +121,8 @@ class TrackingForm(forms.Form):
                 config['browser.send_pings'] = False
             if self.cleaned_data['beacon']:
                 config['beacon.enabled'] = False
+            if self.cleaned_data['dom_battery']:
+                config['dom.battery.enabled'] = False
         return config, []
 
 class PrivacyForm(forms.Form):

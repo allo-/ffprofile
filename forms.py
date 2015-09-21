@@ -149,6 +149,12 @@ class PrivacyForm(forms.Form):
         label='Disable DOM storage',
         help_text='Disables DOM storage, which enables so called "supercookies". Some modern sites will not fully not work (i.e. missing "save" functions).',
         initial=False, required=False)
+    indexed_db = forms.BooleanField(
+        label='Disable IndexedDB',
+        help_text='<a href="http://www.w3.org/TR/IndexedDB/">IndexedDB</a> is a way, websites can store structured data. This can be '
+            '<a href="http://arstechnica.com/apple/2010/09/rldguid-tracking-cookies-in-safari-database-form/">abused for tracking</a>, too. '
+            'Disabling should be no problem.',
+        initial=True, required=False)
     prefetch = forms.BooleanField(
         label='Disable Link Prefetching',
         help_text='Firefox prefetches the next site on some links, so the site is loaded even when you never click.',
@@ -180,6 +186,8 @@ class PrivacyForm(forms.Form):
                 config['network.http.sendRefererHeader'] = self.cleaned_data['referer']
             if self.cleaned_data['dom_storage']:
                 config['dom.storage.enabled'] = False
+            if self.cleaned_data['indexed_db']:
+                config['dom.indexedDB.enabled'] = False
             if self.cleaned_data['prefetch']:
                 config['network.prefetch-next'] = False
                 config['network.dns.disablePrefetch'] = True

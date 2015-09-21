@@ -153,7 +153,7 @@ class PrivacyForm(forms.Form):
         label='Disable IndexedDB',
         help_text='<a href="http://www.w3.org/TR/IndexedDB/">IndexedDB</a> is a way, websites can store structured data. This can be '
             '<a href="http://arstechnica.com/apple/2010/09/rldguid-tracking-cookies-in-safari-database-form/">abused for tracking</a>, too. '
-            'Disabling should be no problem.',
+            'Disabling may be a problem with some webapps like tweetdeck.',
         initial=True, required=False)
     prefetch = forms.BooleanField(
         label='Disable Link Prefetching',

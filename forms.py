@@ -163,6 +163,11 @@ class PrivacyForm(forms.Form):
         label='Disable WebRTC',
         help_text='Disables the WebRTC function, which gives away your local ips.',
         initial=True, required=False)
+    search_suggest = forms.BooleanField(
+        label='Disable Search Suggestions',
+        help_text='Firefox suggests search terms in the search field. This will send everything typed or pasted '
+            'in the search field to the chosen search engine, even when you did not press enter.',
+        initial=False, required=False)
     keyword_search = forms.BooleanField(
         label='Disable Search Keyword',
         help_text='When you mistype some url, firefox starts a search even from urlbar. '
@@ -191,6 +196,8 @@ class PrivacyForm(forms.Form):
             if self.cleaned_data['prefetch']:
                 config['network.prefetch-next'] = False
                 config['network.dns.disablePrefetch'] = True
+            if self.cleaned_data['search_suggest']:
+                config['browser.search.suggest.enabled'] = False
             if self.cleaned_data['webrtc']:
                 config['media.peerconnection.enabled'] = False
             if self.cleaned_data['keyword_search']:

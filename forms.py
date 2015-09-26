@@ -132,6 +132,7 @@ class TrackingForm(forms.Form):
                 config['privacy.donottrackheader.value'] = 1
             if self.cleaned_data['trackingprotection']:
                 config['privacy.trackingprotection.enabled'] = True
+                config['privacy.trackingprotection.pbmode.enabled'] = True
             if self.cleaned_data['ping']:
                 config['browser.send_pings'] = False
             if self.cleaned_data['beacon']:

@@ -92,9 +92,12 @@
                 <form action="{% url 'profilemaker.views.download' %}" method="post" class="form">
                   {% csrf_token %}
                   {% buttons %}
-                  <button type="submit" class="btn btn-primary"{% if not finished %} disabled="disabled"{% endif %}>
-                      {% bootstrap_icon "download" %} Download profile
-                    </button>
+                  <button type="submit" name="zip" value="true" class="btn btn-primary"{% if not finished %} disabled="disabled"{% endif %}>
+                      {% bootstrap_icon "download" %} Download profile.zip
+                  </button>
+                  <button type="submit" name="prefsjs_only" value="true" class="btn btn-primary"{% if not finished %} disabled="disabled"{% endif %}>
+                      {% bootstrap_icon "download" %} Download only prefs.js
+                  </button>
                   {% endbuttons %}
                 </form>
                 <form action="#" method="post" class="form">

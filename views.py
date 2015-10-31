@@ -67,6 +67,7 @@ def main(request):
 
 def download(request):
     forms, invalid_data = get_forms(request, FORMS)
+    prefsjs_only = request.POST.get("prefsjs_only", False)
 
     if invalid_data:
         return redirect(reverse(main) + "#finish")
@@ -80,10 +81,9 @@ def download(request):
         addons += form_addons
 
     memoryFile = StringIO()
-    zip_file = zipfile.ZipFile(memoryFile, "w", zipfile.ZIP_DEFLATED)
 
     prefs = ""
-    if addons:
+    if addons and not prefsjs_only:
         config['extensions.autoDisableScopes'] = 0  # allow preinstalled addons
     for key in config:
         value = config[key]
@@ -94,14 +94,21 @@ def download(request):
         else:
             value = str(value)
         prefs += 'user_pref("{key}", {value});\r\n'.format(key=key, value=value)
-    zip_file.writestr("prefs.js", prefs, compress_type=zipfile.ZIP_DEFLATED)
 
-    for addon in addons:
-        zip_file.write(os.path.join("extensions", addon),
-            compress_type=zipfile.ZIP_DEFLATED)
-    zip_file.close()
+    if not prefsjs_only:
+        zip_file = zipfile.ZipFile(memoryFile, "w", zipfile.ZIP_DEFLATED)
+        zip_file.writestr("prefs.js", prefs, compress_type=zipfile.ZIP_DEFLATED)
 
-    memoryFile.seek(0)
-    response = HttpResponse(memoryFile.read(), content_type="application/zip")
-    response['Content-Disposition'] = 'attachment; filename="profile.zip"'
+        for addon in addons:
+            zip_file.write(os.path.join("extensions", addon),
+                compress_type=zipfile.ZIP_DEFLATED)
+        zip_file.close()
+
+        memoryFile.seek(0)
+        response = HttpResponse(memoryFile.read(), content_type="application/zip")
+        response['Content-Disposition'] = 'attachment; filename="profile.zip"'
+    else:
+        response = HttpResponse(prefs, content_type="text/plain")
+        response['Content-Disposition'] = 'attachment; filename="prefs.js"'
+
     return response

@@ -1,8 +1,9 @@
 For the functions installing addons, you need to create a folder "extensions" from where you run the django project and place there the XPIs.
+The Extension needs to have the name of its install.rdf file.
+
 Currently they are:
 
-xclear.xpi
-from https://addons.mozilla.org/en-US/firefox/addon/xclear/
+- [xclear@as-computer.de.xpi](https://addons.mozilla.org/en-US/firefox/addon/xclear/)
 
 Things, that will not be included:
 

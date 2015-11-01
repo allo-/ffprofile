@@ -11,6 +11,7 @@ from StringIO import StringIO
 FORMS = [FirefoxTrackingForm, TrackingForm, PrivacyForm, SecurityForm,
          BloatwareForm, AnnoyancesForm, AddonForm]
 
+
 def get_forms(request, FormClasses):
 
     forms = []
@@ -29,12 +30,13 @@ def get_forms(request, FormClasses):
             request.session[name+"_data"] = post_data
         else:
             form = FormClass(session_data)
-        if not i == len(FormClasses) -1:  # last item
+        if not i == len(FormClasses) - 1:  # last item
             form.next = FormClasses[i+1].id
         else:
             form.next = "finish"
         forms.append(form)
     return forms, invalid_data
+
 
 def main(request):
     forms, invalid_data = get_forms(request, FORMS)
@@ -65,6 +67,7 @@ def main(request):
             'finished': finished
         })
 
+
 def download(request):
     forms, invalid_data = get_forms(request, FORMS)
     prefsjs_only = request.POST.get("prefsjs_only", False)
@@ -94,19 +97,22 @@ def download(request):
             value = "true" if value else "false"
         else:
             value = str(value)
-        prefs += 'user_pref("{key}", {value});\r\n'.format(key=key, value=value)
+        prefs += 'user_pref("{key}", {value});\r\n'.format(
+            key=key, value=value)
 
     if not prefsjs_only:
         zip_file = zipfile.ZipFile(memoryFile, "w", zipfile.ZIP_DEFLATED)
-        zip_file.writestr("prefs.js", prefs, compress_type=zipfile.ZIP_DEFLATED)
+        zip_file.writestr("prefs.js", prefs,
+                          compress_type=zipfile.ZIP_DEFLATED)
 
         for addon in addons:
             zip_file.write(os.path.join("extensions", addon),
-                compress_type=zipfile.ZIP_DEFLATED)
+                           compress_type=zipfile.ZIP_DEFLATED)
         zip_file.close()
 
         memoryFile.seek(0)
-        response = HttpResponse(memoryFile.read(), content_type="application/zip")
+        response = HttpResponse(memoryFile.read(),
+                                content_type="application/zip")
         response['Content-Disposition'] = 'attachment; filename="profile.zip"'
     else:
         response = HttpResponse(prefs, content_type="text/plain")

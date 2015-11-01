@@ -84,7 +84,8 @@ def download(request):
 
     prefs = ""
     if addons and not prefsjs_only:
-        config['extensions.autoDisableScopes'] = 0  # allow preinstalled addons
+        # allow preinstalled addons in the profile
+        config['extensions.autoDisableScopes'] = 14
     for key in config:
         value = config[key]
         if isinstance(value, basestring):

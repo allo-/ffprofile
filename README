@@ -3,6 +3,9 @@ The Extension needs to have the name of its install.rdf file.
 
 Currently they are:
 
+- [CanvasBlocker@kkapsner.de.xpi](https://addons.mozilla.org/en-US/firefox/addon/canvasblocker/)
+- [uBlock0@raymondhill.net.xpi](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/)
+- [uMatrix@raymondhill.net.xpi](https://addons.mozilla.org/en-US/firefox/addon/umatrix/)
 - [xclear@as-computer.de.xpi](https://addons.mozilla.org/en-US/firefox/addon/xclear/)
 
 Things, that will not be included:

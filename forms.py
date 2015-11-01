@@ -279,10 +279,22 @@ class BloatwareForm(forms.Form):
         return config, []
 
 
-class FeaturesForm(forms.Form):
-    id="features"
-    name="Useful Features"
-    form_name = forms.CharField(initial="features", widget=forms.widgets.HiddenInput)
+class AddonForm(forms.Form):
+    id="addons"
+    name="Addons"
+    form_name = forms.CharField(initial="addons", widget=forms.widgets.HiddenInput)
+    canvasblocker = forms.BooleanField(
+        label='Install <a href="https://addons.mozilla.org/en-US/firefox/addon/canvasblocker/">CanvasBlocker</a> extension.',
+        help_text="Blocks the JS-API for modifying &lt;canvas&gt; to prevent Canvas-Fingerprinting.&lt;/canvas&gt;",
+        initial=True, required=False)
+    ublock = forms.BooleanField(
+        label='Install <a href="https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/">uBlock Origin</a> extension.',
+        help_text="Efficient blocker, which does not only block ads, but supports Anti-Tracking and Anti-Malware Blocklists",
+        initial=True, required=False)
+    umatrix = forms.BooleanField(
+        label='Install <a href="https://addons.mozilla.org/en-US/firefox/addon/umatrix/">uMatrix</a> extension.',
+        help_text="A content blocker for advanced users, which blocks requests to thirdparty domains. Big privacy gain, but you will need to configure exception rules for many sites.",
+        initial=False, required=False)
     xclear = forms.BooleanField(
         label='Install <a href="https://addons.mozilla.org/en-US/firefox/addon/xclear/">xclear</a> extension.',
         help_text="Adds a little [x] icon to urlbar and searchbar to clear the text.",
@@ -292,5 +304,11 @@ class FeaturesForm(forms.Form):
         addons = []
         if self.is_valid():
             if self.cleaned_data['xclear']:
-                addons = ["xclear@as-computer.de.xpi"]
+                addons.append("xclear@as-computer.de.xpi")
+            if self.cleaned_data['canvasblocker']:
+                addons.append("CanvasBlocker@kkapsner.de.xpi")
+            if self.cleaned_data['ublock']:
+                addons.append("uBlock0@raymondhill.net.xpi")
+            if self.cleaned_data['umatrix']:
+                addons.append("uMatrix@raymondhill.net.xpi")
         return {}, addons

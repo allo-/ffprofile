@@ -108,7 +108,7 @@ class TrackingForm(forms.Form):
         initial=True, required=False)
     trackingprotection = forms.BooleanField(
         label='Enable Mozilla Trackingprotection',
-        help_text='Firefox has a builtin <a href="https://support.mozilla.org/en-US/kb/tracking-protection-firefox">tracking protection</a>, which blocks a list of known tracking sites.',
+        help_text='Firefox has a builtin <a href="https://wiki.mozilla.org/Security/Tracking_protection">tracking protection</a>, which blocks a list of known tracking sites.',
         initial=True, required=False)
     ping = forms.BooleanField(
         label='Disable Browser Pings',

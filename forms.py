@@ -85,6 +85,8 @@ class FirefoxTrackingForm(forms.Form):
             if self.cleaned_data['health_report']:
                 config['toolkit.telemetry.enabled'] = False
                 config['datareporting.healthreport.service.enabled'] = False
+                # see https://bugzilla.mozilla.org/show_bug.cgi?id=1195552#c4
+                config['datareporting.policy.dataSubmissionEnabled'] = False
             if self.cleaned_data['phishing_protection']:
                 config['browser.safebrowsing.enabled'] = False
                 config['browser.safebrowsing.malware.enabled'] = False

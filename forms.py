@@ -302,6 +302,10 @@ class AddonForm(forms.Form):
         label='Install <a href="https://addons.mozilla.org/en-US/firefox/addon/canvasblocker/">CanvasBlocker</a> extension.',
         help_text="Blocks the JS-API for modifying &lt;canvas&gt; to prevent Canvas-Fingerprinting.&lt;/canvas&gt;",
         initial=True, required=False)
+    google_redirect_cleaner = forms.BooleanField(
+        label='Install <a href="https://addons.mozilla.org/de/firefox/addon/google-no-tracking-url/">Google Redirects Fixer &amp; Tracking Remover</a> extension.',
+        help_text="Rewrites URLs from the google result pages to direct links instead redirect urls with tracking.",
+        initial=True, required=False)
     ublock = forms.BooleanField(
         label='Install <a href="https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/">uBlock Origin</a> extension.',
         help_text="Efficient blocker, which does not only block ads, but supports Anti-Tracking and Anti-Malware Blocklists",
@@ -322,6 +326,8 @@ class AddonForm(forms.Form):
                 addons.append("xclear@as-computer.de.xpi")
             if self.cleaned_data['canvasblocker']:
                 addons.append("CanvasBlocker@kkapsner.de.xpi")
+            if self.cleaned_data['google_redirect_cleaner']:
+                addons.append("jid1-zUrvDCat3xoDSQ@jetpack.xpi")
             if self.cleaned_data['ublock']:
                 addons.append("uBlock0@raymondhill.net.xpi")
             if self.cleaned_data['umatrix']:

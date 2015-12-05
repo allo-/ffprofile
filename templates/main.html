@@ -104,6 +104,19 @@
                   {% endbuttons %}
                 </form>
 
+				<h3>Installing</h3>
+				<ul>
+					<li>Optional: add a new profile to keep the old one</li>
+					<ul>
+						<li>Run <code>firefox -no-remote -ProfileManager</code></li>
+						<li>Create a new profile and note the profile folder (something like <code>.mozilla/firefox/m35kxjmd.profilename</code>)</li>
+					</ul>
+					<li>Open the profile folder.</li>
+					<li>Delete everything from the new profile (you will lose all existing data from the profile).</li>
+					<li>unzip the <code>profile.zip</code> file into the folder.</li>
+					<li>Start firefox again. If you made a new profile, you can use it with <code>firefox -no-remote -P profilename</code>.</li>
+					<li>Open the addon manager and update the extensions.</li>
+				</ul>
 				<h3>Preview</h3>
 
 				prefs.js:

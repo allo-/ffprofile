@@ -300,7 +300,7 @@ class AddonForm(forms.Form):
     form_name = forms.CharField(initial="addons", widget=forms.widgets.HiddenInput)
     canvasblocker = forms.BooleanField(
         label='Install <a href="https://addons.mozilla.org/en-US/firefox/addon/canvasblocker/">CanvasBlocker</a> extension.',
-        help_text="Blocks the JS-API for modifying &lt;canvas&gt; to prevent Canvas-Fingerprinting.&lt;/canvas&gt;",
+        help_text='Blocks the JS-API for the &lt;canvas&gt; element to prevent <a href="https://en.wikipedia.org/wiki/Canvas_fingerprinting">Canvas-Fingerprinting</a>.',
         initial=True, required=False)
     google_redirect_cleaner = forms.BooleanField(
         label='Install <a href="https://addons.mozilla.org/de/firefox/addon/google-no-tracking-url/">Google Redirects Fixer &amp; Tracking Remover</a> extension.',
@@ -308,7 +308,7 @@ class AddonForm(forms.Form):
         initial=True, required=False)
     ublock = forms.BooleanField(
         label='Install <a href="https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/">uBlock Origin</a> extension.',
-        help_text="Efficient blocker, which does not only block ads, but supports Anti-Tracking and Anti-Malware Blocklists",
+        help_text="Efficient blocker, which does not only block ads, but also supports Anti-Tracking and Anti-Malware Blocklists",
         initial=True, required=False)
     umatrix = forms.BooleanField(
         label='Install <a href="https://addons.mozilla.org/en-US/firefox/addon/umatrix/">uMatrix</a> extension.',

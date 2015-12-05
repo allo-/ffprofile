@@ -62,19 +62,15 @@ def main(request):
             return redirect(reverse(main) + "#" + form_name)
     else:
         # nothing posted, just render the current page
+        prefs_js, addons = generate_prefsjs_and_addonlist(forms, False)
         return render(request, "main.html", {
             'forms': forms,
+            'prefs_js': prefs_js,
+            'addons': addons,
             'finished': finished
         })
 
-
-def download(request):
-    forms, invalid_data = get_forms(request, FORMS)
-    prefsjs_only = request.POST.get("prefsjs_only", False)
-
-    if invalid_data:
-        return redirect(reverse(main) + "#finish")
-
+def generate_prefsjs_and_addonlist(forms, prefsjs_only):
     config = {}
     addons = []
     for form in forms:
@@ -82,8 +78,6 @@ def download(request):
         for key in form_config:
             config[key] = form_config[key]
         addons += form_addons
-
-    memoryFile = StringIO()
 
     prefs = ""
     if addons and not prefsjs_only:
@@ -100,7 +94,25 @@ def download(request):
         prefs += 'user_pref("{key}", {value});\r\n'.format(
             key=key, value=value)
 
+    return prefs, addons
+
+def download(request, what):
+    forms, invalid_data = get_forms(request, FORMS)
+    prefsjs_only = False
+    prefsjs_text = False
+    if what == "prefs.js":
+        prefsjs_only = True
+    elif what == "prefs.js.txt":
+        prefsjs_only = True
+        prefsjs_text = True
+
+    if invalid_data:
+        return redirect(reverse(main) + "#finish")
+
+    prefs, addons = generate_prefsjs_and_addonlist(forms, prefsjs_only)
+
     if not prefsjs_only:
+        memoryFile = StringIO()
         zip_file = zipfile.ZipFile(memoryFile, "w", zipfile.ZIP_DEFLATED)
         zip_file.writestr("prefs.js", prefs,
                           compress_type=zipfile.ZIP_DEFLATED)
@@ -116,6 +128,9 @@ def download(request):
         response['Content-Disposition'] = 'attachment; filename="profile.zip"'
     else:
         response = HttpResponse(prefs, content_type="text/plain")
-        response['Content-Disposition'] = 'attachment; filename="prefs.js"'
+        if prefsjs_text:
+            response['Content-Disposition'] = 'filename="prefs.js"'
+        else:
+            response['Content-Disposition'] = 'attachment; filename="prefs.js"'
 
     return response

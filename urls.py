@@ -2,5 +2,5 @@ from django.conf.urls import include, url
 
 urlpatterns = [
     url('^$', 'profilemaker.views.main'),
-    url('^download/$', 'profilemaker.views.download'),
+    url('^download/(?P<what>.*)$', 'profilemaker.views.download'),
 ]

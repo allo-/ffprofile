@@ -89,17 +89,12 @@
                     </div>
                     <p />
                 {% endif %}
-                <form action="{% url 'profilemaker.views.download' %}" method="post" class="form">
-                  {% csrf_token %}
-                  {% buttons %}
-                  <button type="submit" name="zip" value="true" class="btn btn-primary"{% if not finished %} disabled="disabled"{% endif %}>
-                      {% bootstrap_icon "download" %} Download profile.zip
-                  </button>
-                  <button type="submit" name="prefsjs_only" value="true" class="btn btn-primary"{% if not finished %} disabled="disabled"{% endif %}>
-                      {% bootstrap_icon "download" %} Download only prefs.js
-                  </button>
-                  {% endbuttons %}
-                </form>
+
+				<a href="{% url 'profilemaker.views.download' 'profile.zip' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} Download profile.zip</a>
+				<a href="{% url 'profilemaker.views.download' 'prefs.js' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} Download prefs.js only</a>
+				<a href="{% url 'profilemaker.views.download' 'prefs.js.txt' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} Open prefs.js in the browser</a>
+
+
                 <form action="#" method="post" class="form">
                   {% csrf_token %}
                   {% buttons %}
@@ -108,6 +103,16 @@
                     </button>
                   {% endbuttons %}
                 </form>
+
+				<h3>Preview</h3>
+
+				prefs.js:
+				<pre>{{ prefs_js }}</pre>
+
+				{% if addons %}
+					Addons:
+					<pre>{% for addon in addons %}{{ addon }}<br />{% endfor %}</pre>
+				{% endif %}
             </div>
         </div>
     </div>

@@ -242,12 +242,24 @@ class SecurityForm(forms.Form):
         help_text='Disables the WebGL function, to prevent websites from <a href="https://isc.sans.edu/forums/diary/Time+to+disable+WebGL/10867">(ab)using the full power of the graphics card</a>. '
             'Some interactive websites will not work, mostly games.',
         initial=False, required=False)
+    disable_autoupdate = forms.BooleanField(
+        label='Disable automatic updates.',
+        help_text='Updates are no longer installed automatically. You will still be notified when an update is available and can install it. Avoids getting a new (maybe addon incompatible) version.',
+        initial=True, required=False)
+    disable_updatecheck = forms.BooleanField(
+        label='Disable searching for updates.',
+        help_text='Disable searching for updates. <b>Caution:</b> You may not notice, when there is an (security) update available.',
+        initial=False, required=False)
 
     def get_config_and_addons(self):
         config = {}
         if self.is_valid():
             if self.cleaned_data['webgl']:
                 config['webgl.disabled'] = True
+            if self.cleaned_data['disable_autoupdate']:
+                config['app.update.auto'] = False
+            if self.cleaned_data['disable_updatecheck']:
+                config['app.update.enabled'] = False
         return config, []
 
 

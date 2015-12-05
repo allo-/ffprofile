@@ -8,8 +8,8 @@
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<meta charset="UTF-8">
-	<title>Firefox Profilemaker</title>
+    <meta charset="UTF-8">
+    <title>Firefox Profilemaker</title>
     <style>
         body {
            background-color: #eaf3e8;
@@ -90,9 +90,9 @@
                     <p />
                 {% endif %}
 
-				<a href="{% url 'profilemaker.views.download' 'profile.zip' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} Download profile.zip</a>
-				<a href="{% url 'profilemaker.views.download' 'prefs.js' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} Download prefs.js only</a>
-				<a href="{% url 'profilemaker.views.download' 'prefs.js.txt' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} Open prefs.js in the browser</a>
+                <a href="{% url 'profilemaker.views.download' 'profile.zip' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} Download profile.zip</a>
+                <a href="{% url 'profilemaker.views.download' 'prefs.js' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} Download prefs.js only</a>
+                <a href="{% url 'profilemaker.views.download' 'prefs.js.txt' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} Open prefs.js in the browser</a>
 
 
                 <form action="#" method="post" class="form">
@@ -104,28 +104,28 @@
                   {% endbuttons %}
                 </form>
 
-				<h3>Installing</h3>
-				<ul>
-					<li>Optional: add a new profile to keep the old one</li>
-					<ul>
-						<li>Run <code>firefox -no-remote -ProfileManager</code></li>
-						<li>Create a new profile and note the profile folder (something like <code>.mozilla/firefox/m35kxjmd.profilename</code>)</li>
-					</ul>
-					<li>Open the profile folder.</li>
-					<li>Delete everything from the new profile (you will lose all existing data from the profile).</li>
-					<li>unzip the <code>profile.zip</code> file into the folder.</li>
-					<li>Start firefox again. If you made a new profile, you can use it with <code>firefox -no-remote -P profilename</code>.</li>
-					<li>Open the addon manager and update the extensions.</li>
-				</ul>
-				<h3>Preview</h3>
+                <h3>Installing</h3>
+                <ul>
+                    <li>Optional: add a new profile to keep the old one</li>
+                    <ul>
+                        <li>Run <code>firefox -no-remote -ProfileManager</code></li>
+                        <li>Create a new profile and note the profile folder (something like <code>.mozilla/firefox/m35kxjmd.profilename</code>)</li>
+                    </ul>
+                    <li>Open the profile folder.</li>
+                    <li>Delete everything from the new profile (you will lose all existing data from the profile).</li>
+                    <li>unzip the <code>profile.zip</code> file into the folder.</li>
+                    <li>Start firefox again. If you made a new profile, you can use it with <code>firefox -no-remote -P profilename</code>.</li>
+                    <li>Open the addon manager and update the extensions.</li>
+                </ul>
+                <h3>Preview</h3>
 
-				prefs.js:
-				<pre>{{ prefs_js }}</pre>
+                prefs.js:
+                <pre>{{ prefs_js }}</pre>
 
-				{% if addons %}
-					Addons:
-					<pre>{% for addon in addons %}{{ addon }}<br />{% endfor %}</pre>
-				{% endif %}
+                {% if addons %}
+                    Addons:
+                    <pre>{% for addon in addons %}{{ addon }}<br />{% endfor %}</pre>
+                {% endif %}
             </div>
         </div>
     </div>

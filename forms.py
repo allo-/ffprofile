@@ -78,6 +78,10 @@ class FirefoxTrackingForm(forms.Form):
         help_text='The phishing protection contacts google with an unique key:'
         ' <a href="http://electroholiker.de/?p=1594">wrkey</a>.',
         initial=True, required=False)
+    newtab_preload = forms.BooleanField(
+        label="Disable preloading of the new tab page.",
+        help_text='By default firefox preloads the new tab page (with website thumbnails) in the background before it is even opened.',
+        initial=True, required=False)
 
     def get_config_and_addons(self):
         config = {}
@@ -96,6 +100,8 @@ class FirefoxTrackingForm(forms.Form):
                 config['datareporting.policy.dataSubmissionEnabled'] = False
             if self.cleaned_data['addon_data']:
                 config['extensions.getAddons.cache.enabled'] = False
+            if self.cleaned_data['newtab_preload']:
+                config['browser.newtab.preload'] = False
         return config, []
 
 

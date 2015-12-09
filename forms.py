@@ -331,6 +331,7 @@ class AddonForm(forms.Form):
 
     def get_config_and_addons(self):
         addons = []
+        config = {}
         if self.is_valid():
             if self.cleaned_data['xclear']:
                 addons.append("xclear@as-computer.de.xpi")
@@ -338,10 +339,11 @@ class AddonForm(forms.Form):
                 addons.append("CanvasBlocker@kkapsner.de.xpi")
             if self.cleaned_data['https_everywhere']:
                 addons.append("https-everywhere@eff.org.xpi")
+                config['extensions.https_everywhere._observatory.popup_shown'] = True
             if self.cleaned_data['google_redirect_cleaner']:
                 addons.append("jid1-zUrvDCat3xoDSQ@jetpack.xpi")
             if self.cleaned_data['ublock']:
                 addons.append("uBlock0@raymondhill.net.xpi")
             if self.cleaned_data['umatrix']:
                 addons.append("uMatrix@raymondhill.net.xpi")
-        return {}, addons
+        return config, addons

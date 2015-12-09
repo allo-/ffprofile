@@ -1,5 +1,5 @@
 {% load bootstrap3 %}
-{% load staticfiles %}
+{% load staticfiles i18n %}
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta charset="UTF-8">
-    <title>Firefox Profilemaker</title>
+    <title>{% trans "Firefox Profilemaker" %}</title>
     <style>
         body {
            background-color: #eaf3e8;
@@ -24,18 +24,18 @@
     <nav class="navbar">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Firefox Profilemaker</a>
+                <a class="navbar-brand" href="#">{% trans "Firefox Profilemaker" %}</a>
             </div>
             <div>
                 <ul class="nav navbar-nav nav-pills">
-                    <li class="active"><a href="#start" data-toggle="tab">Start</a></li>
+                    <li class="active"><a href="#start" data-toggle="tab">{% trans "Start" %}</a></li>
 
                     {% for form in forms %}
                     <li>
                         <a href="#{{ form.id }}" data-toggle="tab" style="{% if form.is_valid %}font-weight: bold{% endif %}">{% if form.is_valid %}{% bootstrap_icon "star" %}{% else %}{% bootstrap_icon "star-empty" %}{% endif %} {{ form.name }}</a>
                     </li>
                     {% endfor %}
-                    <li><a href="#finish" data-toggle="tab" style="{% if finished %}font-weight: bold{% endif %}">{% if finished %}{% bootstrap_icon "star" %} {% endif %}Finish</a></li>
+                    <li><a href="#finish" data-toggle="tab" style="{% if finished %}font-weight: bold{% endif %}">{% if finished %}{% bootstrap_icon "star" %} {% endif %}{% trans "Finish" %}</a></li>
                 </ul>
             </div>
         </div>
@@ -45,7 +45,8 @@
 
         <div class="tab-content">
             <div id="start" class="tab-pane fade in active">
-                <h1>Firefox Profilemaker</h1>
+                <h1>{% trans "Firefox Profilemaker" %}</h1>
+                {% blocktrans %}
                 Welcome to the Firefox Profilemaker!
                 <p />
                 This tool will help you to create a firefox profile with the defaults you like.
@@ -58,9 +59,10 @@
                 Each Setting has a short explanation and for the non obvious settings links to ressources
                 describing the feature and the possible problems with it.
                 <p />
+                {% endblocktrans %}
                 <a href="#{{ forms.0.id }}" data-toggle="tab">
                     <button type="submit" class="btn btn-primary" onclick="$('.nav-pills a[href=#{{ forms.0.id }}]').tab('show');">
-                        Start
+                        {% trans "Start" %}
                     </button>
                 </a>
             </div>
@@ -75,55 +77,57 @@
                       {% bootstrap_icon "star" %} save
                     </button>
                     <button type="submit" class="btn btn-primary" name="next" value="{{ form.next }}">
-                      {% bootstrap_icon "ok" %} save &amp; next
+                      {% bootstrap_icon "ok" %} {% trans "save &amp; next" %}
                     </button>
                   {% endbuttons %}
                 </form>
             </div>
             {% endfor %}
             <div id="finish" class="tab-pane fade">
-                <h1>Download</h1>
+                <h1>{% trans "Download" %}</h1>
                 {% if not finished %}
                     <div class="alert alert-danger" role="alert">
-                        Please fill in all questions before downloading your profile.
+                        {% trans "Please fill in all questions before downloading your profile." %}"
                     </div>
                     <p />
                 {% endif %}
 
-                <a href="{% url 'profilemaker.views.download' 'profile.zip' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} Download profile.zip</a>
-                <a href="{% url 'profilemaker.views.download' 'prefs.js' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} Download prefs.js only</a>
-                <a href="{% url 'profilemaker.views.download' 'prefs.js.txt' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} Open prefs.js in the browser</a>
+                <a href="{% url 'profilemaker.views.download' 'profile.zip' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} {% trans "Download profile.zip" %}</a>
+                <a href="{% url 'profilemaker.views.download' 'prefs.js' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} {% trans "Download prefs.js only" %}</a>
+                <a href="{% url 'profilemaker.views.download' 'prefs.js.txt' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} {% trans "Open prefs.js in the browser" %}</a>
 
 
                 <form action="#" method="post" class="form">
                   {% csrf_token %}
                   {% buttons %}
                     <button type="submit" class="btn btn-primary" name="reset" value="reset">
-                      {% bootstrap_icon "trash" %} Start over again 
+                      {% bootstrap_icon "trash" %} {% trans "Start over again" %}
                     </button>
                   {% endbuttons %}
                 </form>
 
-                <h3>Installing</h3>
+                <h3>{% trans "Installing" %}</h3>
                 <ul>
-                    <li>Optional: add a new profile to keep the old one</li>
+                    <li>{% trans "Optional: add a new profile to keep the old one" %}</li>
                     <ul>
-                        <li>Run <code>firefox -no-remote -ProfileManager</code></li>
-                        <li>Create a new profile and note the profile folder (something like <code>.mozilla/firefox/m35kxjmd.profilename</code>)</li>
+                        <li>{% trans "Run" %} <code>firefox -no-remote -ProfileManager</code></li>
+                        <li>{% trans "Create a new profile and note the profile folder (something like <code>.mozilla/firefox/m35kxjmd.profilename</code>)" %}</li>
                     </ul>
+                    {% blocktrans %}
                     <li>Open the profile folder.</li>
                     <li>Delete everything from the new profile (you will lose all existing data from the profile).</li>
                     <li>unzip the <code>profile.zip</code> file into the folder.</li>
                     <li>Start firefox again. If you made a new profile, you can use it with <code>firefox -no-remote -P profilename</code>.</li>
                     <li>Open the addon manager and update the extensions.</li>
+                    {% endblocktrans %}
                 </ul>
-                <h3>Preview</h3>
+                <h3>{% trans "Preview" %}</h3>
 
                 prefs.js:
                 <pre>{{ prefs_js }}</pre>
 
                 {% if addons %}
-                    Addons:
+                    {% trans "Addons:" %}
                     <pre>{% for addon in addons %}{{ addon }}<br />{% endfor %}</pre>
                 {% endif %}
             </div>

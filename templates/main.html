@@ -111,10 +111,12 @@
                     <li>{% trans "Optional: add a new profile to keep the old one" %}</li>
                     <ul>
                         <li>{% trans "Run" %} <code>firefox -no-remote -ProfileManager</code></li>
-                        <li>{% trans "Create a new profile and note the profile folder (something like <code>.mozilla/firefox/m35kxjmd.profilename</code>)" %}</li>
+                        <li>{% trans "Create a new profile" %}</li>
                     </ul>
                     {% blocktrans %}
-                    <li>Open the profile folder.</li>
+					<li>Type <code>about:support</code> into the url bar.</li>
+					<li>Press the open profile folder button.</li>
+                    <li>Quit firefox.</li>
                     <li>Delete everything from the new profile (you will lose all existing data from the profile).</li>
                     <li>unzip the <code>profile.zip</code> file into the folder.</li>
                     <li>Start firefox again. If you made a new profile, you can use it with <code>firefox -no-remote -P profilename</code>.</li>

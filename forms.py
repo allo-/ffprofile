@@ -312,6 +312,10 @@ class AddonForm(forms.Form):
         label='Install <a href="https://addons.mozilla.org/de/firefox/addon/google-no-tracking-url/">Google Redirects Fixer &amp; Tracking Remover</a> extension.',
         help_text="Rewrites URLs from the google result pages to direct links instead redirect urls with tracking.",
         initial=True, required=False)
+    https_everywhere = forms.BooleanField(
+        label='Install <a href="https://addons.mozilla.org/en-US/firefox/addon/https-everywhere/">HTTPS Everywhere</a> extension.',
+        help_text="HTTPS Everywhere is a Firefox extension that  enables HTTPS encryption automatically on sites that support it.",
+        initial=True, required=False)
     ublock = forms.BooleanField(
         label='Install <a href="https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/">uBlock Origin</a> extension.',
         help_text="Efficient blocker, which does not only block ads, but also supports Anti-Tracking and Anti-Malware Blocklists",
@@ -327,15 +331,19 @@ class AddonForm(forms.Form):
 
     def get_config_and_addons(self):
         addons = []
+        config = {}
         if self.is_valid():
             if self.cleaned_data['xclear']:
                 addons.append("xclear@as-computer.de.xpi")
             if self.cleaned_data['canvasblocker']:
                 addons.append("CanvasBlocker@kkapsner.de.xpi")
+            if self.cleaned_data['https_everywhere']:
+                addons.append("https-everywhere@eff.org.xpi")
+                config['extensions.https_everywhere._observatory.popup_shown'] = True
             if self.cleaned_data['google_redirect_cleaner']:
                 addons.append("jid1-zUrvDCat3xoDSQ@jetpack.xpi")
             if self.cleaned_data['ublock']:
                 addons.append("uBlock0@raymondhill.net.xpi")
             if self.cleaned_data['umatrix']:
                 addons.append("uMatrix@raymondhill.net.xpi")
-        return {}, addons
+        return config, addons

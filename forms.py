@@ -37,7 +37,7 @@ class AnnoyancesForm(forms.Form):
     heartbeat = forms.BooleanField(
         label='Disable Heartbeat Userrating',
         help_text='With Firefox 37, Mozilla integrated the <a href="https://wiki.mozilla.org/Advocacy/heartbeat">Heartbeat</a> '
-            'system to ask users from time to time about their experience with firefox.',
+            'system to ask users from time to time about their experience with Firefox.',
         initial=True, required=False)
 
     def get_config_and_addons(self):
@@ -63,15 +63,15 @@ class FirefoxTrackingForm(forms.Form):
     telemetry = forms.BooleanField(
         label="Disable Telemetry",
         help_text='The <a href="https://support.mozilla.org/en-US/kb/share-telemetry-data-mozilla-help-improve-firefox">telemetry feature</a> '
-            'sends data about the performance and responsiveness of firefox to mozilla.',
+            'sends data about the performance and responsiveness of Firefox to Mozilla.',
         initial=True, required=False)
     health_report = forms.BooleanField(
         label="Disable health report",
-        help_text='Disable sending <a href="https://www.mozilla.org/en-US/privacy/firefox/#health-report">Firefox health reports</a> to mozilla',
+        help_text='Disable sending <a href="https://www.mozilla.org/en-US/privacy/firefox/#health-report">Firefox health reports</a> to Mozilla',
         initial=True, required=False)
     addon_data = forms.BooleanField(
         label="Opt out metadata updates",
-        help_text='Firefox sends data about installed addons as <a href="https://blog.mozilla.org/addons/how-to-opt-out-of-add-on-metadata-updates/">metadata updates</a>, so mozilla is able to recommend you other addons.',
+        help_text='Firefox sends data about installed addons as <a href="https://blog.mozilla.org/addons/how-to-opt-out-of-add-on-metadata-updates/">metadata updates</a>, so Mozilla is able to recommend you other addons.',
         initial=True, required=False)
     phishing_protection = forms.BooleanField(
         label="Disable phishing protection",
@@ -80,7 +80,7 @@ class FirefoxTrackingForm(forms.Form):
         initial=True, required=False)
     newtab_preload = forms.BooleanField(
         label="Disable preloading of the new tab page.",
-        help_text='By default firefox preloads the new tab page (with website thumbnails) in the background before it is even opened.',
+        help_text='By default Firefox preloads the new tab page (with website thumbnails) in the background before it is even opened.',
         initial=True, required=False)
 
     def get_config_and_addons(self):
@@ -201,12 +201,12 @@ class PrivacyForm(forms.Form):
         initial=False, required=False)
     keyword_search = forms.BooleanField(
         label='Disable Search Keyword',
-        help_text='When you mistype some url, firefox starts a search even from urlbar. '
+        help_text='When you mistype some url, Firefox starts a search even from urlbar. '
             'This feature is useful for quick searching, but may harm your privacy, when it\'s unintended.',
         initial=False, required=False)
     fixup_url = forms.BooleanField(
         label='Disable Fixup URLs',
-        help_text='When you type "something" in the urlbar and press enter, firefox tries "something.com", if Fixup URLs is enabled.',
+        help_text='When you type "something" in the urlbar and press enter, Firefox tries "something.com", if Fixup URLs is enabled.',
         initial=False, required=False)
 
     def get_config_and_addons(self):
@@ -275,12 +275,12 @@ class BloatwareForm(forms.Form):
     form_name = forms.CharField(initial="bloatware", widget=forms.widgets.HiddenInput)
     pocket = forms.BooleanField(
         label='Disable Pocket integration.',
-        help_text='For monetizing firefox, mozilla included the '
+        help_text='For monetizing Firefox, Mozilla included the '
             '<a href="https://getpocket.com/">Pocket</a> addon by default.',
         initial=False, required=False)
     hello = forms.BooleanField(
         label='Disable Mozilla Hello.',
-        help_text='To show what WebRTC can do, mozilla created a VoIP client '
+        help_text='To show what WebRTC can do, Mozilla created a VoIP client '
         'called <a href=https://www.mozilla.org/en-US/firefox/hello/"">hello</a>. Most users do not need it.',
         initial=False, required=False)
     pdfjs = forms.BooleanField(

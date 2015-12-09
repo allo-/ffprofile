@@ -17,44 +17,97 @@ from django.utils.translation import ugettext as _
 # TODO: WebsiteTracking could be split into Tracking (ping, beacon, ...) and
 #       Fingerprinting (battery, canvas, ...), when there are more settings.
 
-class AnnoyancesForm(forms.Form):
-    id = 'annoyances'
-    name = _(u'Annoyances')
-    form_name = forms.CharField(initial='annoyances', widget=forms.widgets.HiddenInput)
 
-    newtabpage_intro = forms.BooleanField(
-        label=_(u'Disable new tab page intro'),
-        help_text=_(u'Disable the intro to the newtab page on the first run'),
-        initial=True, required=False)
-    pocket_intro = forms.BooleanField(
-        label=_(u'Disable pocket intro'),
-        initial=True, required=False)
-    aboutconfig_warning = forms.BooleanField(
-        label=_(u'Disable about:config warning'),
-        initial=True, required=False)
-    default_browser = forms.BooleanField(
-        label=_(u'Disable checking if Firefox is the default browser'),
-        initial=True, required=False)
-    heartbeat = forms.BooleanField(
-        label=_(u'Disable Heartbeat Userrating'),
-        help_text=_(u'With Firefox 37, Mozilla integrated the <a href="https://wiki.mozilla.org/Advocacy/heartbeat">Heartbeat</a> '
-            'system to ask users from time to time about their experience with Firefox.'),
-        initial=True, required=False)
+
+class ConfigForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super(ConfigForm, self).__init__(*args, **kwargs)
+        self.fields['form_name'] = forms.CharField(initial=self.id, widget=forms.widgets.HiddenInput)
+        for option in self.options:
+            if option['type'] == "boolean":
+                self.fields[option['name']] = forms.BooleanField(
+                    label=option['label'],
+                    help_text=option['help_text'],
+                    initial=option['initial'], required=False)
 
     def get_config_and_addons(self):
         config = {}
+        addons = []
         if self.is_valid():
-            if self.cleaned_data['newtabpage_intro']:
-                config['browser.newtabpage.introShown'] = True
-            if self.cleaned_data['pocket_intro']:
-                config['browser.toolbarbuttons.introduced.pocket-button'] = True
-            if self.cleaned_data['aboutconfig_warning']:
-                config['general.warnOnAboutConfig'] = False
-            if self.cleaned_data['default_browser']:
-                config['browser.shell.checkDefaultBrowser'] = False
-            if self.cleaned_data['heartbeat']:
-                config['browser.selfsupport.url '] = ""
-        return config, []
+            for option in self.options:
+                if self.cleaned_data[option['name']]:
+                    for key in option['config']:
+                        config[key] = option['config'][key]
+                    addons += option['addons']
+        return config, addons
+
+
+class AnnoyancesForm(ConfigForm):
+    id = 'annoyances'
+    name = _(u'Annoyances')
+    options = [
+        {
+            'name': 'newtabpage_intro',
+            'type': 'boolean',
+            'label': _(u'Disable new tab page intro'),
+            'help_text': _(u'Disable the intro to the newtab page on the first run'),
+            'initial': True,
+            'config': 
+            {
+                'browser.newtabpage.introShown': True
+            },
+            'addons': []
+        },
+        {
+            'name': 'pocket_intro',
+            'type': 'boolean',
+            'label': _(u'Disable pocket intro.'),
+            'help_text': None,
+            'initial': True,
+            'config': 
+            {
+                'browser.toolbarbuttons.introduced.pocket-button': True
+            },
+            'addons': []
+        },
+        {
+            'name': 'aboutconfig_warning',
+            'type': 'boolean',
+            'label': _(u'Disable about:config warning.'),
+            'help_text': None,
+            'initial': True,
+            'config': 
+            {
+                'general.warnOnAboutConfig': False
+            },
+            'addons': []
+        },
+        {
+            'name': 'default_browser',
+            'type': 'boolean',
+            'label': _(u'Disable checking if Firefox is the default browser'),
+            'help_text': None,
+            'initial': True,
+            'config': 
+            {
+                'browser.shell.checkDefaultBrowser': False
+            },
+            'addons': []
+        },
+        {
+            'name': 'heartbeat',
+            'type': 'boolean',
+            'label': _(u'Disable Heartbeat Userrating'),
+            'help_text': _('With Firefox 37, Mozilla integrated the <a href="https://wiki.mozilla.org/Advocacy/heartbeat">Heartbeat</a> '
+                'system to ask users from time to time about their experience with Firefox.'),
+            'initial': True,
+            'config': 
+            {
+                'browser.selfsupport.url ': ""
+            },
+            'addons': []
+        },
+    ]
 
 
 class FirefoxTrackingForm(forms.Form):
@@ -301,50 +354,63 @@ class BloatwareForm(forms.Form):
         return config, []
 
 
-class AddonForm(forms.Form):
+class AddonForm(ConfigForm):
     id = "addons"
     name = _(u"Addons")
-    form_name = forms.CharField(initial="addons", widget=forms.widgets.HiddenInput)
-    canvasblocker = forms.BooleanField(
-        label=_(u'Install <a href="https://addons.mozilla.org/en-US/firefox/addon/canvasblocker/">CanvasBlocker</a> extension.'),
-        help_text=_(u'Blocks the JS-API for the &lt;canvas&gt; element to prevent <a href="https://en.wikipedia.org/wiki/Canvas_fingerprinting">Canvas-Fingerprinting</a>.'),
-        initial=True, required=False)
-    google_redirect_cleaner = forms.BooleanField(
-        label=_(u'Install <a href="https://addons.mozilla.org/de/firefox/addon/google-no-tracking-url/">Google Redirects Fixer &amp; Tracking Remover</a> extension.'),
-        help_text=_(u"Rewrites URLs from the google result pages to direct links instead redirect urls with tracking."),
-        initial=True, required=False)
-    https_everywhere = forms.BooleanField(
-        label=_('Install <a href="https://addons.mozilla.org/en-US/firefox/addon/https-everywhere/">HTTPS Everywhere</a> extension.'),
-        help_text=_('HTTPS Everywhere is a Firefox extension that  enables HTTPS encryption automatically on sites that support it.'),
-        initial=True, required=False)
-    ublock = forms.BooleanField(
-        label=_(u'Install <a href="https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/">uBlock Origin</a> extension.'),
-        help_text=_(u"Efficient blocker, which does not only block ads, but also supports Anti-Tracking and Anti-Malware Blocklists"),
-        initial=True, required=False)
-    umatrix = forms.BooleanField(
-        label=_(u'Install <a href="https://addons.mozilla.org/en-US/firefox/addon/umatrix/">uMatrix</a> extension.'),
-        help_text=_(u"A content blocker for advanced users, which blocks requests to thirdparty domains. Big privacy gain, but you will need to configure exception rules for many sites."),
-        initial=False, required=False)
-    xclear = forms.BooleanField(
-        label=_(u'Install <a href="https://addons.mozilla.org/en-US/firefox/addon/xclear/">xclear</a> extension.'),
-        help_text=_(u"Adds a little [x] icon to urlbar and searchbar to clear the text."),
-        initial=False, required=False)
-
-    def get_config_and_addons(self):
-        addons = []
-        config = {}
-        if self.is_valid():
-            if self.cleaned_data['xclear']:
-                addons.append("xclear@as-computer.de.xpi")
-            if self.cleaned_data['canvasblocker']:
-                addons.append("CanvasBlocker@kkapsner.de.xpi")
-            if self.cleaned_data['https_everywhere']:
-                addons.append("https-everywhere@eff.org.xpi")
-                config['extensions.https_everywhere._observatory.popup_shown'] = True
-            if self.cleaned_data['google_redirect_cleaner']:
-                addons.append("jid1-zUrvDCat3xoDSQ@jetpack.xpi")
-            if self.cleaned_data['ublock']:
-                addons.append("uBlock0@raymondhill.net.xpi")
-            if self.cleaned_data['umatrix']:
-                addons.append("uMatrix@raymondhill.net.xpi")
-        return config, addons
+    options = [
+        {
+            'name': 'canvasblocker',
+            'type': 'boolean',
+            'label': _(u'Install <a href="https://addons.mozilla.org/en-US/firefox/addon/canvasblocker/">CanvasBlocker</a> extension.'),
+            'help_text': _(u'Blocks the JS-API for the &lt;canvas&gt; element to prevent <a href="https://en.wikipedia.org/wiki/Canvas_fingerprinting">Canvas-Fingerprinting</a>.'),
+            'initial': True,
+            'config': {},
+            'addons': ['CanvasBlocker@kkapsner.de.xpi']
+        },
+        {
+            'name': 'google_redirect_cleaner',
+            'type': 'boolean',
+            'label': _(u'Install <a href="https://addons.mozilla.org/de/firefox/addon/google-no-tracking-url/">Google Redirects Fixer &amp; Tracking Remover</a> extension.'),
+            'help_text': _(u'Rewrites URLs from the google result pages to direct links instead redirect urls with tracking.'),
+            'initial': True,
+            'config': {},
+            'addons': ['jid1-zUrvDCat3xoDSQ@jetpack.xpi']
+        },
+        {
+            'name': 'https_everywhere',
+            'type': 'boolean',
+            'label': _(u'Install <a href="https://addons.mozilla.org/en-US/firefox/addon/https-everywhere/">HTTPS Everywhere</a> extension.'),
+            'help_text': _(u'HTTPS Everywhere is a Firefox extension that  enables HTTPS encryption automatically on sites that support it.'),
+            'initial': True,
+            'config': {},
+            'addons': ['https-everywhere@eff.org.xpi']
+        },
+        {
+            'name': 'ublock',
+            'type': 'boolean',
+            'label': _(u'Install <a href="https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/">uBlock Origin</a> extension.'),
+            'help_text': _(u'Efficient blocker, which does not only block ads, but also supports Anti-Tracking and Anti-Malware Blocklists'),
+            'initial': True,
+            'config': {},
+            'addons': ['uBlock0@raymondhill.net.xpi']
+        },
+        # TODO: here could be some setting for good privacy lists for ublock as default
+        {
+            'name': 'umatrix',
+            'type': 'boolean',
+            'label': _(u'Install <a href="https://addons.mozilla.org/en-US/firefox/addon/umatrix/">uMatrix</a> extension.'),
+            'help_text': _(u'A content blocker for advanced users, which blocks requests to thirdparty domains. Big privacy gain, but you will need to configure exception rules for many sites.'),
+            'initial': False,
+            'config': {},
+            'addons': ['uMatrix@raymondhill.net.xpi']
+        },
+        {
+            'name': 'xclear',
+            'type': 'boolean',
+            'label': _(u'Install <a href="https://addons.mozilla.org/en-US/firefox/addon/xclear/">xclear</a> extension.'),
+            'help_text': _(u'Adds a little [x] icon to urlbar and searchbar to clear the text.'),
+            'initial': False,
+            'config': {},
+            'addons': ['xclear@as-computer.de.xpi']
+        },
+    ]

@@ -341,6 +341,10 @@ class BloatwareForm(forms.Form):
         label=_(u'Disable the Firefox PDF-Reader'),
         help_text=_(u'Mozilla integrated a pdf reader. It works good for a quick preview, but is too slow for reading longer documents.'),
         initial=False, required=False)
+    eme_drm = forms.BooleanField(
+            label=_(u'Disable DRM (EME) in Firefox'),
+            help_text=_(u'Disable the encrypted media extensions in HTML5. If you have a strong stance on rejecting DRM.'),
+            initial=False, required=False)
 
     def get_config_and_addons(self):
         config = {}
@@ -351,6 +355,9 @@ class BloatwareForm(forms.Form):
                 config['loop.enabled'] = False
             if self.cleaned_data['pdfjs']:
                 config['pdfjs.disabled'] = True
+            if self.cleaned_data['eme_drm']:
+                config['media.eme.enabled'] = False
+                config['media.gmp-eme-adobe.enabled'] = False
         return config, []
 
 

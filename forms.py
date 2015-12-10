@@ -225,92 +225,156 @@ class TrackingForm(forms.Form):
                 config['dom.battery.enabled'] = False
         return config, []
 
-class PrivacyForm(forms.Form):
+class PrivacyForm(ConfigForm):
     id = 'privacy'
     name = _(u'Privacy')
-    form_name = forms.CharField(initial='privacy', widget=forms.widgets.HiddenInput)
-
-    useragent = forms.CharField(
-        label=_(u'Fake another Useragent'),
-        help_text=_(u'Using a <a href="https://techblog.willshouse.com/2012/01/03/most-common-user-agents/">popular useragent string</a> '
-            'avoids to attract attention i.e. with an Iceweasel UA. (keep blank to use the default)'),
-        initial="", required=False)
-    thirdparty_cookies = forms.BooleanField(
-        label=_(u'Block thirdparty cookies'),
-        help_text=_(u'Block cookies, which are not from the site you\'re visiting. '
-            'You will rarely notice that something is missing, but it hugely improves your privacy.'),
-        initial=True, required=False)
-    all_cookies = forms.BooleanField(
-        label=_(u'Block all cookies'),
-        help_text=_(u'Block all cookies. Many sites will not work without cookies.'),
-        initial=False, required=False)
-    referer = forms.ChoiceField(
-        label=_(u'Block Referer'),
-        help_text=_(u'Firefox tells a website, from which site you\'re coming '
-            '(the so called <a href="http://kb.mozillazine.org/Network.http.sendRefererHeader">referer</a>).'),
-        choices = [(0, _(u'Always disable referer')), (1, _(u'Allow only when clicking a link')), (2, _(u'Allow for links and loaded images'))],
-        initial=0, required=False,
-    )
-    dom_storage = forms.BooleanField(
-        label=_(u'Disable DOM storage'),
-        help_text=_(u'Disables DOM storage, which enables so called "supercookies". Some modern sites will not fully not work (i.e. missing "save" functions).'),
-        initial=False, required=False)
-    indexed_db = forms.BooleanField(
-        label=_(u'Disable IndexedDB'),
-        help_text=_(u'<a href="http://www.w3.org/TR/IndexedDB/">IndexedDB</a> is a way, websites can store structured data. This can be '
-            '<a href="http://arstechnica.com/apple/2010/09/rldguid-tracking-cookies-in-safari-database-form/">abused for tracking</a>, too. '
-            'Disabling may be a problem with some webapps like tweetdeck.'),
-        initial=True, required=False)
-    prefetch = forms.BooleanField(
-        label=_(u'Disable Link Prefetching'),
-        help_text=_(u'Firefox prefetches the next site on some links, so the site is loaded even when you never click.'),
-        initial=True, required=False)
-    webrtc = forms.BooleanField(
-        label=_(u'Disable WebRTC'),
-        help_text=_(u'Disables the WebRTC function, which gives away your local ips.'),
-        initial=True, required=False)
-    search_suggest = forms.BooleanField(
-        label=_(u'Disable Search Suggestions'),
-        help_text=_(u'Firefox suggests search terms in the search field. This will send everything typed or pasted '
-            'in the search field to the chosen search engine, even when you did not press enter.'),
-        initial=False, required=False)
-    keyword_search = forms.BooleanField(
-        label=_(u'Disable Search Keyword'),
-        help_text=_(u'When you mistype some url, Firefox starts a search even from urlbar. '
-            'This feature is useful for quick searching, but may harm your privacy, when it\'s unintended.'),
-        initial=False, required=False)
-    fixup_url = forms.BooleanField(
-        label=_(u'Disable Fixup URLs'),
-        help_text=_(u'When you type "something" in the urlbar and press enter, Firefox tries "something.com", if Fixup URLs is enabled.'),
-        initial=False, required=False)
-
-    def get_config_and_addons(self):
-        config = {}
-        if self.is_valid():
-            if self.cleaned_data['useragent']:
-                config['general.useragent.override'] = self.cleaned_data['useragent']
-            if self.cleaned_data['all_cookies']:
-                config['network.cookie.cookieBehavior'] = 2
-            elif self.cleaned_data['thirdparty_cookies']:
-                config['network.cookie.cookieBehavior'] = 1
-            if self.cleaned_data['referer']:
-                config['network.http.sendRefererHeader'] = self.cleaned_data['referer']
-            if self.cleaned_data['dom_storage']:
-                config['dom.storage.enabled'] = False
-            if self.cleaned_data['indexed_db']:
-                config['dom.indexedDB.enabled'] = False
-            if self.cleaned_data['prefetch']:
-                config['network.prefetch-next'] = False
-                config['network.dns.disablePrefetch'] = True
-            if self.cleaned_data['search_suggest']:
-                config['browser.search.suggest.enabled'] = False
-            if self.cleaned_data['webrtc']:
-                config['media.peerconnection.enabled'] = False
-            if self.cleaned_data['keyword_search']:
-                config['keyword.enabled'] = False
-            if self.cleaned_data['fixup_url']:
-                config['browser.fixup.alternate.enabled'] = False
-        return config, []
+    options = [
+        {
+            'name': 'useragent',
+            'type': 'text',
+            'label': _(u'Fake another Useragent'),
+            'help_text': _('Using a <a href="https://techblog.willshouse.com/2012/01/03/most-common-user-agents/">popular useragent string</a> '
+                'avoids to attract attention i.e. with an Iceweasel UA. (keep blank to use the default)'),
+            'initial': "",
+            'setting': 'general.useragent.override',
+        },
+        {
+            'name': 'cookies',
+            'type': 'choice',
+            'label': _(u'Block Cookies'),
+            'help_text': _('Block 3rd-Party cookies or even all cookies.'),
+            'initial': 1,
+            'choices': [
+                "Allow all Cookies",
+                "Block Cookies, which are not from the site you\'re visiting. You will rarely notice that something is missing, but it hugely improves your privacy.",
+                "Block all Cookies. Many sites will not work without cookies."
+            ],
+            'config': [
+                {
+                },
+                {
+                    'network.cookie.cookieBehavior': 1,
+                },
+                {
+                    'network.cookie.cookieBehavior': 2,
+                },
+            ],
+            'addons': [[], [], []],
+        },
+        {
+            'name': 'referer',
+            'type': 'choice',
+            'label': _(u'Block Referer'),
+            'help_text': _(u'Firefox tells a website, from which site you\'re coming '
+                '(the so called <a href="http://kb.mozillazine.org/Network.http.sendRefererHeader">referer</a>).'),
+            'initial': 0,
+            'choices': [
+                _(u'Always disable referer'),
+                _(u'Allow only when clicking a link'),
+                _(u'Allow for links and loaded images')
+            ],
+            'config': [
+                {
+                    'network.http.sendRefererHeader': 0,
+                },
+                {
+                    'network.http.sendRefererHeader': 1,
+                },
+                {
+                },
+            ],
+            'addons': [[], [], []],
+        },
+        {
+            'name': 'dom_storage',
+            'type': 'boolean',
+            'label': _(u'Disable DOM storage'),
+            'help_text': _(u'Disables DOM storage, which enables so called "supercookies". Some modern sites will not fully not work (i.e. missing "save" functions).'),
+            'initial': False,
+            'config': 
+            {
+                'dom.storage.enabled': False
+            },
+            'addons': []
+        },
+        {
+            'name': 'indexed_db',
+            'type': 'boolean',
+            'label': _(u'Disable IndexedDB'),
+            'help_text': _(u'<a href="http://www.w3.org/TR/IndexedDB/">IndexedDB</a> is a way, websites can store structured data. This can be '
+                '<a href="http://arstechnica.com/apple/2010/09/rldguid-tracking-cookies-in-safari-database-form/">abused for tracking</a>, too. '
+                'Disabling may be a problem with some webapps like tweetdeck.'),
+            'initial': True,
+            'config': 
+            {
+                'dom.indexedDB.enabled': False
+            },
+            'addons': []
+        },
+        {
+            'name': 'prefetch_next',
+            'type': 'boolean',
+            'label': _(u'Disable Link Prefetching'),
+            'help_text': _(u'Firefox prefetches the next site on some links, so the site is loaded even when you never click.'),
+            'initial': True,
+            'config': 
+            {
+                'network.prefetch-next': False,
+                'network.dns.disablePrefetch': True,
+            },
+            'addons': []
+        },
+        {
+            'name': 'webrtc',
+            'type': 'boolean',
+            'label': _(u'Disable WebRTC'),
+            'help_text': _(u'Disables the WebRTC function, which gives away your local ips.'),
+            'initial': True,
+            'config': 
+            {
+                'media.peerconnection.enabled': False,
+            },
+            'addons': []
+        },
+        {
+            'name': 'search_suggest',
+            'type': 'boolean',
+            'label': _(u'Disable Search Suggestions'),
+            'help_text': _(u'Firefox suggests search terms in the search field. This will send everything typed or pasted '
+                'in the search field to the chosen search engine, even when you did not press enter.'),
+            'initial': False,
+            'config': 
+            {
+                'browser.search.suggest.enabled': False,
+            },
+            'addons': []
+        },
+        {
+            'name': 'search_keyword',
+            'type': 'boolean',
+            'label': _(u'Disable Search Keyword'),
+            'help_text': _(u'When you mistype some url, Firefox starts a search even from urlbar. '
+                'This feature is useful for quick searching, but may harm your privacy, when it\'s unintended.'),
+            'initial': False,
+            'config': 
+            {
+                'keyword.enabled': False,
+            },
+            'addons': []
+        },
+        {
+            'name': 'fixup_urls',
+            'type': 'boolean',
+            'label': _(u'Disable Fixup URLs'),
+            'help_text': _(u'When you type "something" in the urlbar and press enter, Firefox tries "something.com", if Fixup URLs is enabled.'),
+            'initial': False,
+            'config': 
+            {
+                'browser.fixup.alternate.enabled': False,
+            },
+            'addons': []
+        },
+    ]
 
 
 class SecurityForm(forms.Form):

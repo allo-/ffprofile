@@ -103,7 +103,7 @@ class AnnoyancesForm(ConfigForm):
             'initial': True,
             'config': 
             {
-                'browser.selfsupport.url ': ""
+                'browser.selfsupport.url': ""
             },
             'addons': []
         },

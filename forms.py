@@ -323,42 +323,65 @@ class SecurityForm(forms.Form):
         return config, []
 
 
-class BloatwareForm(forms.Form):
+class BloatwareForm(ConfigForm):
     id = "bloatware"
     name = _(u"Bloatware")
-    form_name = forms.CharField(initial="bloatware", widget=forms.widgets.HiddenInput)
-    pocket = forms.BooleanField(
-        label=_(u'Disable Pocket integration.'),
-        help_text=_(u'For monetizing Firefox, Mozilla included the '
-            '<a href="https://getpocket.com/">Pocket</a> addon by default.'),
-        initial=False, required=False)
-    hello = forms.BooleanField(
-        label=_(u'Disable Mozilla Hello.'),
-        help_text=_(u'To show what WebRTC can do, Mozilla created a VoIP client '
-        'called <a href=https://www.mozilla.org/en-US/firefox/hello/"">hello</a>. Most users do not need it.'),
-        initial=False, required=False)
-    pdfjs = forms.BooleanField(
-        label=_(u'Disable the Firefox PDF-Reader'),
-        help_text=_(u'Mozilla integrated a pdf reader. It works good for a quick preview, but is too slow for reading longer documents.'),
-        initial=False, required=False)
-    eme_drm = forms.BooleanField(
-            label=_(u'Disable DRM (EME) in Firefox'),
-            help_text=_(u'Disable the <a href="http://www.w3.org/TR/encrypted-media/">encrypted media extensions</a> in HTML5. If you have a strong stance on rejecting DRM. (<a href="http://www.pcworld.com/article/2155440/firefox-will-get-drm-copy-protection-despite-mozillas-concerns.html">Article about EME and its unique identifier</a>)'),
-            initial=False, required=False)
-
-    def get_config_and_addons(self):
-        config = {}
-        if self.is_valid():
-            if self.cleaned_data['pocket']:
-                config['browser.pocket.enabled'] = False
-            if self.cleaned_data['hello']:
-                config['loop.enabled'] = False
-            if self.cleaned_data['pdfjs']:
-                config['pdfjs.disabled'] = True
-            if self.cleaned_data['eme_drm']:
-                config['media.eme.enabled'] = False
-                config['media.gmp-eme-adobe.enabled'] = False
-        return config, []
+    options = [
+        {
+            'name': 'pocket',
+            'type': 'boolean',
+            'label': _(u'Disable Pocket integration.'),
+            'help_text': _(u'For monetizing Firefox, Mozilla included the '
+                '<a href="https://getpocket.com/">Pocket</a> addon by default.'),
+            'initial': False,
+            'config': 
+            {
+                'browser.pocket.enabled': False
+            },
+            'addons': []
+        },
+        {
+            'name': 'hello',
+            'type': 'boolean',
+            'label': _(u'Disable Mozilla Hello.'),
+            'help_text': _(u'To show what WebRTC can do, Mozilla created a VoIP client '
+                'called <a href=https://www.mozilla.org/en-US/firefox/hello/"">hello</a>.'
+                ' Most users do not need it.'),
+            'initial': False,
+            'config': 
+            {
+                'loop.enabled': False
+            },
+            'addons': []
+        },
+        {
+            'name': 'pdfjs',
+            'type': 'boolean',
+            'label': _(u'Disable the Firefox PDF-Reader'),
+            'help_text': _(u'Mozilla integrated a pdf reader. It works good for a quick preview, but is too slow for reading longer documents.'),
+            'initial': False,
+            'config': 
+            {
+                'pdfjs.disabled': True
+            },
+            'addons': []
+        },
+        {
+            'name': 'eme_drm',
+            'type': 'boolean',
+            'label': _(u'Disable DRM (EME) in Firefox'),
+            'help_text': _(u'Disable the <a href="http://www.w3.org/TR/encrypted-media/">encrypted media extensions</a> in HTML5. '
+                'If you have a strong stance on rejecting DRM. '
+                '(<a href="http://www.pcworld.com/article/2155440/firefox-will-get-drm-copy-protection-despite-mozillas-concerns.html">Article about EME and its unique identifier</a>)'),
+            'initial': False,
+            'config': 
+            {
+                'media.eme.enabled': False,
+                'media.gmp-eme-adobe.enabled': False,
+            },
+            'addons': []
+        }
+        ]
 
 
 class AddonForm(ConfigForm):

@@ -343,7 +343,7 @@ class BloatwareForm(forms.Form):
         initial=False, required=False)
     eme_drm = forms.BooleanField(
             label=_(u'Disable DRM (EME) in Firefox'),
-            help_text=_(u'Disable the encrypted media extensions in HTML5. If you have a strong stance on rejecting DRM.'),
+            help_text=_(u'Disable the <a href="http://www.w3.org/TR/encrypted-media/">encrypted media extensions</a> in HTML5. If you have a strong stance on rejecting DRM. (<a href="http://www.pcworld.com/article/2155440/firefox-will-get-drm-copy-protection-despite-mozillas-concerns.html">Article about EME and its unique identifier</a>)'),
             initial=False, required=False)
 
     def get_config_and_addons(self):

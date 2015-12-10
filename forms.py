@@ -29,16 +29,37 @@ class ConfigForm(forms.Form):
                     label=option['label'],
                     help_text=option['help_text'],
                     initial=option['initial'], required=False)
+            if option['type'] == "choice":
+                choices = option['choices']
+                self.fields[option['name']] = forms.ChoiceField(
+                    label=option['label'],
+                    help_text=option['help_text'],
+                    choices = zip(range(len(choices)), choices),
+                    initial=option['initial'], required=False)
+            elif option['type'] == "text":
+                self.fields[option['name']] = forms.CharField(
+                    label=option['label'],
+                    help_text=option['help_text'],
+                    initial=option['initial'], required=False)
 
     def get_config_and_addons(self):
         config = {}
         addons = []
         if self.is_valid():
             for option in self.options:
-                if self.cleaned_data[option['name']]:
-                    for key in option['config']:
-                        config[key] = option['config'][key]
-                    addons += option['addons']
+                if option['type'] == "boolean":
+                    if self.cleaned_data[option['name']]:
+                        for key in option['config']:
+                            config[key] = option['config'][key]
+                        addons += option['addons']
+                elif option['type'] == "choice":
+                    choice = int(self.cleaned_data[option['name']])
+                    for key in option['config'][choice]:
+                        config[key] = option['config'][choice][key]
+                    addons += option['addons'][choice]
+                elif option['type'] == "text":
+                    config[option['setting']] = self.cleaned_data[option['name']]
+
         return config, addons
 
 

@@ -207,6 +207,10 @@ class TrackingForm(forms.Form):
         label=_(u'Disable the Battery API'),
         help_text=_(u'Firefox allows websites to read the charge level of the battery. This may be used for fingerprinting.'),
         initial=True, required=False)
+    geolocation = forms.BooleanField(
+            label=_(u'Disable geolocation'),
+            help_text=_(u'Geolocation allows sites to know your location. This option disables it entirely.'),
+            initial=True, required=False)
 
     def get_config_and_addons(self):
         config = {}
@@ -223,6 +227,9 @@ class TrackingForm(forms.Form):
                 config['beacon.enabled'] = False
             if self.cleaned_data['dom_battery']:
                 config['dom.battery.enabled'] = False
+            if self.cleaned_data['geolocation']:
+                config['geo.enabled'] = False
+                config['geo.wifi.logging.enabled'] = False
         return config, []
 
 class PrivacyForm(ConfigForm):

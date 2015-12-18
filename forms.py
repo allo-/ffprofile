@@ -62,73 +62,80 @@ class ConfigForm(forms.Form):
 
         return config, addons
 
+def create_configform(id, name, options):
+    class DynamicConfigForm(ConfigForm):
+        pass
+    DynamicConfigForm.id=id
+    DynamicConfigForm.name=name
+    DynamicConfigForm.options=options
+    return DynamicConfigForm
 
-class AnnoyancesForm(ConfigForm):
-    id = 'annoyances'
-    name = _(u'Annoyances')
-    options = [
+annoyances_options = [
+    {
+        'name': 'newtabpage_intro',
+        'type': 'boolean',
+        'label': _(u'Disable new tab page intro'),
+        'help_text': _(u'Disable the intro to the newtab page on the first run'),
+        'initial': True,
+        'config': 
         {
-            'name': 'newtabpage_intro',
-            'type': 'boolean',
-            'label': _(u'Disable new tab page intro'),
-            'help_text': _(u'Disable the intro to the newtab page on the first run'),
-            'initial': True,
-            'config': 
-            {
-                'browser.newtabpage.introShown': True
-            },
-            'addons': []
+            'browser.newtabpage.introShown': True
         },
+        'addons': []
+    },
+    {
+        'name': 'pocket_intro',
+        'type': 'boolean',
+        'label': _(u'Disable pocket intro.'),
+        'help_text': None,
+        'initial': True,
+        'config': 
         {
-            'name': 'pocket_intro',
-            'type': 'boolean',
-            'label': _(u'Disable pocket intro.'),
-            'help_text': None,
-            'initial': True,
-            'config': 
-            {
-                'browser.toolbarbuttons.introduced.pocket-button': True
-            },
-            'addons': []
+            'browser.toolbarbuttons.introduced.pocket-button': True
         },
+        'addons': []
+    },
+    {
+        'name': 'aboutconfig_warning',
+        'type': 'boolean',
+        'label': _(u'Disable about:config warning.'),
+        'help_text': None,
+        'initial': True,
+        'config': 
         {
-            'name': 'aboutconfig_warning',
-            'type': 'boolean',
-            'label': _(u'Disable about:config warning.'),
-            'help_text': None,
-            'initial': True,
-            'config': 
-            {
-                'general.warnOnAboutConfig': False
-            },
-            'addons': []
+            'general.warnOnAboutConfig': False
         },
+        'addons': []
+    },
+    {
+        'name': 'default_browser',
+        'type': 'boolean',
+        'label': _(u'Disable checking if Firefox is the default browser'),
+        'help_text': None,
+        'initial': True,
+        'config': 
         {
-            'name': 'default_browser',
-            'type': 'boolean',
-            'label': _(u'Disable checking if Firefox is the default browser'),
-            'help_text': None,
-            'initial': True,
-            'config': 
-            {
-                'browser.shell.checkDefaultBrowser': False
-            },
-            'addons': []
+            'browser.shell.checkDefaultBrowser': False
         },
+        'addons': []
+    },
+    {
+        'name': 'heartbeat',
+        'type': 'boolean',
+        'label': _(u'Disable Heartbeat Userrating'),
+        'help_text': _('With Firefox 37, Mozilla integrated the <a href="https://wiki.mozilla.org/Advocacy/heartbeat">Heartbeat</a> '
+            'system to ask users from time to time about their experience with Firefox.'),
+        'initial': True,
+        'config': 
         {
-            'name': 'heartbeat',
-            'type': 'boolean',
-            'label': _(u'Disable Heartbeat Userrating'),
-            'help_text': _('With Firefox 37, Mozilla integrated the <a href="https://wiki.mozilla.org/Advocacy/heartbeat">Heartbeat</a> '
-                'system to ask users from time to time about their experience with Firefox.'),
-            'initial': True,
-            'config': 
-            {
-                'browser.selfsupport.url': ""
-            },
-            'addons': []
+            'browser.selfsupport.url': ""
         },
-    ]
+        'addons': []
+    },
+]
+
+AnnoyancesForm = create_configform(id="annoyances", name=_(u'Annoyances'),
+    options=annoyances_options)
 
 
 class FirefoxTrackingForm(forms.Form):
@@ -225,156 +232,155 @@ class TrackingForm(forms.Form):
                 config['dom.battery.enabled'] = False
         return config, []
 
-class PrivacyForm(ConfigForm):
-    id = 'privacy'
-    name = _(u'Privacy')
-    options = [
-        {
-            'name': 'useragent',
-            'type': 'text',
-            'label': _(u'Fake another Useragent'),
-            'help_text': _('Using a <a href="https://techblog.willshouse.com/2012/01/03/most-common-user-agents/">popular useragent string</a> '
-                'avoids to attract attention i.e. with an Iceweasel UA. (keep blank to use the default)'),
-            'initial': "",
-            'setting': 'general.useragent.override',
-        },
-        {
-            'name': 'cookies',
-            'type': 'choice',
-            'label': _(u'Block Cookies'),
-            'help_text': _('Block 3rd-Party cookies or even all cookies.'),
-            'initial': 1,
-            'choices': [
-                "Allow all Cookies",
-                "Block Cookies, which are not from the site you\'re visiting. You will rarely notice that something is missing, but it hugely improves your privacy.",
-                "Block all Cookies. Many sites will not work without cookies."
-            ],
-            'config': [
-                {
-                },
-                {
-                    'network.cookie.cookieBehavior': 1,
-                },
-                {
-                    'network.cookie.cookieBehavior': 2,
-                },
-            ],
-            'addons': [[], [], []],
-        },
-        {
-            'name': 'referer',
-            'type': 'choice',
-            'label': _(u'Block Referer'),
-            'help_text': _(u'Firefox tells a website, from which site you\'re coming '
-                '(the so called <a href="http://kb.mozillazine.org/Network.http.sendRefererHeader">referer</a>).'),
-            'initial': 0,
-            'choices': [
-                _(u'Always disable referer'),
-                _(u'Allow only when clicking a link'),
-                _(u'Allow for links and loaded images')
-            ],
-            'config': [
-                {
-                    'network.http.sendRefererHeader': 0,
-                },
-                {
-                    'network.http.sendRefererHeader': 1,
-                },
-                {
-                },
-            ],
-            'addons': [[], [], []],
-        },
-        {
-            'name': 'dom_storage',
-            'type': 'boolean',
-            'label': _(u'Disable DOM storage'),
-            'help_text': _(u'Disables DOM storage, which enables so called "supercookies". Some modern sites will not fully not work (i.e. missing "save" functions).'),
-            'initial': False,
-            'config': 
+privacy_options = [
+    {
+        'name': 'useragent',
+        'type': 'text',
+        'label': _(u'Fake another Useragent'),
+        'help_text': _('Using a <a href="https://techblog.willshouse.com/2012/01/03/most-common-user-agents/">popular useragent string</a> '
+            'avoids to attract attention i.e. with an Iceweasel UA. (keep blank to use the default)'),
+        'initial': "",
+        'setting': 'general.useragent.override',
+    },
+    {
+        'name': 'cookies',
+        'type': 'choice',
+        'label': _(u'Block Cookies'),
+        'help_text': _('Block 3rd-Party cookies or even all cookies.'),
+        'initial': 1,
+        'choices': [
+            "Allow all Cookies",
+            "Block Cookies, which are not from the site you\'re visiting. You will rarely notice that something is missing, but it hugely improves your privacy.",
+            "Block all Cookies. Many sites will not work without cookies."
+        ],
+        'config': [
             {
-                'dom.storage.enabled': False
             },
-            'addons': []
-        },
-        {
-            'name': 'indexed_db',
-            'type': 'boolean',
-            'label': _(u'Disable IndexedDB'),
-            'help_text': _(u'<a href="http://www.w3.org/TR/IndexedDB/">IndexedDB</a> is a way, websites can store structured data. This can be '
-                '<a href="http://arstechnica.com/apple/2010/09/rldguid-tracking-cookies-in-safari-database-form/">abused for tracking</a>, too. '
-                'Disabling may be a problem with some webapps like tweetdeck.'),
-            'initial': True,
-            'config': 
             {
-                'dom.indexedDB.enabled': False
+                'network.cookie.cookieBehavior': 1,
             },
-            'addons': []
-        },
-        {
-            'name': 'prefetch_next',
-            'type': 'boolean',
-            'label': _(u'Disable Link Prefetching'),
-            'help_text': _(u'Firefox prefetches the next site on some links, so the site is loaded even when you never click.'),
-            'initial': True,
-            'config': 
             {
-                'network.prefetch-next': False,
-                'network.dns.disablePrefetch': True,
+                'network.cookie.cookieBehavior': 2,
             },
-            'addons': []
-        },
-        {
-            'name': 'webrtc',
-            'type': 'boolean',
-            'label': _(u'Disable WebRTC'),
-            'help_text': _(u'Disables the WebRTC function, which gives away your local ips.'),
-            'initial': True,
-            'config': 
+        ],
+        'addons': [[], [], []],
+    },
+    {
+        'name': 'referer',
+        'type': 'choice',
+        'label': _(u'Block Referer'),
+        'help_text': _(u'Firefox tells a website, from which site you\'re coming '
+            '(the so called <a href="http://kb.mozillazine.org/Network.http.sendRefererHeader">referer</a>).'),
+        'initial': 0,
+        'choices': [
+            _(u'Always disable referer'),
+            _(u'Allow only when clicking a link'),
+            _(u'Allow for links and loaded images')
+        ],
+        'config': [
             {
-                'media.peerconnection.enabled': False,
+                'network.http.sendRefererHeader': 0,
             },
-            'addons': []
-        },
-        {
-            'name': 'search_suggest',
-            'type': 'boolean',
-            'label': _(u'Disable Search Suggestions'),
-            'help_text': _(u'Firefox suggests search terms in the search field. This will send everything typed or pasted '
-                'in the search field to the chosen search engine, even when you did not press enter.'),
-            'initial': False,
-            'config': 
             {
-                'browser.search.suggest.enabled': False,
+                'network.http.sendRefererHeader': 1,
             },
-            'addons': []
-        },
-        {
-            'name': 'search_keyword',
-            'type': 'boolean',
-            'label': _(u'Disable Search Keyword'),
-            'help_text': _(u'When you mistype some url, Firefox starts a search even from urlbar. '
-                'This feature is useful for quick searching, but may harm your privacy, when it\'s unintended.'),
-            'initial': False,
-            'config': 
             {
-                'keyword.enabled': False,
             },
-            'addons': []
-        },
+        ],
+        'addons': [[], [], []],
+    },
+    {
+        'name': 'dom_storage',
+        'type': 'boolean',
+        'label': _(u'Disable DOM storage'),
+        'help_text': _(u'Disables DOM storage, which enables so called "supercookies". Some modern sites will not fully not work (i.e. missing "save" functions).'),
+        'initial': False,
+        'config': 
         {
-            'name': 'fixup_urls',
-            'type': 'boolean',
-            'label': _(u'Disable Fixup URLs'),
-            'help_text': _(u'When you type "something" in the urlbar and press enter, Firefox tries "something.com", if Fixup URLs is enabled.'),
-            'initial': False,
-            'config': 
-            {
-                'browser.fixup.alternate.enabled': False,
-            },
-            'addons': []
+            'dom.storage.enabled': False
         },
-    ]
+        'addons': []
+    },
+    {
+        'name': 'indexed_db',
+        'type': 'boolean',
+        'label': _(u'Disable IndexedDB'),
+        'help_text': _(u'<a href="http://www.w3.org/TR/IndexedDB/">IndexedDB</a> is a way, websites can store structured data. This can be '
+            '<a href="http://arstechnica.com/apple/2010/09/rldguid-tracking-cookies-in-safari-database-form/">abused for tracking</a>, too. '
+            'Disabling may be a problem with some webapps like tweetdeck.'),
+        'initial': True,
+        'config': 
+        {
+            'dom.indexedDB.enabled': False
+        },
+        'addons': []
+    },
+    {
+        'name': 'prefetch_next',
+        'type': 'boolean',
+        'label': _(u'Disable Link Prefetching'),
+        'help_text': _(u'Firefox prefetches the next site on some links, so the site is loaded even when you never click.'),
+        'initial': True,
+        'config': 
+        {
+            'network.prefetch-next': False,
+            'network.dns.disablePrefetch': True,
+        },
+        'addons': []
+    },
+    {
+        'name': 'webrtc',
+        'type': 'boolean',
+        'label': _(u'Disable WebRTC'),
+        'help_text': _(u'Disables the WebRTC function, which gives away your local ips.'),
+        'initial': True,
+        'config': 
+        {
+            'media.peerconnection.enabled': False,
+        },
+        'addons': []
+    },
+    {
+        'name': 'search_suggest',
+        'type': 'boolean',
+        'label': _(u'Disable Search Suggestions'),
+        'help_text': _(u'Firefox suggests search terms in the search field. This will send everything typed or pasted '
+            'in the search field to the chosen search engine, even when you did not press enter.'),
+        'initial': False,
+        'config': 
+        {
+            'browser.search.suggest.enabled': False,
+        },
+        'addons': []
+    },
+    {
+        'name': 'search_keyword',
+        'type': 'boolean',
+        'label': _(u'Disable Search Keyword'),
+        'help_text': _(u'When you mistype some url, Firefox starts a search even from urlbar. '
+            'This feature is useful for quick searching, but may harm your privacy, when it\'s unintended.'),
+        'initial': False,
+        'config': 
+        {
+            'keyword.enabled': False,
+        },
+        'addons': []
+    },
+    {
+        'name': 'fixup_urls',
+        'type': 'boolean',
+        'label': _(u'Disable Fixup URLs'),
+        'help_text': _(u'When you type "something" in the urlbar and press enter, Firefox tries "something.com", if Fixup URLs is enabled.'),
+        'initial': False,
+        'config': 
+        {
+            'browser.fixup.alternate.enabled': False,
+        },
+        'addons': []
+    },
+]
+
+PrivacyForm = create_configform(id='privacy', name=_(u'Privacy'), options=privacy_options)
 
 
 class SecurityForm(forms.Form):
@@ -408,124 +414,124 @@ class SecurityForm(forms.Form):
         return config, []
 
 
-class BloatwareForm(ConfigForm):
-    id = "bloatware"
-    name = _(u"Bloatware")
-    options = [
+bloatware_options = [
+    {
+        'name': 'pocket',
+        'type': 'boolean',
+        'label': _(u'Disable Pocket integration.'),
+        'help_text': _(u'For monetizing Firefox, Mozilla included the '
+            '<a href="https://getpocket.com/">Pocket</a> addon by default.'),
+        'initial': False,
+        'config': 
         {
-            'name': 'pocket',
-            'type': 'boolean',
-            'label': _(u'Disable Pocket integration.'),
-            'help_text': _(u'For monetizing Firefox, Mozilla included the '
-                '<a href="https://getpocket.com/">Pocket</a> addon by default.'),
-            'initial': False,
-            'config': 
-            {
-                'browser.pocket.enabled': False
-            },
-            'addons': []
+            'browser.pocket.enabled': False
         },
+        'addons': []
+    },
+    {
+        'name': 'hello',
+        'type': 'boolean',
+        'label': _(u'Disable Mozilla Hello.'),
+        'help_text': _(u'To show what WebRTC can do, Mozilla created a VoIP client '
+            'called <a href=https://www.mozilla.org/en-US/firefox/hello/"">hello</a>.'
+            ' Most users do not need it.'),
+        'initial': False,
+        'config': 
         {
-            'name': 'hello',
-            'type': 'boolean',
-            'label': _(u'Disable Mozilla Hello.'),
-            'help_text': _(u'To show what WebRTC can do, Mozilla created a VoIP client '
-                'called <a href=https://www.mozilla.org/en-US/firefox/hello/"">hello</a>.'
-                ' Most users do not need it.'),
-            'initial': False,
-            'config': 
-            {
-                'loop.enabled': False
-            },
-            'addons': []
+            'loop.enabled': False
         },
+        'addons': []
+    },
+    {
+        'name': 'pdfjs',
+        'type': 'boolean',
+        'label': _(u'Disable the Firefox PDF-Reader'),
+        'help_text': _(u'Mozilla integrated a pdf reader. It works good for a quick preview, but is too slow for reading longer documents.'),
+        'initial': False,
+        'config': 
         {
-            'name': 'pdfjs',
-            'type': 'boolean',
-            'label': _(u'Disable the Firefox PDF-Reader'),
-            'help_text': _(u'Mozilla integrated a pdf reader. It works good for a quick preview, but is too slow for reading longer documents.'),
-            'initial': False,
-            'config': 
-            {
-                'pdfjs.disabled': True
-            },
-            'addons': []
+            'pdfjs.disabled': True
         },
+        'addons': []
+    },
+    {
+        'name': 'eme_drm',
+        'type': 'boolean',
+        'label': _(u'Disable DRM (EME) in Firefox'),
+        'help_text': _(u'Disable the <a href="http://www.w3.org/TR/encrypted-media/">encrypted media extensions</a> in HTML5. '
+            'If you have a strong stance on rejecting DRM. '
+            '(<a href="http://www.pcworld.com/article/2155440/firefox-will-get-drm-copy-protection-despite-mozillas-concerns.html">Article about EME and its unique identifier</a>)'),
+        'initial': False,
+        'config': 
         {
-            'name': 'eme_drm',
-            'type': 'boolean',
-            'label': _(u'Disable DRM (EME) in Firefox'),
-            'help_text': _(u'Disable the <a href="http://www.w3.org/TR/encrypted-media/">encrypted media extensions</a> in HTML5. '
-                'If you have a strong stance on rejecting DRM. '
-                '(<a href="http://www.pcworld.com/article/2155440/firefox-will-get-drm-copy-protection-despite-mozillas-concerns.html">Article about EME and its unique identifier</a>)'),
-            'initial': False,
-            'config': 
-            {
-                'media.eme.enabled': False,
-                'media.gmp-eme-adobe.enabled': False,
-            },
-            'addons': []
-        }
-        ]
+            'media.eme.enabled': False,
+            'media.gmp-eme-adobe.enabled': False,
+        },
+        'addons': []
+    }
+]
+
+BloatwareForm = create_configform(id="bloatware", name=_(u"Bloatware"),
+    options=bloatware_options)
 
 
-class AddonForm(ConfigForm):
-    id = "addons"
-    name = _(u"Addons")
-    options = [
-        {
-            'name': 'canvasblocker',
-            'type': 'boolean',
-            'label': _(u'Install <a href="https://addons.mozilla.org/en-US/firefox/addon/canvasblocker/">CanvasBlocker</a> extension.'),
-            'help_text': _(u'Blocks the JS-API for the &lt;canvas&gt; element to prevent <a href="https://en.wikipedia.org/wiki/Canvas_fingerprinting">Canvas-Fingerprinting</a>.'),
-            'initial': True,
-            'config': {},
-            'addons': ['CanvasBlocker@kkapsner.de.xpi']
-        },
-        {
-            'name': 'google_redirect_cleaner',
-            'type': 'boolean',
-            'label': _(u'Install <a href="https://addons.mozilla.org/de/firefox/addon/google-no-tracking-url/">Google Redirects Fixer &amp; Tracking Remover</a> extension.'),
-            'help_text': _(u'Rewrites URLs from the google result pages to direct links instead redirect urls with tracking.'),
-            'initial': True,
-            'config': {},
-            'addons': ['jid1-zUrvDCat3xoDSQ@jetpack.xpi']
-        },
-        {
-            'name': 'https_everywhere',
-            'type': 'boolean',
-            'label': _(u'Install <a href="https://addons.mozilla.org/en-US/firefox/addon/https-everywhere/">HTTPS Everywhere</a> extension.'),
-            'help_text': _(u'HTTPS Everywhere is a Firefox extension that  enables HTTPS encryption automatically on sites that support it.'),
-            'initial': True,
-            'config': {},
-            'addons': ['https-everywhere@eff.org.xpi']
-        },
-        {
-            'name': 'ublock',
-            'type': 'boolean',
-            'label': _(u'Install <a href="https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/">uBlock Origin</a> extension.'),
-            'help_text': _(u'Efficient blocker, which does not only block ads, but also supports Anti-Tracking and Anti-Malware Blocklists'),
-            'initial': True,
-            'config': {},
-            'addons': ['uBlock0@raymondhill.net.xpi']
-        },
-        # TODO: here could be some setting for good privacy lists for ublock as default
-        {
-            'name': 'umatrix',
-            'type': 'boolean',
-            'label': _(u'Install <a href="https://addons.mozilla.org/en-US/firefox/addon/umatrix/">uMatrix</a> extension.'),
-            'help_text': _(u'A content blocker for advanced users, which blocks requests to thirdparty domains. Big privacy gain, but you will need to configure exception rules for many sites.'),
-            'initial': False,
-            'config': {},
-            'addons': ['uMatrix@raymondhill.net.xpi']
-        },
-        {
-            'name': 'xclear',
-            'type': 'boolean',
-            'label': _(u'Install <a href="https://addons.mozilla.org/en-US/firefox/addon/xclear/">xclear</a> extension.'),
-            'help_text': _(u'Adds a little [x] icon to urlbar and searchbar to clear the text.'),
-            'initial': False,
-            'config': {},
-            'addons': ['xclear@as-computer.de.xpi']
-        },
-    ]
+addon_options = [
+    {
+        'name': 'canvasblocker',
+        'type': 'boolean',
+        'label': _(u'Install <a href="https://addons.mozilla.org/en-US/firefox/addon/canvasblocker/">CanvasBlocker</a> extension.'),
+        'help_text': _(u'Blocks the JS-API for the &lt;canvas&gt; element to prevent <a href="https://en.wikipedia.org/wiki/Canvas_fingerprinting">Canvas-Fingerprinting</a>.'),
+        'initial': True,
+        'config': {},
+        'addons': ['CanvasBlocker@kkapsner.de.xpi']
+    },
+    {
+        'name': 'google_redirect_cleaner',
+        'type': 'boolean',
+        'label': _(u'Install <a href="https://addons.mozilla.org/de/firefox/addon/google-no-tracking-url/">Google Redirects Fixer &amp; Tracking Remover</a> extension.'),
+        'help_text': _(u'Rewrites URLs from the google result pages to direct links instead redirect urls with tracking.'),
+        'initial': True,
+        'config': {},
+        'addons': ['jid1-zUrvDCat3xoDSQ@jetpack.xpi']
+    },
+    {
+        'name': 'https_everywhere',
+        'type': 'boolean',
+        'label': _(u'Install <a href="https://addons.mozilla.org/en-US/firefox/addon/https-everywhere/">HTTPS Everywhere</a> extension.'),
+        'help_text': _(u'HTTPS Everywhere is a Firefox extension that  enables HTTPS encryption automatically on sites that support it.'),
+        'initial': True,
+        'config': {},
+        'addons': ['https-everywhere@eff.org.xpi']
+    },
+    {
+        'name': 'ublock',
+        'type': 'boolean',
+        'label': _(u'Install <a href="https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/">uBlock Origin</a> extension.'),
+        'help_text': _(u'Efficient blocker, which does not only block ads, but also supports Anti-Tracking and Anti-Malware Blocklists'),
+        'initial': True,
+        'config': {},
+        'addons': ['uBlock0@raymondhill.net.xpi']
+    },
+    # TODO: here could be some setting for good privacy lists for ublock as default
+    {
+        'name': 'umatrix',
+        'type': 'boolean',
+        'label': _(u'Install <a href="https://addons.mozilla.org/en-US/firefox/addon/umatrix/">uMatrix</a> extension.'),
+        'help_text': _(u'A content blocker for advanced users, which blocks requests to thirdparty domains. Big privacy gain, but you will need to configure exception rules for many sites.'),
+        'initial': False,
+        'config': {},
+        'addons': ['uMatrix@raymondhill.net.xpi']
+    },
+    {
+        'name': 'xclear',
+        'type': 'boolean',
+        'label': _(u'Install <a href="https://addons.mozilla.org/en-US/firefox/addon/xclear/">xclear</a> extension.'),
+        'help_text': _(u'Adds a little [x] icon to urlbar and searchbar to clear the text.'),
+        'initial': False,
+        'config': {},
+        'addons': ['xclear@as-computer.de.xpi']
+    },
+]
+
+AddonForm = create_configform(id="addons", name=_(u"Addons"),
+    options=addon_options)

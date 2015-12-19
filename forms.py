@@ -346,21 +346,36 @@ privacy_options = [
         'type': 'choice',
         'label': _(u'Block Referer'),
         'help_text': _(u'Firefox tells a website, from which site you\'re coming '
-            '(the so called <a href="http://kb.mozillazine.org/Network.http.sendRefererHeader">referer</a>).'),
-        'initial': 0,
+            '(the so called <a href="http://kb.mozillazine.org/Network.http.sendRefererHeader">referer</a>). '
+            'You can find more detailed settings in this <a href="http://www.ghacks.net/2015/01/22/improve-online-privacy-by-controlling-referrer-information/">ghacks article</a> '
+            'or install the <a href="https://addons.mozilla.org/en-US/firefox/addon/refcontrol/">RefControl</a> extension for per domain settings.'),
+        'initial': 2,
         'choices': [
             _(u'Always disable referer'),
-            _(u'Allow only when clicking a link'),
-            _(u'Allow for links and loaded images')
+            _(u'Send referer only on the same domain'),
+            _(u'Spoof referer (send the same url)'),
+            _(u'Trim referer to the domain name'),
+            _(u'Allow real referer when clicking a link'),
+            _(u'Always allow real referer')
         ],
         'config': [
             {
                 'network.http.sendRefererHeader': 0,
             },
             {
+                'network.http.referer.XOriginPolicy': 1,
+            },
+            {
+                'network.http.referer.spoofSource': True,
+            },
+            {
+                'network.http.referer.trimmingPolicy': 2,
+            },
+            {
                 'network.http.sendRefererHeader': 1,
             },
             {
+                # default
             },
         ],
         'addons': [[], [], []],

@@ -230,7 +230,6 @@ firefoxtracking_options = [
         'config':
         {
             'browser.safebrowsing.enabled': False,
-            'browser.safebrowsing.malware.enabled': False,
         },
         'addons': []
     },
@@ -242,6 +241,7 @@ firefoxtracking_options = [
         'initial': True,
         'config':
         {
+            'browser.safebrowsing.malware.enabled': False,
             'browser.safebrowsing.appRepURL': '',
         },
         'addons': []

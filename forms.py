@@ -179,53 +179,88 @@ AnnoyancesForm = create_configform(id="annoyances", name=_(u'Annoyances'),
     options=annoyances_options)
 
 
-class FirefoxTrackingForm(forms.Form):
-    id = "firefox_tracking"
-    name = _(u"Firefox Tracking")
-    form_name = forms.CharField(initial="firefox_tracking", widget=forms.widgets.HiddenInput)
-    telemetry = forms.BooleanField(
-        label=_(u"Disable Telemetry"),
-        help_text=_(u'The <a href="https://support.mozilla.org/en-US/kb/share-telemetry-data-mozilla-help-improve-firefox">telemetry feature</a> '
+firefoxtracking_options = [
+    {
+        'name': 'telemetry',
+        'type': 'boolean',
+        'label': _(u'Disable Telemetry'),
+        'help_text': _(u'The <a href="https://support.mozilla.org/en-US/kb/share-telemetry-data-mozilla-help-improve-firefox">telemetry feature</a> '
             'sends data about the performance and responsiveness of Firefox to Mozilla.'),
-        initial=True, required=False)
-    health_report = forms.BooleanField(
-        label=_(u"Disable health report"),
-        help_text=_(u'Disable sending <a href="https://www.mozilla.org/en-US/privacy/firefox/#health-report">Firefox health reports</a> to Mozilla'),
-        initial=True, required=False)
-    addon_data = forms.BooleanField(
-        label=_(u"Opt out metadata updates"),
-        help_text=_(u'Firefox sends data about installed addons as <a href="https://blog.mozilla.org/addons/how-to-opt-out-of-add-on-metadata-updates/">metadata updates</a>, so Mozilla is able to recommend you other addons.'),
-        initial=True, required=False)
-    phishing_protection = forms.BooleanField(
-        label=_(u"Disable phishing protection"),
-        help_text=_(u'The phishing protection contacts google with an unique key:'
+        'initial': True,
+        'config':
+        {
+            'toolkit.telemetry.enabled': False,
+        },
+        'addons': []
+    },
+    {
+        'name': 'health_report',
+        'type': 'boolean',
+        'label': _(u'Disable health report'),
+        'help_text': _(u'Disable sending <a href="https://www.mozilla.org/en-US/privacy/firefox/#health-report">Firefox health reports</a> to Mozilla'),
+        'initial': True,
+        'config':
+        {
+            'datareporting.healthreport.service.enabled': False,
+            'datareporting.healthreport.uploadEnabled': False,
+            # see https://bugzilla.mozilla.org/show_bug.cgi?id=1195552#c4
+            'datareporting.policy.dataSubmissionEnabled': False,
+        },
+        'addons': []
+    },
+    {
+        'name': 'addon_data',
+        'type': 'boolean',
+        'label': _(u'Opt out metadata updates'),
+        'help_text': _(u'Firefox sends data about installed addons as <a href="https://blog.mozilla.org/addons/how-to-opt-out-of-add-on-metadata-updates/">metadata updates</a>, so Mozilla is able to recommend you other addons.'),
+        'initial': True,
+        'config':
+        {
+            'extensions.getAddons.cache.enabled': False,
+        },
+        'addons': []
+    },
+    {
+        'name': 'phishing_protection',
+        'type': 'boolean',
+        'label': _(u'Disable phishing protection'),
+        'help_text': _(u'The phishing protection contacts google with an unique key:'
         ' <a href="http://electroholiker.de/?p=1594">wrkey</a>.'),
-        initial=True, required=False)
-    newtab_preload = forms.BooleanField(
-        label=_(u"Disable preloading of the new tab page."),
-        help_text=_(u'By default Firefox preloads the new tab page (with website thumbnails) in the background before it is even opened.'),
-        initial=True, required=False)
-
-    def get_config_and_addons(self):
-        config = {}
-        if self.is_valid():
-            if self.cleaned_data['health_report']:
-                config['toolkit.telemetry.enabled'] = False
-                config['datareporting.healthreport.service.enabled'] = False
-                # see https://bugzilla.mozilla.org/show_bug.cgi?id=1195552#c4
-                config['datareporting.policy.dataSubmissionEnabled'] = False
-            if self.cleaned_data['phishing_protection']:
-                config['browser.safebrowsing.enabled'] = False
-                config['browser.safebrowsing.malware.enabled'] = False
-            if self.cleaned_data['health_report']:
-                config['datareporting.healthreport.uploadEnabled'] = False
-                config['datareporting.healthreport.uploadEnabled'] = False
-                config['datareporting.policy.dataSubmissionEnabled'] = False
-            if self.cleaned_data['addon_data']:
-                config['extensions.getAddons.cache.enabled'] = False
-            if self.cleaned_data['newtab_preload']:
-                config['browser.newtab.preload'] = False
-        return config, []
+        'initial': True,
+        'config':
+        {
+            'browser.safebrowsing.enabled': False,
+            'browser.safebrowsing.malware.enabled': False,
+        },
+        'addons': []
+    },
+    {
+        'name': 'malware_scan',
+        'type': 'boolean',
+        'label': _(u'Disable malware scan'),
+        'help_text': _(u'The malware scan sends an unique identifier for each downloaded file to Google.'),
+        'initial': True,
+        'config':
+        {
+            'browser.safebrowsing.appRepURL': '',
+        },
+        'addons': []
+    },
+    {
+        'name': 'newtab_preload',
+        'type': 'boolean',
+        'label': _(u'Disable preloading of the new tab page.'),
+        'help_text': _(u'By default Firefox preloads the new tab page (with website thumbnails) in the background before it is even opened.'),
+        'initial': True,
+        'config':
+        {
+            'browser.newtab.preload': False
+        },
+        'addons': []
+    },
+]
+FirefoxTrackingForm = create_configform(id='firefox_tracking',
+    name=_(u'Firefox Tracking'), options=firefoxtracking_options)
 
 
 class TrackingForm(forms.Form):

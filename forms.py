@@ -72,6 +72,23 @@ def create_configform(id, name, options):
 
 annoyances_options = [
     {
+        'name': 'firstrun_tabs',
+        'type': 'boolean',
+        'label': _(u'Disable firefox intro tabs on the first start'),
+        'help_text': _(u'Disable the first run tabs with advertisements '
+            'for the latest firefox features.'),
+        'initial': True,
+        'config':
+        {
+            # the number needs to be bigger than the current release.
+            # Yes, it is a string.
+            # TODO: this does not disable the tabs on later upgrades,
+            # as the value is reset to the current version.
+            'browser.startup.homepage_override.mstone': "9001.0.0"
+        },
+        'addons': []
+    },
+    {
         'name': 'newtabpage_intro',
         'type': 'boolean',
         'label': _(u'Disable new tab page intro'),

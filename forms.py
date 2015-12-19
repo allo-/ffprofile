@@ -101,6 +101,30 @@ annoyances_options = [
         'addons': []
     },
     {
+        'name': 'newtabpage',
+        'type': 'choice',
+        'label': _(u'Content of the new tab page'),
+        'help_text': '',
+        'initial': 1,
+        'choices': [
+            _('Thumbnails of the most visisted pages and suggestions from Mozilla'),
+            _('Thumbnails of the most visisted pages'),
+            _('Empty'),
+        ],
+        'config': [
+            {
+            },
+            {
+                'browser.newtabpage.enhanced': False,
+            },
+            {
+                'browser.newtabpage.enabled': False,
+                'browser.newtabpage.enhanced': False,
+            },
+        ],
+        'addons': [[],[],[]]
+    },
+    {
         'name': 'pocket_intro',
         'type': 'boolean',
         'label': _(u'Disable pocket intro.'),

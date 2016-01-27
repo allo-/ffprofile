@@ -78,12 +78,13 @@ def generate_prefsjs_and_addonlist(forms, prefsjs_only):
         for key in form_config:
             config[key] = form_config[key]
         addons += form_addons
+    addons = sorted(addons)
 
     prefs = ""
     if addons and not prefsjs_only:
         # allow preinstalled addons in the profile
         config['extensions.autoDisableScopes'] = 14
-    for key in config:
+    for key in sorted(config):
         value = config[key]
         if isinstance(value, basestring):
             value = '"{0}"'.format(value)

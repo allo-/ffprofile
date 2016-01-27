@@ -499,36 +499,48 @@ privacy_options = [
 
 PrivacyForm = create_configform(id='privacy', name=_(u'Privacy'), options=privacy_options)
 
-
-class SecurityForm(forms.Form):
-    id = 'security'
-    name = _(u'Security')
-    form_name = forms.CharField(initial='security', widget=forms.widgets.HiddenInput)
-
-    webgl = forms.BooleanField(
-        label=_(u'Disable WebGL'),
-        help_text=_(u'Disables the WebGL function, to prevent websites from <a href="https://isc.sans.edu/forums/diary/Time+to+disable+WebGL/10867">(ab)using the full power of the graphics card</a>. '
+security_options = [
+    {
+        'name': 'webgl',
+        'type': 'boolean',
+        'label': _(u'Disable WebGL'),
+        'help_text': _(u'Disables the WebGL function, to prevent websites from <a href="https://isc.sans.edu/forums/diary/Time+to+disable+WebGL/10867">(ab)using the full power of the graphics card</a>. '
             'Some interactive websites will not work, mostly games.'),
-        initial=False, required=False)
-    disable_autoupdate = forms.BooleanField(
-        label=_(u'Disable automatic updates.'),
-        help_text=_(u'Updates are no longer installed automatically. You will still be notified when an update is available and can install it. Avoids getting a new (maybe addon incompatible) version.'),
-        initial=True, required=False)
-    disable_updatecheck = forms.BooleanField(
-        label=_(u'Disable searching for updates.'),
-        help_text=_(u'Disable searching for updates. <b>Caution:</b> You may not notice, when there is an (security) update available.'),
-        initial=False, required=False)
+        'initial': False,
+        'config': 
+        {
+            'webgl.disabled': True,
+        },
+        'addons': []
+    },
+    {
+        'name': 'autoupdate',
+        'type': 'boolean',
+        'label': _(u'Disable automatic updates.'),
+        'help_text': _(u'Updates are no longer installed automatically. You will still be notified when an update is available and can install it. Avoids getting a new (maybe addon incompatible) version.'),
+        'initial': True,
+        'config': 
+        {
+            'app.update.auto': False,
+        },
+        'addons': []
+    },
+    {
+        'name': 'updatecheck',
+        'type': 'boolean',
+        'label': _(u'Disable searching for updates.'),
+        'help_text': _(u'Disable searching for updates. <b>Caution:</b> You may not notice, when there is an (security) update available.'),
+        'initial': False,
+        'config': 
+        {
+            'app.update.enabled': False,
+        },
+        'addons': []
+    },
+]
 
-    def get_config_and_addons(self):
-        config = {}
-        if self.is_valid():
-            if self.cleaned_data['webgl']:
-                config['webgl.disabled'] = True
-            if self.cleaned_data['disable_autoupdate']:
-                config['app.update.auto'] = False
-            if self.cleaned_data['disable_updatecheck']:
-                config['app.update.enabled'] = False
-        return config, []
+
+SecurityForm = create_configform(id='security', name=_(u'Security'), options=security_options)
 
 
 bloatware_options = [

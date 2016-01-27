@@ -137,6 +137,18 @@ annoyances_options = [
         'addons': []
     },
     {
+        'name': 'reset_firefox',
+        'type': 'boolean',
+        'label': _(u'Disable reset prompt.'),
+        'help_text': _(u'When Firefox is not used for a while, it displays a prompt asking if the user wants to reset the profile. (see <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=955950">Bug #955950</a>).'),
+        'initial': True,
+        'config': 
+        {
+            'browser.disableResetPrompt': True
+        },
+        'addons': []
+    },
+    {
         'name': 'heartbeat',
         'type': 'boolean',
         'label': _(u'Disable Heartbeat Userrating'),

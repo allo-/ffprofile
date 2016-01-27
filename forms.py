@@ -263,50 +263,76 @@ FirefoxTrackingForm = create_configform(id='firefox_tracking',
     name=_(u'Firefox Tracking'), options=firefoxtracking_options)
 
 
-class TrackingForm(forms.Form):
-    id  ="tracking"
-    name = "Website Tracking"
-    form_name = forms.CharField(initial="tracking", widget=forms.widgets.HiddenInput)
-
-    dnt = forms.BooleanField(
-        label=_(u'Enable Do-not-Track'),
-        help_text=_(u'With the do not track feature, you tell websites, that you do not want to be tracked. '
+tracking_options = [
+    {
+        'name': 'dnt',
+        'type': 'boolean',
+        'label': _(u'Enable Do-not-Track'),
+        'help_text': _(u'With the do not track feature, you tell websites, that you do not want to be tracked. '
             'Most websites ignore this, so you need other privacy options as well.'),
-        initial=True, required=False)
-    trackingprotection = forms.BooleanField(
-        label=_(u'Enable Mozilla Trackingprotection'),
-        help_text=_(u'Firefox has a builtin <a href="https://wiki.mozilla.org/Security/Tracking_protection">tracking protection</a>, which blocks a list of known tracking sites.'),
-        initial=True, required=False)
-    ping = forms.BooleanField(
-        label=_(u'Disable Browser Pings'),
-        help_text=_(u'Firefox sends <a href="http://kb.mozillazine.org/Browser.send_pings">"ping" requests</a>, '
+        'initial': True,
+        'config':
+        {
+            'privacy.donottrackheader.enabled': True,
+            'privacy.donottrackheader.value': 1,
+        },
+        'addons': []
+    },
+    {
+        'name': 'trackingprotection',
+        'type': 'boolean',
+        'label': _(u'Enable Mozilla Trackingprotection'),
+        'help_text': _(u'Firefox has a builtin <a href="https://wiki.mozilla.org/Security/Tracking_protection">tracking protection</a>, which blocks a list of known tracking sites.'),
+        'initial': True,
+        'config':
+        {
+            'privacy.trackingprotection.enabled': True,
+            'privacy.trackingprotection.pbmode.enabled': True,
+        },
+        'addons': []
+    },
+    {
+        'name': 'ping',
+        'type': 'boolean',
+        'label': _(u'Disable Browser Pings'),
+        'help_text': _(u'Firefox sends <a href="http://kb.mozillazine.org/Browser.send_pings">"ping" requests</a>, '
             'when a website requests to be informed when a user clicks on a link.'),
-        initial=True, required=False)
-    beacon = forms.BooleanField(
-        label=_(u'Disable Beacons'),
-        help_text=_(u'The <a href="https://w3c.github.io/beacon/">Beacon</a> feature allows websites to send tracking data after you left the website.'),
-        initial=True, required=False)
-    dom_battery = forms.BooleanField(
-        label=_(u'Disable the Battery API'),
-        help_text=_(u'Firefox allows websites to read the charge level of the battery. This may be used for fingerprinting.'),
-        initial=True, required=False)
+        'initial': True,
+        'config':
+        {
+            'browser.send_pings': False,
+        },
+        'addons': []
+    },
+    {
+        'name': 'beacons',
+        'type': 'boolean',
+        'label': _(u'Disable Beacons'),
+        'help_text': _(u'The <a href="https://w3c.github.io/beacon/">Beacon</a> feature allows websites to send tracking data after you left the website.'),
+        'initial': True,
+        'config':
+        {
+            'beacon.enabled': False,
+        },
+        'addons': []
+    },
+    {
+        'name': 'battery',
+        'type': 'boolean',
+        'label': _(u'Disable the Battery API'),
+        'help_text': _(u'Firefox allows websites to read the charge level of the battery. This may be used for fingerprinting.'),
+        'initial': True,
+        'config':
+        {
+            'dom.battery.enabled': False,
+        },
+        'addons': []
+    },
+]
 
-    def get_config_and_addons(self):
-        config = {}
-        if self.is_valid():
-            if self.cleaned_data['dnt']:
-                config['privacy.donottrackheader.enabled'] = True
-                config['privacy.donottrackheader.value'] = 1
-            if self.cleaned_data['trackingprotection']:
-                config['privacy.trackingprotection.enabled'] = True
-                config['privacy.trackingprotection.pbmode.enabled'] = True
-            if self.cleaned_data['ping']:
-                config['browser.send_pings'] = False
-            if self.cleaned_data['beacon']:
-                config['beacon.enabled'] = False
-            if self.cleaned_data['dom_battery']:
-                config['dom.battery.enabled'] = False
-        return config, []
+TrackingForm = create_configform(id='website_tracking',
+    name=_(u'Website Tracking'), options=tracking_options)
+
 
 privacy_options = [
     {

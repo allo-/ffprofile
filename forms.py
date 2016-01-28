@@ -599,7 +599,7 @@ bloatware_options = [
         'name': 'eme_drm',
         'type': 'boolean',
         'label': _(u'Disable DRM (EME) in Firefox'),
-        'help_text': _(u'Disable the <a href="http://www.w3.org/TR/encrypted-media/">encrypted media extensions</a> in HTML5. '
+        'help_text': _(u'Disables the <a href="http://www.w3.org/TR/encrypted-media/">encrypted media extensions</a> in HTML5. '
             'If you have a strong stance on rejecting DRM. '
             '(<a href="http://www.pcworld.com/article/2155440/firefox-will-get-drm-copy-protection-despite-mozillas-concerns.html">Article about EME and its unique identifier</a>)'),
         'initial': False,
@@ -607,6 +607,21 @@ bloatware_options = [
         {
             'media.eme.enabled': False,
             'media.gmp-eme-adobe.enabled': False,
+        },
+        'addons': []
+    },
+    {
+        'name': 'webpush',
+        'type': 'boolean',
+        'label': _(u'Disable Web Push'),
+        'help_text': _(u'Disables the <a href="https://hacks.mozilla.org/2016/01/web-push-arrives-in-firefox-44/">Web Push Feature</a>. '
+            'Web Push uses Thirdparty Services (i.e. hosted by Google and Mozilla) to deliver the Notifications. '
+            'It is safe to keep it enabled, as sites have to ask before using this feature. Mo push connection '
+            'is made, if you do not opt-in to it on any site. With this setting you can disable the feature all together.'),
+        'initial': False,
+        'config': 
+        {
+            'dom.push.enabled': False,
         },
         'addons': []
     }

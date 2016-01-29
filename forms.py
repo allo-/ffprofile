@@ -394,7 +394,8 @@ privacy_options = [
             _(u'Spoof referer (send the same url)'),
             _(u'Trim referer to the domain name'),
             _(u'Allow real referer when clicking a link'),
-            _(u'Always allow real referer')
+            _(u'Always allow real referer'),
+            _(u'Install RefControl Extension')
         ],
         'config': [
             {
@@ -413,10 +414,21 @@ privacy_options = [
                 'network.http.sendRefererHeader': 1,
             },
             {
+                # RefControl
+            },
+            {
                 # default
             },
         ],
-        'addons': [[], [], []],
+        'addons': [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            ["{455D905A-D37C-4643-A9E2-F6FEFAA0424A}.xpi"]
+        ],
     },
     {
         'name': 'dom_storage',

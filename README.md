@@ -18,3 +18,4 @@ Things, that will not be included:
 
 You're welcome to fork the project to create profiles with such features enabled.
 Later some plugin system may be added. Then additional settings / addons could just be added via a config file.
+

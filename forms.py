@@ -185,6 +185,18 @@ annoyances_options = [
         ],
         'addons': [[],[],[]]
     },
+    {
+        'name': 'html5_video_autoplay',
+        'type': 'boolean',
+        'label': _(u'Disable autoplay of &lt;video&gt; tags.'),
+        'help_text': _('Per default, &lt;video&gt; tags are allowed to start automatically. Note: When disabling autoplay, you will have to click pause and play again on some video sites.'),
+        'initial': False,
+        'config':
+        {
+            'media.autoplay.enabled': False
+        },
+        'addons': []
+    },
 ]
 
 AnnoyancesForm = create_configform(id="annoyances", name=_(u'Annoyances'),

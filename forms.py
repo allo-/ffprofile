@@ -367,9 +367,10 @@ privacy_options = [
         'type': 'text',
         'label': _(u'Fake another Useragent'),
         'help_text': _('Using a <a href="https://techblog.willshouse.com/2012/01/03/most-common-user-agents/">popular useragent string</a> '
-            'avoids to attract attention i.e. with an Iceweasel UA. (keep blank to use the default)'),
+            'avoids attracting attention i.e. with an Iceweasel UA. (keep blank to use the default)'),
         'initial': "",
         'setting': 'general.useragent.override',
+        'blank_means_default': True,
     },
     {
         'name': 'cookies',

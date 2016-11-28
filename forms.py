@@ -58,7 +58,10 @@ class ConfigForm(forms.Form):
                         config[key] = option['config'][choice][key]
                     addons += option['addons'][choice]
                 elif option['type'] == "text":
-                    config[option['setting']] = self.cleaned_data[option['name']]
+                    if option.get('blank_means_default', False) and self.cleaned_data[option['name']] == "":
+                        continue
+                    else:
+                        config[option['setting']] = self.cleaned_data[option['name']]
 
         return config, addons
 

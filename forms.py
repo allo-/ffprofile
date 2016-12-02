@@ -222,6 +222,18 @@ ITEMS = {
         {
             'name': 'video_stats',
             'type': 'boolean',
+            'label': _(u'Disable Media Devices'),
+            'help_text': _(u'Prevent websites from accessing <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/enumerateDevices">information about webcam and microphone</a> (possible fingerprinting).'),
+            'initial': True,
+            'config':
+            {
+                'media.navigator.enabled': False,
+            },
+            'addons': []
+        },
+        {
+            'name': 'media_devices',
+            'type': 'boolean',
             'label': _(u'Disable video statistics'),
             'help_text': _(u'Prevent websites from measuring video performance (possible fingerprinting). See <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=654550">Mozilla Bug 654550</a>.'),
             'initial': True,

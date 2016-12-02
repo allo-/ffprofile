@@ -8,9 +8,6 @@ import zipfile
 from StringIO import StringIO
 
 
-FORMS = [FirefoxTrackingForm, TrackingForm, PrivacyForm, SecurityForm,
-         BloatwareForm, AnnoyancesForm, AddonForm]
-
 
 def get_forms(request, FormClasses):
 

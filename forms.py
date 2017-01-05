@@ -642,7 +642,21 @@ ITEMS = {
             'config': {},
             'addons': ['xclear@as-computer.de.xpi']
         },
-    ]
+    ],
+    'Addon Tracking': [
+        {
+            'name': 'greasemonkey_stats',
+            'type': 'boolean',
+            'label': _(u'Explicitly disable Greasemonkey user tracking'),
+            'help_text': _(u'Greasemonkey has a (currently opt-in) function to submit user stats. This explicitely disables it, in case that it will get opt-out in the future.'),
+            'initial': True,
+            'config': {
+                'extensions.greasemonkey.stats.optedin': False,
+                'extensions.greasemonkey.stats.url': "",
+            },
+            'addons': [],
+        }
+    ],
 }
 
 FORMS = []

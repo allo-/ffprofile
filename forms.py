@@ -424,7 +424,7 @@ ITEMS = {
             'name': 'webgl',
             'type': 'boolean',
             'label': _(u'Disable WebGL'),
-            'help_text': _(u'Disables the WebGL function, to prevent websites from <a href="https://isc.sans.edu/forums/diary/Time+to+disable+WebGL/10867">(ab)using the full power of the graphics card</a>. '
+            'help_text': _(u'Disables the WebGL function, to prevent <a href="http://www.uniquemachine.org/">fingerprinting with WebGL</a>. Another issue is, that websites can <a href="https://isc.sans.edu/forums/diary/Time+to+disable+WebGL/10867">(ab)use the full power of the graphics card</a>. '
                 'Some interactive websites will not work, mostly games.'),
             'initial': False,
             'config': 

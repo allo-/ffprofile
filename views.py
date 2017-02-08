@@ -98,11 +98,14 @@ def download(request, what):
     forms, invalid_data = get_forms(request, FORMS)
     prefsjs_only = False
     prefsjs_text = False
+    addons_only = False
     if what == "prefs.js":
         prefsjs_only = True
     elif what == "prefs.js.txt":
         prefsjs_only = True
         prefsjs_text = True
+    elif what == "addons.zip":
+        addons_only = True
 
     if invalid_data:
         return redirect(reverse(main) + "#finish")
@@ -112,8 +115,9 @@ def download(request, what):
     if not prefsjs_only:
         memoryFile = StringIO()
         zip_file = zipfile.ZipFile(memoryFile, "w", zipfile.ZIP_DEFLATED)
-        zip_file.writestr("prefs.js", prefs,
-                          compress_type=zipfile.ZIP_DEFLATED)
+        if not addons_only:
+            zip_file.writestr("prefs.js", prefs,
+                              compress_type=zipfile.ZIP_DEFLATED)
 
         for addon in addons:
             zip_file.write(os.path.join("extensions", addon),

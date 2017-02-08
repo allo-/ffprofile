@@ -93,8 +93,13 @@
                 {% endif %}
 
                 <a href="{% url 'profilemaker.views.download' 'profile.zip' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} {% trans "Download profile.zip" %}</a>
-                <a href="{% url 'profilemaker.views.download' 'prefs.js' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} {% trans "Download prefs.js only" %}</a>
+                <br />
+                <a href="{% url 'profilemaker.views.download' 'prefs.js' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} {% trans "Download only prefs.js" %}</a>
                 <a href="{% url 'profilemaker.views.download' 'prefs.js.txt' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} {% trans "Open prefs.js in the browser" %}</a>
+                <br />
+                <a href="{% url 'profilemaker.views.download' 'addons.zip' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} {% trans "Download only addons.zip" %}</a>
+                <br />
+                {% trans "When you only download the addons, you need to set <code>extensions.autoDisableScopes = 14</code> in about:config, else firefox won't install the addons." %}
 
 
                 <form action="#" method="post" class="form">

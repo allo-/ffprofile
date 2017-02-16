@@ -690,7 +690,32 @@ ITEMS = {
     ],
 }
 
+ITEMS2 = {
+    "Private Browsing": [
+        {
+            'name': 'private_browsing_autostart',
+            'type': 'boolean',
+            'label': _(u'Start Firefox always in private browsing mode'),
+            'help_text': _(u'Firefox will always be started in private browsing mode.'),
+            'initial': True,
+            'config': {
+                'browser.privatebrowsing.autostart': True,
+            },
+            'addons': [],
+        },
+    ]
+}
+
 FORMS = []
 for idx, name in enumerate(ITEMS):
     FORMS.append(create_configform(id="form{0:d}".format(idx), name=name, options=ITEMS[name]))
+
+FORMS2 = []
+for idx, name in enumerate(ITEMS2):
+    FORMS2.append(create_configform(id="form{0:d}".format(idx), name=name, options=ITEMS2[name]))
+
+PROFILES = {
+    "default": ["Default", FORMS],
+    "private": ["Private Browsing", FORMS2]
+}
 

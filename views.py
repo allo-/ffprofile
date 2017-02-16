@@ -36,7 +36,8 @@ def get_forms(request, FormClasses):
 
 
 def main(request):
-    forms, invalid_data = get_forms(request, FORMS)
+    form_classes = PROFILES.get(request.session.get("profile", "default"), ["empty", []])[1]
+    forms, invalid_data = get_forms(request, form_classes)
 
     # are all forms finished?
     finished = True
@@ -46,8 +47,13 @@ def main(request):
             break
 
     if request.POST:
+        if request.POST.get("profile", None):
+            profile_name = request.POST.get("profile", "default")
+            if profile_name in PROFILES:
+                request.session['profile'] = profile_name
+            return redirect(reverse(main) + "#" + forms[0].id)
         # start over again
-        if request.POST.get("reset", None) == "reset":
+        elif request.POST.get("reset", None) == "reset":
             request.session.clear()
 
         # redirect to the current form or to the next one?
@@ -61,6 +67,7 @@ def main(request):
         # nothing posted, just render the current page
         prefs_js, addons, files_inline = generate_prefsjs_and_addonlist(forms, False)
         return render(request, "main.html", {
+            'profiles': [(name, PROFILES[name][0]) for name in PROFILES],
             'forms': forms,
             'prefs_js': prefs_js,
             'addons': addons,

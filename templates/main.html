@@ -60,11 +60,17 @@
                 describing the feature and the possible problems with it.
                 <p />
                 {% endblocktrans %}
-                <a href="#{{ forms.0.id }}" data-toggle="tab">
-                    <button type="submit" class="btn btn-primary" onclick="$('.nav-pills a[href=#{{ forms.0.id }}]').tab('show');">
+                <form action="#{{ form.id }}" method="post" class="form">
+                    <select id="profile" name="profile">
+                        {% for profile in profiles %}
+                        <option value="{{ profile.0 }}">{{ profile.1 }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn btn-primary">
                         {% trans "Start" %}
                     </button>
-                </a>
+                    {% csrf_token %}
+                </form>
             </div>
         {% for form in forms %}
             <div id="{{ form.id }}" class="tab-pane fade">

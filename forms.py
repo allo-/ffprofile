@@ -626,11 +626,24 @@ ITEMS = {
         {
             'name': 'https_everywhere',
             'type': 'boolean',
-            'label': _(u'Install <a href="https://addons.mozilla.org/en-US/firefox/addon/https-everywhere/">HTTPS Everywhere</a> extension.'),
+            'label': _(u'Install the <a href="https://addons.mozilla.org/en-US/firefox/addon/https-everywhere/">HTTPS Everywhere</a> extension.'),
             'help_text': _(u'HTTPS Everywhere is a Firefox extension that  enables HTTPS encryption automatically on sites that support it.'),
             'initial': True,
             'config': {},
             'addons': ['https-everywhere@eff.org.xpi']
+        },
+        {
+            'name': 'privacybadger',
+            'type': 'boolean',
+            'label': _(u'Install the <a href="https://addons.mozilla.org/en-US/firefox/addon/privacy-badger17/">Privacy Badger</a> extension.'),
+            'help_text': _(u'The Privacy Badger addon automatically detects trackers and blocks them. You can manually block and unblock urls as well.'),
+            'initial': True,
+            'config': {},
+            'files_inline': {
+                'browser-extension-data/jid1-MnnxcxisBPnSXQ@jetpack/storage.js':
+                '{"settings_map":{"isFirstRun": false}}'
+            },
+            'addons': ['jid1-MnnxcxisBPnSXQ@jetpack.xpi']
         },
         {
             'name': 'ublock',

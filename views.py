@@ -49,6 +49,7 @@ def main(request):
     if request.POST:
         if request.POST.get("profile", None):
             profile_name = request.POST.get("profile", "default")
+            request.session.clear()
             if profile_name in PROFILES:
                 request.session['profile'] = profile_name
             return redirect(reverse(main) + "#" + forms[0].id)

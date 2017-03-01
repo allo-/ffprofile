@@ -1,5 +1,6 @@
 from django import forms
 from django.utils.translation import ugettext as _
+import json, glob, os
 
 # current structure:
 # - FirefoxTracking: builtin features, which send data to Mozilla,
@@ -690,32 +691,28 @@ ITEMS = {
     ],
 }
 
-ITEMS2 = {
-    "Private Browsing": [
-        {
-            'name': 'private_browsing_autostart',
-            'type': 'boolean',
-            'label': _(u'Start Firefox always in private browsing mode'),
-            'help_text': _(u'Firefox will always be started in private browsing mode.'),
-            'initial': True,
-            'config': {
-                'browser.privatebrowsing.autostart': True,
-            },
-            'addons': [],
-        },
-    ]
-}
+PROFILES = {}
+settings_path = os.path.dirname(__file__) + "/settings"
+profile_files = glob.glob(settings_path + "/*.profile.json")
+for profile_file in profile_files:
+    profile_name, profile = json.load(open(profile_file, "r"))
+    items = {}
+    for category in profile:
+        options = []
+        for file in profile[category]:
+            data = json.load(open(settings_path + "/" + file, "r"))
+            for item in data:
+                item['label'] = _(item['label'])
+                item['help_text'] = _(item['help_text'])
+            options += data
+        items[category] = options
+    form_list = []
+    for idx, name in enumerate(items):
+        form_list.append(create_configform(id="form{0:d}".format(idx), name=name, options=items[name]))
+    PROFILES[os.path.basename(profile_file)] = [profile_name, form_list]
 
 FORMS = []
 for idx, name in enumerate(ITEMS):
     FORMS.append(create_configform(id="form{0:d}".format(idx), name=name, options=ITEMS[name]))
 
-FORMS2 = []
-for idx, name in enumerate(ITEMS2):
-    FORMS2.append(create_configform(id="form{0:d}".format(idx), name=name, options=ITEMS2[name]))
-
-PROFILES = {
-    "default": ["Default", FORMS],
-    "private": ["Private Browsing", FORMS2]
-}
-
+PROFILES["default"] = ["Default", FORMS]

@@ -1,0 +1,13 @@
+[
+	{   
+		"name": "private_browsing_autostart",
+		"type": "boolean",
+		"label": "Start Firefox always in private browsing mode",
+		"help_text": "Firefox will always be started in private browsing mode.",
+		"initial": true,
+		"config": {
+			"browser.privatebrowsing.autostart": true
+		},
+		"addons": []
+	}  
+]   

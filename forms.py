@@ -45,6 +45,7 @@ class ConfigForm(forms.Form):
     def get_config_and_addons(self):
         config = {}
         addons = []
+        files_inline = {}
         if self.is_valid():
             for option in self.options:
                 if option['type'] == "boolean":
@@ -52,18 +53,22 @@ class ConfigForm(forms.Form):
                         for key in option['config']:
                             config[key] = option['config'][key]
                         addons += option['addons']
+                        if 'files_inline' in option:
+                            files_inline.update(option['files_inline'])
                 elif option['type'] == "choice":
                     choice = int(self.cleaned_data[option['name']])
                     for key in option['config'][choice]:
                         config[key] = option['config'][choice][key]
                     addons += option['addons'][choice]
+                    if 'files_inline' in option:
+                        files.update(option['files_inline'][choice])
                 elif option['type'] == "text":
                     if option.get('blank_means_default', False) and self.cleaned_data[option['name']] == "":
                         continue
                     else:
                         config[option['setting']] = self.cleaned_data[option['name']]
 
-        return config, addons
+        return config, addons, files_inline
 
 def create_configform(id, name, options):
     class DynamicConfigForm(ConfigForm):

@@ -59,7 +59,7 @@ def main(request):
             return redirect(reverse(main) + "#" + form_name)
     else:
         # nothing posted, just render the current page
-        prefs_js, addons = generate_prefsjs_and_addonlist(forms, False)
+        prefs_js, addons, files_inline = generate_prefsjs_and_addonlist(forms, False)
         return render(request, "main.html", {
             'forms': forms,
             'prefs_js': prefs_js,
@@ -70,8 +70,9 @@ def main(request):
 def generate_prefsjs_and_addonlist(forms, prefsjs_only):
     config = {}
     addons = []
+    files_inline = {}
     for form in forms:
-        form_config, form_addons = form.get_config_and_addons()
+        form_config, form_addons, files_inline = form.get_config_and_addons()
         for key in form_config:
             config[key] = form_config[key]
         addons += form_addons
@@ -92,7 +93,7 @@ def generate_prefsjs_and_addonlist(forms, prefsjs_only):
         prefs += 'user_pref("{key}", {value});\r\n'.format(
             key=key, value=value)
 
-    return prefs, addons
+    return prefs, addons, files_inline
 
 def download(request, what):
     forms, invalid_data = get_forms(request, FORMS)
@@ -110,7 +111,7 @@ def download(request, what):
     if invalid_data:
         return redirect(reverse(main) + "#finish")
 
-    prefs, addons = generate_prefsjs_and_addonlist(forms, prefsjs_only)
+    prefs, addons, files_inline = generate_prefsjs_and_addonlist(forms, prefsjs_only)
 
     if not prefsjs_only:
         memoryFile = StringIO()
@@ -122,6 +123,10 @@ def download(request, what):
         for addon in addons:
             zip_file.write(os.path.join("extensions", addon),
                            compress_type=zipfile.ZIP_DEFLATED)
+
+        for file in files_inline:
+            zip_file.writestr(file, files_inline[file],
+                              compress_type=zipfile.ZIP_DEFLATED)
         zip_file.close()
 
         memoryFile.seek(0)

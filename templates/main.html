@@ -139,9 +139,9 @@
                 prefs.js:
                 <pre>{{ prefs_js }}</pre>
 
-                {% if addons %}
-                    {% trans "Addons:" %}
-                    <pre>{% for addon in addons %}{{ addon }}<br />{% endfor %}</pre>
+                {% if filenames %}
+                    {% trans "Files:" %}
+                    <pre>{% for filename in filenames %}{{ filename }}<br />{% endfor %}</pre>
                 {% endif %}
             </div>
         </div>

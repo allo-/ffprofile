@@ -74,7 +74,7 @@ def main(request):
             'active_profile': request.session.get('profile'),
             'forms': forms,
             'prefs_js': prefs_js,
-            'addons': addons,
+            'filenames': addons + files_inline.keys(),
             'finished': finished
         })
 

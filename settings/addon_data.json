@@ -1,0 +1,13 @@
+[
+    {
+        "name": "addon_data", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Opt out metadata updates", 
+        "help_text": "Firefox sends data about installed addons as <a href=\"https://blog.mozilla.org/addons/how-to-opt-out-of-add-on-metadata-updates/\">metadata updates</a>, so Mozilla is able to recommend you other addons.", 
+        "addons": [], 
+        "config": {
+            "extensions.getAddons.cache.enabled": false
+        }
+    }
+]

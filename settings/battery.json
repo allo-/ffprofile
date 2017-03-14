@@ -1,0 +1,13 @@
+[
+    {
+        "name": "battery", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable the Battery API", 
+        "help_text": "Firefox allows websites to read the charge level of the battery. This may be used for fingerprinting.", 
+        "addons": [], 
+        "config": {
+            "dom.battery.enabled": false
+        }
+    }
+]

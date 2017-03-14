@@ -1,0 +1,13 @@
+[
+    {
+        "name": "resist-fingerprinting", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Enable resistFingerprinting", 
+        "help_text": "The <tt>privacy.resistFingerprinting</tt> setting coming from the tor-browser hides some system properties.See <a href=\"https://bugzilla.mozilla.org/show_bug.cgi?id=1308340\">Bug #1308340</a> for more information.", 
+        "addons": [], 
+        "config": {
+            "privacy.resistFingerprinting": true
+        }
+    }
+]

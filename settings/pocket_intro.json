@@ -1,0 +1,13 @@
+[
+    {
+        "name": "pocket_intro", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable pocket intro.", 
+        "help_text": null, 
+        "addons": [], 
+        "config": {
+            "browser.toolbarbuttons.introduced.pocket-button": true
+        }
+    }
+]

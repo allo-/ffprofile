@@ -1,0 +1,13 @@
+[
+    {
+        "name": "webrtc", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable WebRTC", 
+        "help_text": "Disables the WebRTC function, which gives away your local ips.", 
+        "addons": [], 
+        "config": {
+            "media.peerconnection.enabled": false
+        }
+    }
+]

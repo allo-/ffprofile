@@ -1,0 +1,13 @@
+[
+    {
+        "name": "reset_firefox", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable reset prompt.", 
+        "help_text": "When Firefox is not used for a while, it displays a prompt asking if the user wants to reset the profile. (see <a href=\"https://bugzilla.mozilla.org/show_bug.cgi?id=955950\">Bug #955950</a>).", 
+        "addons": [], 
+        "config": {
+            "browser.disableResetPrompt": true
+        }
+    }
+]

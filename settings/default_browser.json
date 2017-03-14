@@ -1,0 +1,13 @@
+[
+    {
+        "name": "default_browser", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable checking if Firefox is the default browser", 
+        "help_text": null, 
+        "addons": [], 
+        "config": {
+            "browser.shell.checkDefaultBrowser": false
+        }
+    }
+]

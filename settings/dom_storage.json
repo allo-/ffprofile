@@ -1,0 +1,13 @@
+[
+    {
+        "name": "dom_storage", 
+        "type": "boolean", 
+        "initial": false, 
+        "label": "Disable DOM storage", 
+        "help_text": "Disables DOM storage, which enables so called \"supercookies\". Some modern sites will not fully not work (i.e. missing \"save\" functions).", 
+        "addons": [], 
+        "config": {
+            "dom.storage.enabled": false
+        }
+    }
+]

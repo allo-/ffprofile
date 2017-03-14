@@ -1,0 +1,16 @@
+[
+    {
+        "files_inline": {
+            "browser-extension-data/jid1-MnnxcxisBPnSXQ@jetpack/storage.js": "{\"settings_map\":{\"isFirstRun\": false}}"
+        }, 
+        "name": "privacybadger", 
+        "addons": [
+            "jid1-MnnxcxisBPnSXQ@jetpack.xpi"
+        ], 
+        "help_text": "The Privacy Badger addon automatically detects trackers and blocks them. You can manually block and unblock urls as well.", 
+        "config": {}, 
+        "initial": true, 
+        "type": "boolean", 
+        "label": "Install the <a href=\"https://addons.mozilla.org/en-US/firefox/addon/privacy-badger17/\">Privacy Badger</a> extension."
+    }
+]

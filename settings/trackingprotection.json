@@ -1,0 +1,14 @@
+[
+    {
+        "name": "trackingprotection", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Enable Mozilla Trackingprotection", 
+        "help_text": "Firefox has a builtin <a href=\"https://wiki.mozilla.org/Security/Tracking_protection\">tracking protection</a>, which blocks a list of known tracking sites.", 
+        "addons": [], 
+        "config": {
+            "privacy.trackingprotection.pbmode.enabled": true, 
+            "privacy.trackingprotection.enabled": true
+        }
+    }
+]

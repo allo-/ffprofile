@@ -1,0 +1,13 @@
+[
+    {
+        "name": "heartbeat", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable Heartbeat Userrating", 
+        "help_text": "With Firefox 37, Mozilla integrated the <a href=\"https://wiki.mozilla.org/Advocacy/heartbeat\">Heartbeat</a> system to ask users from time to time about their experience with Firefox.", 
+        "addons": [], 
+        "config": {
+            "browser.selfsupport.url": ""
+        }
+    }
+]

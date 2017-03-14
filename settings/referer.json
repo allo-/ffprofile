@@ -1,0 +1,48 @@
+[
+    {
+        "choices": [
+            "Always disable referer", 
+            "Send referer only on the same domain", 
+            "Spoof referer (send the same url)", 
+            "Trim referer to the domain name", 
+            "Allow real referer when clicking a link", 
+            "Always allow real referer", 
+            "Install RefControl Extension"
+        ], 
+        "name": "referer", 
+        "addons": [
+            [], 
+            [], 
+            [], 
+            [], 
+            [], 
+            [], 
+            [
+                "{455D905A-D37C-4643-A9E2-F6FEFAA0424A}.xpi"
+            ]
+        ], 
+        "help_text": "Firefox tells a website, from which site you're coming (the so called <a href=\"http://kb.mozillazine.org/Network.http.sendRefererHeader\">referer</a>). You can find more detailed settings in this <a href=\"http://www.ghacks.net/2015/01/22/improve-online-privacy-by-controlling-referrer-information/\">ghacks article</a> or install the <a href=\"https://addons.mozilla.org/en-US/firefox/addon/refcontrol/\">RefControl</a> extension for per domain settings.", 
+        "config": [
+            {
+                "network.http.sendRefererHeader": 0
+            }, 
+            {
+                "network.http.referer.XOriginPolicy": 1
+            }, 
+            {
+                "network.http.referer.spoofSource": true
+            }, 
+            {
+                "network.http.referer.trimmingPolicy": 2
+            }, 
+            {
+                "network.http.sendRefererHeader": 1
+            }, 
+            {}, 
+            {}
+        ], 
+        "initial": 2, 
+        "type": "choice", 
+        "label": "Block Referer"
+    }
+]

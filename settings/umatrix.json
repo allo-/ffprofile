@@ -1,0 +1,13 @@
+[
+    {
+        "name": "umatrix", 
+        "type": "boolean", 
+        "initial": false, 
+        "label": "Install <a href=\"https://addons.mozilla.org/en-US/firefox/addon/umatrix/\">uMatrix</a> extension.", 
+        "help_text": "A content blocker for advanced users, which blocks requests to thirdparty domains. Big privacy gain, but you will need to configure exception rules for many sites.", 
+        "addons": [
+            "uMatrix@raymondhill.net.xpi"
+        ], 
+        "config": {}
+    }
+]

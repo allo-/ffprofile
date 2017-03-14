@@ -1,0 +1,13 @@
+[
+    {
+        "name": "beacons", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable Beacons", 
+        "help_text": "The <a href=\"https://w3c.github.io/beacon/\">Beacon</a> feature allows websites to send tracking data after you left the website.", 
+        "addons": [], 
+        "config": {
+            "beacon.enabled": false
+        }
+    }
+]

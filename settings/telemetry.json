@@ -1,0 +1,13 @@
+[
+    {
+        "name": "telemetry", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable Telemetry", 
+        "help_text": "The <a href=\"https://support.mozilla.org/en-US/kb/share-telemetry-data-mozilla-help-improve-firefox\">telemetry feature</a> sends data about the performance and responsiveness of Firefox to Mozilla.", 
+        "addons": [], 
+        "config": {
+            "toolkit.telemetry.enabled": false
+        }
+    }
+]

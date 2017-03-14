@@ -1,0 +1,13 @@
+[
+    {
+        "name": "search_keyword", 
+        "type": "boolean", 
+        "initial": false, 
+        "label": "Disable Search Keyword", 
+        "help_text": "When you mistype some url, Firefox starts a search even from urlbar. This feature is useful for quick searching, but may harm your privacy, when it's unintended.", 
+        "addons": [], 
+        "config": {
+            "keyword.enabled": false
+        }
+    }
+]

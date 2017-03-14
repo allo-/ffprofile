@@ -1,0 +1,13 @@
+[
+    {
+        "name": "autoupdate", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable automatic updates.", 
+        "help_text": "Updates are no longer installed automatically. You will still be notified when an update is available and can install it. Avoids getting a new (maybe addon incompatible) version.", 
+        "addons": [], 
+        "config": {
+            "app.update.auto": false
+        }
+    }
+]

@@ -1,0 +1,13 @@
+[
+    {
+        "name": "firstrun_tabs", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable firefox intro tabs on the first start", 
+        "help_text": "Disable the first run tabs with advertisements for the latest firefox features.", 
+        "addons": [], 
+        "config": {
+            "browser.startup.homepage_override.mstone": "9001.0.0"
+        }
+    }
+]

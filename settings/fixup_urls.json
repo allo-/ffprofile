@@ -1,0 +1,13 @@
+[
+    {
+        "name": "fixup_urls", 
+        "type": "boolean", 
+        "initial": false, 
+        "label": "Disable Fixup URLs", 
+        "help_text": "When you type \"something\" in the urlbar and press enter, Firefox tries \"something.com\", if Fixup URLs is enabled.", 
+        "addons": [], 
+        "config": {
+            "browser.fixup.alternate.enabled": false
+        }
+    }
+]

@@ -1,0 +1,14 @@
+[
+    {
+        "name": "prefetch_next", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable Link Prefetching", 
+        "help_text": "Firefox prefetches the next site on some links, so the site is loaded even when you never click.", 
+        "addons": [], 
+        "config": {
+            "network.prefetch-next": false, 
+            "network.dns.disablePrefetch": true
+        }
+    }
+]

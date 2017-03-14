@@ -1,0 +1,13 @@
+[
+    {
+        "name": "newtab_preload", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable preloading of the new tab page.", 
+        "help_text": "By default Firefox preloads the new tab page (with website thumbnails) in the background before it is even opened.", 
+        "addons": [], 
+        "config": {
+            "browser.newtab.preload": false
+        }
+    }
+]

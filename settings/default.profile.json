@@ -1,0 +1,63 @@
+[
+    "Default", 
+    {
+        "Annoyances": [
+            "firstrun_tabs.json", 
+            "newtabpage_intro.json", 
+            "pocket_intro.json", 
+            "aboutconfig_warning.json", 
+            "default_browser.json", 
+            "reset_firefox.json", 
+            "heartbeat.json", 
+            "newtabpage.json", 
+            "html5_video_autoplay.json"
+        ], 
+        "Firefox Tracking": [
+            "telemetry.json", 
+            "health_report.json", 
+            "addon_data.json", 
+            "phishing_protection.json", 
+            "malware_scan.json", 
+            "newtab_preload.json"
+        ], 
+        "Privacy": [
+            "useragent.json", 
+            "cookies.json", 
+            "referer.json", 
+            "dom_storage.json", 
+            "indexed_db.json", 
+            "prefetch_next.json", 
+            "webrtc.json", 
+            "search_suggest.json", 
+            "search_keyword.json", 
+            "fixup_urls.json"
+        ], 
+        "Addon Tracking": [
+            "greasemonkey_stats.json"
+        ], 
+        "Website Tracking": [
+            "dnt.json", 
+            "resist-fingerprinting.json", 
+            "trackingprotection.json", 
+            "ping.json", 
+            "beacons.json", 
+            "battery.json", 
+            "media_devices.json", 
+            "video_stats.json"
+        ], 
+        "Security": [
+            "webgl.json", 
+            "autoupdate.json", 
+            "updatecheck.json"
+        ], 
+        "Addons": [
+            "canvasblocker.json", 
+            "google_redirect_cleaner.json", 
+            "https_everywhere.json", 
+            "privacybadger.json", 
+            "ublock.json", 
+            "umatrix.json", 
+            "xclear.json"
+        ]
+    }
+]

@@ -1,0 +1,11 @@
+[
+    {
+        "name": "useragent", 
+        "initial": "", 
+        "blank_means_default": true, 
+        "label": "Fake another Useragent", 
+        "setting": "general.useragent.override", 
+        "help_text": "Using a <a href=\"https://techblog.willshouse.com/2012/01/03/most-common-user-agents/\">popular useragent string</a> avoids attracting attention i.e. with an Iceweasel UA. (keep blank to use the default)", 
+        "type": "text"
+    }
+]

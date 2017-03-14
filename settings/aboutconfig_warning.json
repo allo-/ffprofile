@@ -1,0 +1,13 @@
+[
+    {
+        "name": "aboutconfig_warning", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable about:config warning.", 
+        "help_text": null, 
+        "addons": [], 
+        "config": {
+            "general.warnOnAboutConfig": false
+        }
+    }
+]

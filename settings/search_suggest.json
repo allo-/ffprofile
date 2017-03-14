@@ -1,0 +1,13 @@
+[
+    {
+        "name": "search_suggest", 
+        "type": "boolean", 
+        "initial": false, 
+        "label": "Disable Search Suggestions", 
+        "help_text": "Firefox suggests search terms in the search field. This will send everything typed or pasted in the search field to the chosen search engine, even when you did not press enter.", 
+        "addons": [], 
+        "config": {
+            "browser.search.suggest.enabled": false
+        }
+    }
+]

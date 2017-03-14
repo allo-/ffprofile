@@ -69,6 +69,7 @@ def main(request):
         prefs_js, addons, files_inline = generate_prefsjs_and_addonlist(forms, False)
         return render(request, "main.html", {
             'profiles': [(name, PROFILES[name][0]) for name in PROFILES],
+            'active_profile': request.session.get('profile'),
             'forms': forms,
             'prefs_js': prefs_js,
             'addons': addons,

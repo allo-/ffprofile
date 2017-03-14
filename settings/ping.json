@@ -1,0 +1,13 @@
+[
+    {
+        "name": "ping", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable Browser Pings", 
+        "help_text": "Firefox sends <a href=\"http://kb.mozillazine.org/Browser.send_pings\">\"ping\" requests</a>, when a website requests to be informed when a user clicks on a link.", 
+        "addons": [], 
+        "config": {
+            "browser.send_pings": false
+        }
+    }
+]

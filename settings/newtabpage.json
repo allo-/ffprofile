@@ -1,0 +1,29 @@
+[
+    {
+        "choices": [
+            "Thumbnails of the most visisted pages and suggestions from Mozilla", 
+            "Thumbnails of the most visisted pages", 
+            "Empty"
+        ], 
+        "name": "newtabpage", 
+        "addons": [
+            [], 
+            [], 
+            []
+        ], 
+        "help_text": "", 
+        "config": [
+            {}, 
+            {
+                "browser.newtabpage.enhanced": false
+            }, 
+            {
+                "browser.newtabpage.enhanced": false, 
+                "browser.newtabpage.enabled": false
+            }
+        ], 
+        "initial": 1, 
+        "type": "choice", 
+        "label": "Content of the new tab page"
+    }
+]

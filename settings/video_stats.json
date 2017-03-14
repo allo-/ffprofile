@@ -1,0 +1,13 @@
+[
+    {
+        "name": "video_stats", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable video statistics", 
+        "help_text": "Prevent websites from measuring video performance (possible fingerprinting). See <a href=\"https://bugzilla.mozilla.org/show_bug.cgi?id=654550\">Mozilla Bug 654550</a>.", 
+        "addons": [], 
+        "config": {
+            "media.video_stats.enabled": false
+        }
+    }
+]

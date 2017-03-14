@@ -1,0 +1,13 @@
+[
+    {
+        "name": "newtabpage_intro", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable new tab page intro", 
+        "help_text": "Disable the intro to the newtab page on the first run", 
+        "addons": [], 
+        "config": {
+            "browser.newtabpage.introShown": true
+        }
+    }
+]

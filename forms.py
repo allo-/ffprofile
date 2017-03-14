@@ -82,7 +82,8 @@ def create_configform(id, name, options):
 
 PROFILES = {}
 settings_path = os.path.dirname(__file__) + "/settings"
-profile_files = glob.glob(settings_path + "/*.profile.json")
+profiles_path = os.path.dirname(__file__) + "/profiles"
+profile_files = glob.glob(profiles_path + "/*.json")
 for profile_file in profile_files:
     profile_name, profile = json.load(open(profile_file, "r"))
     items = {}

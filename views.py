@@ -36,7 +36,7 @@ def get_forms(request, FormClasses):
 
 
 def main(request):
-    form_classes = PROFILES.get(request.session.get("profile", "default"), ["empty", []])[1]
+    form_classes = PROFILES.get(request.session.get("profile", sorted(PROFILES)[0]), ["empty", []])[1]
     forms, invalid_data = get_forms(request, form_classes)
 
     # are all forms finished?
@@ -52,6 +52,8 @@ def main(request):
             request.session.clear()
             if profile_name in PROFILES:
                 request.session['profile'] = profile_name
+                form_classes = PROFILES.get(profile_name)[1]
+                forms, invalid_data = get_forms(request, form_classes)
             return redirect(reverse(main) + "#" + forms[0].id)
         # start over again
         elif request.POST.get("reset", None) == "reset":

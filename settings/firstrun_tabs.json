@@ -7,7 +7,7 @@
         "help_text": "Disable the first run tabs with advertisements for the latest firefox features.", 
         "addons": [], 
         "config": {
-            "browser.startup.homepage_override.mstone": "9001.0.0"
+            "browser.startup.homepage_override.mstone": "ignore"
         }
     }
 ]

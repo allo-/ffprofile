@@ -1,6 +1,26 @@
 ["Private Browsing",
 {
     "Private Browsing": [
-        "private_browsing_autostart.json"
+        "private_browsing_autostart.json",
+        "cookies.json",
+        "referer.json",
+        "dom_storage.json",
+        "indexed_db.json",
+        "prefetch_next.json",
+        "webrtc.json",
+        "dnt.json",
+        "resist-fingerprinting.json",
+        "ping.json",
+        "beacons.json",
+        "battery.json",
+        "media_devices.json",
+        "video_stats.json",
+        "malware_scan.json",
+        "canvasblocker.json",
+        "google_redirect_cleaner.json",
+        "https_everywhere.json",
+        "privacybadger.json",
+        "ublock.json",
+        "umatrix.json"
     ]
 }]

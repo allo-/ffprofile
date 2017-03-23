@@ -107,7 +107,8 @@ def generate_prefsjs_and_addonlist(forms, prefsjs_only):
     return prefs, addons, files_inline
 
 def download(request, what):
-    forms, invalid_data = get_forms(request, FORMS)
+    form_classes = PROFILES.get(request.session.get("profile", sorted(PROFILES)[0]), ["empty", []])[1]
+    forms, invalid_data = get_forms(request, form_classes)
     prefsjs_only = False
     prefsjs_text = False
     addons_only = False

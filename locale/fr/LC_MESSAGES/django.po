@@ -1,0 +1,533 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-12-09 13:57+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: forms.py:22
+msgid "Annoyances"
+msgstr ""
+
+#: forms.py:26
+msgid "Disable new tab page intro"
+msgstr ""
+
+#: forms.py:27
+msgid "Disable the intro to the newtab page on the first run"
+msgstr ""
+
+#: forms.py:30
+msgid "Disable pocket intro"
+msgstr ""
+
+#: forms.py:33
+msgid "Disable about:config warning"
+msgstr ""
+
+#: forms.py:36
+msgid "Disable checking if Firefox is the default browser"
+msgstr ""
+
+#: forms.py:39
+msgid "Disable Heartbeat Userrating"
+msgstr ""
+
+#: forms.py:40
+msgid ""
+"With Firefox 37, Mozilla integrated the <a href=\"https://wiki.mozilla.org/"
+"Advocacy/heartbeat\">Heartbeat</a> system to ask users from time to time "
+"about their experience with Firefox."
+msgstr ""
+
+#: forms.py:62
+msgid "Firefox Tracking"
+msgstr ""
+
+#: forms.py:65
+msgid "Disable Telemetry"
+msgstr ""
+
+#: forms.py:66
+msgid ""
+"The <a href=\"https://support.mozilla.org/en-US/kb/share-telemetry-data-"
+"mozilla-help-improve-firefox\">telemetry feature</a> sends data about the "
+"performance and responsiveness of Firefox to Mozilla."
+msgstr ""
+
+#: forms.py:70
+msgid "Disable health report"
+msgstr ""
+
+#: forms.py:71
+msgid ""
+"Disable sending <a href=\"https://www.mozilla.org/en-US/privacy/firefox/"
+"#health-report\">Firefox health reports</a> to Mozilla"
+msgstr ""
+
+#: forms.py:74
+msgid "Opt out metadata updates"
+msgstr ""
+
+#: forms.py:75
+msgid ""
+"Firefox sends data about installed addons as <a href=\"https://blog.mozilla."
+"org/addons/how-to-opt-out-of-add-on-metadata-updates/\">metadata updates</"
+"a>, so Mozilla is able to recommend you other addons."
+msgstr ""
+
+#: forms.py:78
+msgid "Disable phishing protection"
+msgstr ""
+
+#: forms.py:79
+msgid ""
+"The phishing protection contacts google with an unique key: <a href=\"http://"
+"electroholiker.de/?p=1594\">wrkey</a>."
+msgstr ""
+
+#: forms.py:83
+msgid "Disable preloading of the new tab page."
+msgstr ""
+
+#: forms.py:84
+msgid ""
+"By default Firefox preloads the new tab page (with website thumbnails) in "
+"the background before it is even opened."
+msgstr ""
+
+#: forms.py:115
+msgid "Enable Do-not-Track"
+msgstr ""
+
+#: forms.py:116
+msgid ""
+"With the do not track feature, you tell websites, that you do not want to be "
+"tracked. Most websites ignore this, so you need other privacy options as "
+"well."
+msgstr ""
+
+#: forms.py:120
+msgid "Enable Mozilla Trackingprotection"
+msgstr ""
+
+#: forms.py:121
+msgid ""
+"Firefox has a builtin <a href=\"https://wiki.mozilla.org/Security/"
+"Tracking_protection\">tracking protection</a>, which blocks a list of known "
+"tracking sites."
+msgstr ""
+
+#: forms.py:124
+msgid "Disable Browser Pings"
+msgstr ""
+
+#: forms.py:125
+msgid ""
+"Firefox sends <a href=\"http://kb.mozillazine.org/Browser.send_pings\">\"ping"
+"\" requests</a>, when a website requests to be informed when a user clicks "
+"on a link."
+msgstr ""
+
+#: forms.py:129
+msgid "Disable Beacons"
+msgstr ""
+
+#: forms.py:130
+msgid ""
+"The <a href=\"https://w3c.github.io/beacon/\">Beacon</a> feature allows "
+"websites to send tracking data after you left the website."
+msgstr ""
+
+#: forms.py:133
+msgid "Disable the Battery API"
+msgstr ""
+
+#: forms.py:134
+msgid ""
+"Firefox allows websites to read the charge level of the battery. This may be "
+"used for fingerprinting."
+msgstr ""
+
+#: forms.py:156
+msgid "Privacy"
+msgstr ""
+
+#: forms.py:160
+msgid "Fake another Useragent"
+msgstr ""
+
+#: forms.py:161
+msgid ""
+"Using a <a href=\"https://techblog.willshouse.com/2012/01/03/most-common-"
+"user-agents/\">popular useragent string</a> avoids to attract attention i.e. "
+"with an Iceweasel UA. (keep blank to use the default)"
+msgstr ""
+
+#: forms.py:165
+msgid "Block thirdparty cookies"
+msgstr ""
+
+#: forms.py:166
+msgid ""
+"Block cookies, which are not from the site you're visiting. You will rarely "
+"notice that something is missing, but it hugely improves your privacy."
+msgstr ""
+
+#: forms.py:170
+msgid "Block all cookies"
+msgstr ""
+
+#: forms.py:171
+msgid "Block all cookies. Many sites will not work without cookies."
+msgstr ""
+
+#: forms.py:174
+msgid "Block Referer"
+msgstr ""
+
+#: forms.py:175
+msgid ""
+"Firefox tells a website, from which site you're coming (the so called <a "
+"href=\"http://kb.mozillazine.org/Network.http.sendRefererHeader\">referer</"
+"a>)."
+msgstr ""
+
+#: forms.py:177
+msgid "Always disable referer"
+msgstr ""
+
+#: forms.py:177
+msgid "Allow only when clicking a link"
+msgstr ""
+
+#: forms.py:177
+msgid "Allow for links and loaded images"
+msgstr ""
+
+#: forms.py:181
+msgid "Disable DOM storage"
+msgstr ""
+
+#: forms.py:182
+msgid ""
+"Disables DOM storage, which enables so called \"supercookies\". Some modern "
+"sites will not fully not work (i.e. missing \"save\" functions)."
+msgstr ""
+
+#: forms.py:185
+msgid "Disable IndexedDB"
+msgstr ""
+
+#: forms.py:186
+msgid ""
+"<a href=\"http://www.w3.org/TR/IndexedDB/\">IndexedDB</a> is a way, websites "
+"can store structured data. This can be <a href=\"http://arstechnica.com/"
+"apple/2010/09/rldguid-tracking-cookies-in-safari-database-form/\">abused for "
+"tracking</a>, too. Disabling may be a problem with some webapps like "
+"tweetdeck."
+msgstr ""
+
+#: forms.py:191
+msgid "Disable Link Prefetching"
+msgstr ""
+
+#: forms.py:192
+msgid ""
+"Firefox prefetches the next site on some links, so the site is loaded even "
+"when you never click."
+msgstr ""
+
+#: forms.py:195
+msgid "Disable WebRTC"
+msgstr ""
+
+#: forms.py:196
+msgid "Disables the WebRTC function, which gives away your local ips."
+msgstr ""
+
+#: forms.py:199
+msgid "Disable Search Suggestions"
+msgstr ""
+
+#: forms.py:200
+msgid ""
+"Firefox suggests search terms in the search field. This will send everything "
+"typed or pasted in the search field to the chosen search engine, even when "
+"you did not press enter."
+msgstr ""
+
+#: forms.py:204
+msgid "Disable Search Keyword"
+msgstr ""
+
+#: forms.py:205
+msgid ""
+"When you mistype some url, Firefox starts a search even from urlbar. This "
+"feature is useful for quick searching, but may harm your privacy, when it's "
+"unintended."
+msgstr ""
+
+#: forms.py:209
+msgid "Disable Fixup URLs"
+msgstr ""
+
+#: forms.py:210
+msgid ""
+"When you type \"something\" in the urlbar and press enter, Firefox tries "
+"\"something.com\", if Fixup URLs is enabled."
+msgstr ""
+
+#: forms.py:244
+msgid "Security"
+msgstr ""
+
+#: forms.py:248
+msgid "Disable WebGL"
+msgstr ""
+
+#: forms.py:249
+msgid ""
+"Disables the WebGL function, to prevent websites from <a href=\"https://isc."
+"sans.edu/forums/diary/Time+to+disable+WebGL/10867\">(ab)using the full power "
+"of the graphics card</a>. Some interactive websites will not work, mostly "
+"games."
+msgstr ""
+
+#: forms.py:253
+msgid "Disable automatic updates."
+msgstr ""
+
+#: forms.py:254
+msgid ""
+"Updates are no longer installed automatically. You will still be notified "
+"when an update is available and can install it. Avoids getting a new (maybe "
+"addon incompatible) version."
+msgstr ""
+
+#: forms.py:257
+msgid "Disable searching for updates."
+msgstr ""
+
+#: forms.py:258
+msgid ""
+"Disable searching for updates. <b>Caution:</b> You may not notice, when "
+"there is an (security) update available."
+msgstr ""
+
+#: forms.py:275
+msgid "Bloatware"
+msgstr ""
+
+#: forms.py:278
+msgid "Disable Pocket integration."
+msgstr ""
+
+#: forms.py:279
+msgid ""
+"For monetizing Firefox, Mozilla included the <a href=\"https://getpocket.com/"
+"\">Pocket</a> addon by default."
+msgstr ""
+
+#: forms.py:283
+msgid "Disable Mozilla Hello."
+msgstr ""
+
+#: forms.py:284
+msgid ""
+"To show what WebRTC can do, Mozilla created a VoIP client called <a "
+"href=https://www.mozilla.org/en-US/firefox/hello/\"\">hello</a>. Most users "
+"do not need it."
+msgstr ""
+
+#: forms.py:288
+msgid "Disable the Firefox PDF-Reader"
+msgstr ""
+
+#: forms.py:289
+msgid ""
+"Mozilla integrated a pdf reader. It works good for a quick preview, but is "
+"too slow for reading longer documents."
+msgstr ""
+
+#: forms.py:306
+msgid "Addons"
+msgstr ""
+
+#: forms.py:309
+msgid ""
+"Install <a href=\"https://addons.mozilla.org/en-US/firefox/addon/"
+"canvasblocker/\">CanvasBlocker</a> extension."
+msgstr ""
+
+#: forms.py:310
+msgid ""
+"Blocks the JS-API for the &lt;canvas&gt; element to prevent <a href="
+"\"https://en.wikipedia.org/wiki/Canvas_fingerprinting\">Canvas-"
+"Fingerprinting</a>."
+msgstr ""
+
+#: forms.py:313
+msgid ""
+"Install <a href=\"https://addons.mozilla.org/de/firefox/addon/google-no-"
+"tracking-url/\">Google Redirects Fixer &amp; Tracking Remover</a> extension."
+msgstr ""
+
+#: forms.py:314
+msgid ""
+"Rewrites URLs from the google result pages to direct links instead redirect "
+"urls with tracking."
+msgstr ""
+
+#: forms.py:317
+msgid ""
+"Install <a href=\"https://addons.mozilla.org/en-US/firefox/addon/ublock-"
+"origin/\">uBlock Origin</a> extension."
+msgstr ""
+
+#: forms.py:318
+msgid ""
+"Efficient blocker, which does not only block ads, but also supports Anti-"
+"Tracking and Anti-Malware Blocklists"
+msgstr ""
+
+#: forms.py:321
+msgid ""
+"Install <a href=\"https://addons.mozilla.org/en-US/firefox/addon/umatrix/"
+"\">uMatrix</a> extension."
+msgstr ""
+
+#: forms.py:322
+msgid ""
+"A content blocker for advanced users, which blocks requests to thirdparty "
+"domains. Big privacy gain, but you will need to configure exception rules "
+"for many sites."
+msgstr ""
+
+#: forms.py:325
+msgid ""
+"Install <a href=\"https://addons.mozilla.org/en-US/firefox/addon/xclear/"
+"\">xclear</a> extension."
+msgstr ""
+
+#: forms.py:326
+msgid "Adds a little [x] icon to urlbar and searchbar to clear the text."
+msgstr ""
+
+#: templates/main.html:12 templates/main.html.py:27 templates/main.html:48
+msgid "Firefox Profilemaker"
+msgstr ""
+
+#: templates/main.html:31 templates/main.html.py:65
+msgid "Start"
+msgstr ""
+
+#: templates/main.html:38
+msgid "Finish"
+msgstr ""
+
+#: templates/main.html:49
+msgid ""
+"\n"
+"                Welcome to the Firefox Profilemaker!\n"
+"                <p />\n"
+"                This tool will help you to create a firefox profile with the "
+"defaults you like.\n"
+"                <p />\n"
+"                You select which features you want to enable and disable and "
+"in the end\n"
+"                you get a download link for a zip-file with your profile "
+"template.\n"
+"                You can for example disable some functions, which send data "
+"to mozilla and google,\n"
+"                or disable several annoying firefox functions like Mozilla "
+"Hello or the Pocket integration.\n"
+"                <p />\n"
+"                Each Setting has a short explanation and for the non obvious "
+"settings links to ressources\n"
+"                describing the feature and the possible problems with it.\n"
+"                <p />\n"
+"                "
+msgstr ""
+
+#: templates/main.html:80
+msgid "save &amp; next"
+msgstr ""
+
+#: templates/main.html:87
+msgid "Download"
+msgstr ""
+
+#: templates/main.html:90
+msgid "Please fill in all questions before downloading your profile."
+msgstr ""
+
+#: templates/main.html:95
+msgid "Download profile.zip"
+msgstr ""
+
+#: templates/main.html:96
+msgid "Download prefs.js only"
+msgstr ""
+
+#: templates/main.html:97
+msgid "Open prefs.js in the browser"
+msgstr ""
+
+#: templates/main.html:104
+msgid "Start over again"
+msgstr ""
+
+#: templates/main.html:109
+msgid "Installing"
+msgstr ""
+
+#: templates/main.html:111
+msgid "Optional: add a new profile to keep the old one"
+msgstr ""
+
+#: templates/main.html:113
+msgid "Run"
+msgstr ""
+
+#: templates/main.html:114
+msgid ""
+"Create a new profile and note the profile folder (something like <code>."
+"mozilla/firefox/m35kxjmd.profilename</code>)"
+msgstr ""
+
+#: templates/main.html:116
+msgid ""
+"\n"
+"                    <li>Open the profile folder.</li>\n"
+"                    <li>Delete everything from the new profile (you will "
+"lose all existing data from the profile).</li>\n"
+"                    <li>unzip the <code>profile.zip</code> file into the "
+"folder.</li>\n"
+"                    <li>Start firefox again. If you made a new profile, you "
+"can use it with <code>firefox -no-remote -P profilename</code>.</li>\n"
+"                    <li>Open the addon manager and update the extensions.</"
+"li>\n"
+"                    "
+msgstr ""
+
+#: templates/main.html:124
+msgid "Preview"
+msgstr ""
+
+#: templates/main.html:130
+msgid "Addons:"
+msgstr ""

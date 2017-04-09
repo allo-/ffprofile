@@ -7,6 +7,7 @@
         "dom_storage.json",
         "indexed_db.json",
         "prefetch_next.json",
+        "disk_cache.json",
         "webrtc.json",
         "dnt.json",
         "resist-fingerprinting.json",

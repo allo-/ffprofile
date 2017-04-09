@@ -1,0 +1,13 @@
+[
+    {
+        "name": "disk_cache", 
+        "type": "boolean", 
+        "initial": false, 
+        "label": "Disable disk cache", 
+        "help_text": "Disabling the disk cache is useful to avoid leaving traces on the computer and can help avoiding <a href=\"https://en.wikipedia.org/wiki/HTTP_ETag#Tracking_using_ETags\">tracking via E-Tags</a>. On the other hand browsing will be slower and your browser generates more traffic.", 
+        "addons": [], 
+        "config": {
+            "browser.cache.disk.enable": false
+        }
+    }
+]

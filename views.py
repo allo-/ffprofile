@@ -112,6 +112,7 @@ def download(request, what):
     prefsjs_only = False
     prefsjs_text = False
     addons_only = False
+    zipfilename = "profile.zip"
     if what == "prefs.js":
         prefsjs_only = True
     elif what == "prefs.js.txt":
@@ -119,6 +120,7 @@ def download(request, what):
         prefsjs_text = True
     elif what == "addons.zip":
         addons_only = True
+        zipfilename = "addons.zip"
 
     if invalid_data:
         return redirect(reverse(main) + "#finish")
@@ -144,7 +146,7 @@ def download(request, what):
         memoryFile.seek(0)
         response = HttpResponse(memoryFile.read(),
                                 content_type="application/zip")
-        response['Content-Disposition'] = 'attachment; filename="profile.zip"'
+        response['Content-Disposition'] = 'attachment; filename="' + zipfilename + '"'
     else:
         response = HttpResponse(prefs, content_type="text/plain")
         if prefsjs_text:

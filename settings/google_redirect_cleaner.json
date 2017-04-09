@@ -4,7 +4,7 @@
         "type": "boolean", 
         "initial": true, 
         "label": "Install <a href=\"https://addons.mozilla.org/de/firefox/addon/google-no-tracking-url/\">Google Redirects Fixer &amp; Tracking Remover</a> extension.", 
-        "help_text": "Rewrites URLs from the google result pages to direct links instead redirect urls with tracking.", 
+        "help_text": "Rewrites URLs from the google result pages to from redirect urls with tracking to direct links.", 
         "addons": [
             "jid1-zUrvDCat3xoDSQ@jetpack.xpi"
         ], 

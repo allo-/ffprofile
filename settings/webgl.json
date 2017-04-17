@@ -2,9 +2,9 @@
     {
         "name": "webgl", 
         "type": "boolean", 
-        "initial": false, 
+        "initial": true,
         "label": "Disable WebGL", 
-        "help_text": "Disables the WebGL function, to prevent <a href=\"http://www.uniquemachine.org/\">fingerprinting with WebGL</a>. Another issue is, that websites can <a href=\"https://isc.sans.edu/forums/diary/Time+to+disable+WebGL/10867\">(ab)use the full power of the graphics card</a>. Some interactive websites will not work, mostly games.", 
+        "help_text": "Disables the WebGL function, to prevent <a href=\"http://www.uniquemachine.org/\">fingerprinting with WebGL</a>. Another issue is, that websites can <a href=\"https://isc.sans.edu/forums/diary/Time+to+disable+WebGL/10867\">(ab)use the full power of the graphics card</a>. WebGL is part of some fingerprinting scripts used in the wild. Some interactive websites will not work, which are mostly games.", 
         "addons": [], 
         "config": {
             "webgl.disabled": true

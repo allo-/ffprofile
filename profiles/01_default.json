@@ -27,6 +27,7 @@
             "dom_storage.json", 
             "indexed_db.json", 
             "prefetch_next.json", 
+            "webgl.json", 
             "webrtc.json", 
             "search_suggest.json", 
             "search_keyword.json", 
@@ -46,7 +47,6 @@
             "video_stats.json"
         ], 
         "Security": [
-            "webgl.json", 
             "autoupdate.json", 
             "updatecheck.json"
         ], 

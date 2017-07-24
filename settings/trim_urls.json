@@ -3,8 +3,8 @@
         "name": "trim_urls", 
         "type": "boolean", 
         "initial": true, 
-        "label": "Trim URLs in navigation bar", 
-        "help_text": "By default Firefox trims many URLs (hiding the http:// prefix and trailing slash /). Set to false to show all parts of the URL (i.e. https:// prefix).", 
+        "label": "Do not trim URLs in navigation bar",
+        "help_text": "By default Firefox trims many URLs (hiding the http:// prefix and trailing slash /).",
         "addons": [], 
         "config": {
             "browser.urlbar.trimURLs": false

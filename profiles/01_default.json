@@ -6,6 +6,7 @@
             "newtabpage_intro.json", 
             "pocket_intro.json", 
             "aboutconfig_warning.json", 
+            "trim_urls.json",
             "default_browser.json", 
             "reset_firefox.json", 
             "heartbeat.json", 

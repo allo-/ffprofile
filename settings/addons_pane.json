@@ -1,0 +1,15 @@
+[
+	{   
+		"name": "extensions.getAddons.showPane",
+		"type": "boolean",
+		"label": "Disable about:addons' Get Add-ons panel",
+		"help_text": "The start page with recommended addons uses google analytics.",
+		"initial": true,
+		"config": {
+			"extensions.getAddons.showPane": false,
+			"extensions.getAddons.showPane": ""
+		},
+		"addons": []
+	}  
+]   
+

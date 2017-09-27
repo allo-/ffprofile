@@ -19,7 +19,8 @@
             "addon_data.json", 
             "phishing_protection.json", 
             "malware_scan.json", 
-            "newtab_preload.json"
+            "newtab_preload.json",
+            "addons_pane.json"
         ], 
         "Privacy": [
             "useragent.json", 

@@ -1,5 +1,5 @@
 [
-	{   
+	{
 		"name": "extensions.getAddons.showPane",
 		"type": "boolean",
 		"label": "Disable about:addons' Get Add-ons panel",
@@ -7,9 +7,9 @@
 		"initial": true,
 		"config": {
 			"extensions.getAddons.showPane": false,
-			"extensions.getAddons.showPane": ""
+			"extensions.webservice.discoverURL": ""
 		},
 		"addons": []
-	}  
+	}
 ]   
 

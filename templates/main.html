@@ -71,6 +71,15 @@
                     </button>
                     {% csrf_token %}
                 </form>
+                <h2>Help us</h2>
+                We do not need money, but we can use your help to improve the site.
+                <ul>
+                        <li><a href="https://github.com/allo-/firefox-profilemaker/wiki/Contribute-Settings">Contribute more settings</a></li>
+                        <li><a href="https://github.com/allo-/firefox-profilemaker/issues/89">Help to improve the website design</a></li>
+                        <li><a href="https://github.com/allo-/firefox-profilemaker/issues/75">Help to improve the instructions</a></li>
+                        <li><a href="https://github.com/allo-/firefox-profilemaker/issues/88">Translate the website in your language</a></li>
+                        <li><a href="https://github.com/allo-/firefox-profilemaker">Join the project</a> and help to code the profile generator</li>
+                </ul>
             </div>
         {% for form in forms %}
             <div id="{{ form.id }}" class="tab-pane fade">

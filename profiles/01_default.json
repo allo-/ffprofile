@@ -46,6 +46,7 @@
             "beacons.json", 
             "battery.json", 
             "media_devices.json", 
+            "autofillforms.json", 
             "video_stats.json"
         ], 
         "Security": [

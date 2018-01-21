@@ -1,0 +1,13 @@
+[
+    {
+        "name": "autofill_forms", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable form autofill", 
+        "help_text": "Automatically filled form fields are <a href=\"https://freedom-to-tinker.com/2017/12/27/no-boundaries-for-user-identities-web-trackers-exploit-browser-login-managers/\">used for fingerprinting</a>. This setting disables automatic form filling until you click on the field.",
+        "addons": [], 
+        "config": {
+            "signon.autofillForms": false
+        }
+    }
+]

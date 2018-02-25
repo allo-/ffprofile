@@ -7,7 +7,13 @@
         "help_text": "The <a href=\"https://support.mozilla.org/en-US/kb/share-telemetry-data-mozilla-help-improve-firefox\">telemetry feature</a> sends data about the performance and responsiveness of Firefox to Mozilla.", 
         "addons": [], 
         "config": {
-            "toolkit.telemetry.enabled": false
+            "toolkit.telemetry.enabled": false,
+            "toolkit.telemetry.archive.enabled": false,
+            "toolkit.telemetry.rejected": true,
+            "toolkit.telemetry.unified": false,
+            "toolkit.telemetry.unifiedIsOptIn": false,
+            "toolkit.telemetry.prompted": 2,
+            "toolkit.telemetry.server": ""
         }
     }
 ]

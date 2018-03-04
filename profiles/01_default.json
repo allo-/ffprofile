@@ -20,7 +20,8 @@
             "phishing_protection.json", 
             "malware_scan.json", 
             "newtab_preload.json",
-            "addons_pane.json"
+            "addons_pane.json",
+            "captive_portal_service.json"
         ], 
         "Privacy": [
             "useragent.json", 

@@ -53,14 +53,16 @@ class ConfigForm(forms.Form):
                     if self.cleaned_data[option['name']]:
                         for key in option['config']:
                             config[key] = option['config'][key]
-                        addons += option['addons']
+                        if "addons" in option:
+                            addons += option['addons']
                         if 'files_inline' in option:
                             files_inline.update(option['files_inline'])
                 elif option['type'] == "choice":
                     choice = int(self.cleaned_data[option['name']])
                     for key in option['config'][choice]:
                         config[key] = option['config'][choice][key]
-                    addons += option['addons'][choice]
+                    if "addons" in option:
+                        addons += option['addons'][choice]
                     if 'files_inline' in option:
                         files.update(option['files_inline'][choice])
                 elif option['type'] == "text":

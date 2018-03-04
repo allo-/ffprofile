@@ -14,9 +14,7 @@ Currently they are:
 
 Things, that will not be included:
 
-- Some cool addons. The addons list should be short and mostly privacy addons and important tweaks like classic theme restorer. Smaller addons like xclear are okay, but not too much.
-- Your favourite performance setting. It's not the scope of the project to enable http pipelining because some site may load faster.
+- Some cool addons. The addons list should be short and mostly privacy addons.
+- Your favourite performance setting. It's not the scope of the project and not all people need the same performance settings.
 
-You're welcome to fork the project to create profiles with such features enabled.
-Later some plugin system may be added. Then additional settings / addons could just be added via a config file.
-
+You're welcome to create an own [profile](profiles/) for such settings or fork the whole project.

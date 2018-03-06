@@ -1,0 +1,13 @@
+[
+    {
+        "name": "speculative_loading",
+        "type": "boolean",
+        "label": "Disable speculative website loading.",
+        "help_text": "",
+        "initial": true,
+        "config": {
+            "network.http.speculative-parallel-limit": "0"
+        },
+    }
+]
+

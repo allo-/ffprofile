@@ -3,8 +3,8 @@
         "name": "google_safebrowsing", 
         "type": "boolean", 
         "initial": true, 
-        "label": "Disable google safebrowsing completly", 
-        "help_text": "Google safebrowsing can detect pishing and malware but it also sends informations about to google.", 
+        "label": "Disable google safebrowsing completely", 
+        "help_text": "Google safebrowsing can detect pishing and malware but it also sends informations to google.", 
         "addons": [], 
         "config": {
             "browser.safebrowsing.downloads.remote.url": "", 

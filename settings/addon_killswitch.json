@@ -1,0 +1,12 @@
+[
+    {
+        "name": "addon_killswitch",
+        "type": "boolean",
+        "label": "Disable extensions blocklist from mozilla.",
+        "help_text": "The blocklist extension (https://blocked.cdn.mozilla.net/) can use Mozilla to deactivate individual add-ons in the browser. It is practically a kill switch for Firefox add-ons and plug-ins. Updating the block list transfers detailed information about the real browser and operating system to Mozilla.",
+        "initial": true,
+        "config": {
+            "extensions.blocklist.enabled": false
+        },
+    }
+]

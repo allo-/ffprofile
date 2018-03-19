@@ -1,6 +1,6 @@
 [
     {
-        "name": "pocket_intro",
+        "name": "pocket",
         "type": "choice",
         "label": "Pocket Reading List",
         "help_text": null,

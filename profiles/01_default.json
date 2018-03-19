@@ -4,7 +4,7 @@
         "Annoyances": [
             "firstrun_tabs.json", 
             "newtabpage_intro.json", 
-            "pocket_intro.json", 
+            "pocket.json",
             "aboutconfig_warning.json", 
             "trim_urls.json",
             "default_browser.json", 

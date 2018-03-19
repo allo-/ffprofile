@@ -1,0 +1,29 @@
+[
+    {
+        "name": "pocket_intro",
+        "type": "choice",
+        "label": "Pocket Reading List",
+        "help_text": null,
+        "choices": [
+            "Keep Defaults",
+            "Skip Pocket Intro",
+            "Disable Pocket"
+        ],
+        "initial": 2,
+        "addons": [
+            [],
+            [],
+            []
+        ],
+        "config": [
+            {
+            },
+            {
+                "browser.toolbarbuttons.introduced.pocket-button": true
+            },
+            {
+                "extensions.pocket.enabled": false
+            }
+        ]
+    }
+]

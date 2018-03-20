@@ -31,6 +31,7 @@
             "dom_storage.json", 
             "indexed_db.json", 
             "prefetch_next.json", 
+            "speculative_loading.json", 
             "webgl.json", 
             "webrtc.json", 
             "search_suggest.json", 

@@ -7,7 +7,7 @@
         "initial": true,
         "config": {
             "network.http.speculative-parallel-limit": "0"
-        },
+        }
     }
 ]
 

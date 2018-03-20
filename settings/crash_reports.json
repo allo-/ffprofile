@@ -1,0 +1,17 @@
+[
+    {
+        "name": "crash_reports", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable Crash Reports", 
+        "help_text": "The <a href=\"https://www.mozilla.org/en-US/privacy/firefox/#crash-reporter\">crash report</a> may contain data that identifies you or is otherwise sensitive to you.", 
+        "addons": [], 
+        "config": {
+            "breakpad.reportURL": "",
+            "browser.tabs.crashReporting.sendReport": false,
+            "browser.crashReports.unsubmittedCheck.enabled": false,
+            "browser.crashReports.unsubmittedCheck.autoSubmit": false,
+            "browser.crashReports.unsubmittedCheck.autoSubmit2": false
+        }
+    }
+]

@@ -1,0 +1,13 @@
+[
+    {
+        "name": "speculative_loading",
+        "type": "boolean",
+        "label": "Disable speculative website loading.",
+        "help_text": "In some situations Firefox already starts loading web pages when the mouse pointer is over a link, i. e. before you actually click. This is to speed up the loading of web pages by a few milliseconds.",
+        "initial": true,
+        "config": {
+            "network.http.speculative-parallel-limit": "0"
+        },
+    }
+]
+

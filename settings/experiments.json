@@ -4,7 +4,7 @@
         "type": "boolean", 
         "initial": true, 
         "label": "Disable experiments", 
-        "help_text": "<a href="https://wiki.mozilla.org/Telemetry/Experiments">Telemetry Experiments</a> is a feature that allows Firefox to automatically download and run specially-designed restartless addons based on certain conditions.", 
+        "help_text": "<a href=\"https://wiki.mozilla.org/Telemetry/Experiments\">Telemetry Experiments</a> is a feature that allows Firefox to automatically download and run specially-designed restartless addons based on certain conditions.", 
         "addons": [], 
         "config": {
             "experiments.enabled": false,

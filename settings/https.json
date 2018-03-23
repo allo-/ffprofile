@@ -1,0 +1,59 @@
+[
+    {
+        "name": "https",
+        "type": "choice",
+        "label": "Set https security level",
+        "help_text": null,
+        "choices": [
+            "Ultra",
+            "Strong",
+            "Normal"
+        ],
+        "initial": 2,
+        "addons": [
+            [],
+            [],
+            []
+        ],
+        "config": [
+            {
+                "security.tls.version.min": 3,
+                "security.tls.version.fallback-limit": 3,
+                "security.tls.version.max": 4,
+                "security.ssl.disable_session_identifiers": true,
+                "security.ssl.errorReporting.automatic": false,
+                "security.ssl.errorReporting.enabled": false,
+                "security.ssl.errorReporting.url": "",
+                "security.tls.enable_0rtt_data": false,
+                "security.ssl.enable_ocsp_stapling": true,
+                "security.OCSP.enabled": 1,
+                "security.OCSP.require": true,
+                "security.cert_pinning.enforcement_level": 2,
+                "network.stricttransportsecurity.preloadlist": true,
+                "security.mixed_content.block_active_content": true,
+                "security.mixed_content.block_display_content": true,
+                "security.pki.sha1_enforcement_level": 1,
+                "security.ssl.treat_unsafe_negotiation_as_broken": true,
+                "browser.ssl_override_behavior": 1,
+                "security.insecure_connection_icon.enabled": true,
+            },
+            {
+                "security.tls.version.min": 3,
+                "security.tls.version.fallback-limit": 1,
+                "security.tls.version.max": 4,
+                "security.ssl.disable_session_identifiers": true,
+                "security.ssl.errorReporting.automatic": false,
+                "security.ssl.errorReporting.enabled": false,
+                "security.ssl.errorReporting.url": "",
+                "security.OCSP.enabled": 1,
+                "security.cert_pinning.enforcement_level": 1,
+                "network.stricttransportsecurity.preloadlist": true,
+                "security.mixed_content.block_display_content": true,
+                "security.ssl.treat_unsafe_negotiation_as_broken": true,
+                "security.insecure_connection_icon.enabled": true,
+            },
+            {
+            }
+        ]
+    }
+]

@@ -39,7 +39,7 @@
             },
             {
                 "security.tls.version.min": 3,
-                "security.tls.version.fallback-limit": 1,
+                "security.tls.version.fallback-limit": 3,
                 "security.tls.version.max": 4,
                 "security.ssl.disable_session_identifiers": true,
                 "security.ssl.errorReporting.automatic": false,

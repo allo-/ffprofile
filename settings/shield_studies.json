@@ -4,7 +4,7 @@
         "type": "boolean", 
         "initial": true, 
         "label": "Disable shield studies", 
-        "help_text": "Disable <a href=\"https://wiki.mozilla.org/Firefox/Shield">Mozilla shield studies</a>", 
+        "help_text": "Disable <a href=\"https://wiki.mozilla.org/Firefox/Shield\">Mozilla shield studies</a>", 
         "addons": [], 
         "config": {
             "app.normandy.enabled": false,

@@ -1,0 +1,17 @@
+[
+    {
+        "name": "shield_studies", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable health report", 
+        "help_text": "Disable <a href=\"https://wiki.mozilla.org/Firefox/Shield">Mozilla shield studies</a>", 
+        "addons": [], 
+        "config": {
+            "app.normandy.enabled": false,
+            "app.normandy.api_url": "",
+            "app.shield.optoutstudies.enabled": false,
+            "extensions.shield-recipe-client.enabled": false,
+            "extensions.shield-recipe-client.api_url": ""
+        }
+    }
+]

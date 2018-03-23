@@ -13,7 +13,14 @@
             "toolkit.telemetry.unified": false,
             "toolkit.telemetry.unifiedIsOptIn": false,
             "toolkit.telemetry.prompted": 2,
-            "toolkit.telemetry.server": ""
+            "toolkit.telemetry.server": "",
+            "toolkit.telemetry.cachedClientID": "",
+            "toolkit.telemetry.newProfilePing.enabled": false,
+            "toolkit.telemetry.shutdownPingSender.enabled": false,
+            "toolkit.telemetry.updatePing.enabled": false,
+            "toolkit.telemetry.bhrPing.enabled": false,
+            "toolkit.telemetry.firstShutdownPing.enabled": false,
+            "toolkit.telemetry.hybridContent.enabled": false
         }
     }
 ]

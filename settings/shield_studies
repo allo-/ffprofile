@@ -3,7 +3,7 @@
         "name": "shield_studies", 
         "type": "boolean", 
         "initial": true, 
-        "label": "Disable health report", 
+        "label": "Disable shield studies", 
         "help_text": "Disable <a href=\"https://wiki.mozilla.org/Firefox/Shield">Mozilla shield studies</a>", 
         "addons": [], 
         "config": {

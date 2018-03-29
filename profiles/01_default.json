@@ -56,7 +56,8 @@
         ], 
         "Security": [
             "autoupdate.json", 
-            "updatecheck.json"
+            "updatecheck.json",
+            "extension_blocklist.json"
         ], 
         "Addons": [
             "canvasblocker.json", 

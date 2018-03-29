@@ -1,0 +1,13 @@
+[
+    {
+        "name": "addon_extension_blocklist",
+        "type": "boolean",
+        "label": "Disable extension blocklist from mozilla.",
+        "help_text": "The <a href=\"https://blocked.cdn.mozilla.net/\">extension blocklist</a> is used by mozilla to deactivate individual addons in the browser, but as a side effect it gives mozilla the ultimate control to disable any extension. <b>Caution:</b> When you disable the blocklist, you may keep using known malware addons.",
+        "initial": false,
+        "config": {
+            "extensions.blocklist.enabled": false
+        },
+        "addons": []
+    }
+]

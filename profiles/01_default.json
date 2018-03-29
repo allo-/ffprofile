@@ -16,6 +16,7 @@
         "Firefox Tracking": [
             "telemetry.json", 
             "health_report.json", 
+            "shield_studies.json",
             "crash_reports.json",
             "addon_data.json", 
             "phishing_protection.json", 

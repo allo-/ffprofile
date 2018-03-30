@@ -29,7 +29,7 @@
                 "browser.search.countryCode": "US",
                 "browser.search.region": "US",
                 "browser.search.geoip.url": "",
-                "intl.locale.requested"; "en-US",
+                "intl.locale.requested": "en-US",
                 "browser.search.geoSpecificDefaults": false,
                 "browser.search.geoSpecificDefaults.url": "",
                 "intl.accept_languages": "en-US, en",

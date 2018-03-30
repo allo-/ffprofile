@@ -1,0 +1,42 @@
+[
+    {
+        "name": "geolocation", 
+        "type": "choice",
+        "label": "Set Firefox geolocation. Note that in default mode it will leak your position to Google.", 
+        "help_text": "", 
+        "choices": [
+            "Keep Defaults",
+            "Privacy Friendly",
+            "Disable"
+        ],
+        "initial": 1,
+        "addons": [
+            [],
+            [],
+            []
+        ],
+        "config": [
+            {
+            },
+            {
+                "geo.enabled": false,
+                "browser.search.geoSpecificDefaults": false,
+                "browser.search.geoSpecificDefaults.url": "",
+                "geo.wifi.uri": "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%"
+            },
+            {        
+                "geo.enabled": false,
+                "browser.search.countryCode": "US",
+                "browser.search.region": "US",
+                "browser.search.geoip.url": "",
+                "intl.locale.requested"; "en-US",
+                "browser.search.geoSpecificDefaults": false,
+                "browser.search.geoSpecificDefaults.url": "",
+                "intl.accept_languages": "en-US, en",
+                "javascript.use_us_english_locale": true,
+                "intl.regional_prefs.use_os_locales": false,
+                "geo.wifi.uri": "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%"
+            }
+        ]
+    }
+]

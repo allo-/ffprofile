@@ -7,7 +7,7 @@
         "help_text": "FPI works by separating cookies on a per-domain basis. In this way tracking networks won't be able to locate the same cookie on different sites.", 
         "addons": [], 
         "config": {
-            "privacy.firstparty.isolate": true
+            "privacy.firstparty.isolate": false
         }
     }
 ]

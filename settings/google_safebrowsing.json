@@ -4,7 +4,7 @@
         "type": "boolean", 
         "initial": true, 
         "label": "Disable google safebrowsing", 
-        "help_text": "Google safebrowsing can detect pishing and malware but it also sends informations to google together with an unique key(<a href=\"http://electroholiker.de/?p=1594\">wrkey</a>).", 
+        "help_text": "Google safebrowsing can detect pishing and malware but it also sends informations to google together with an unique id called <a href=\"http://electroholiker.de/?p=1594\">wrkey</a>.", 
         "addons": [], 
         "config": {
             "browser.safebrowsing.enabled": false,

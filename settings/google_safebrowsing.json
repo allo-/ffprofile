@@ -1,0 +1,22 @@
+[
+    {
+        "name": "google_safebrowsing", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable google safebrowsing", 
+        "help_text": "Google safebrowsing can detect pishing and malware but it also sends informations to google together with an unique key(<a href=\"http://electroholiker.de/?p=1594\">wrkey</a>).", 
+        "addons": [], 
+        "config": {
+            "browser.safebrowsing.enabled": false,
+            "browser.safebrowsing.downloads.remote.url": "", 
+            "browser.safebrowsing.phishing.enabled": false, 
+            "browser.safebrowsing.blockedURIs.enabled": false, 
+            "browser.safebrowsing.downloads.enabled": false,
+            "browser.safebrowsing.downloads.remote.enabled": false,
+            "browser.safebrowsing.appRepURL": "", 
+            "browser.safebrowsing.malware.enabled": false
+
+        }
+    }
+]
+

@@ -7,6 +7,7 @@
         "initial": true,
         "config": {
             "network.http.speculative-parallel-limit": "0"
+            "browser.urlbar.speculativeConnect.enabled": false
         }
     }
 ]

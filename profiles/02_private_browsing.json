@@ -1,6 +1,6 @@
 ["Private Browsing",
 {
-    "Private Browsing": [
+    "Private Browsing only": [
         "private_browsing_autostart.json",
         "cookies.json",
         "referer.json",

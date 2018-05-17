@@ -36,6 +36,7 @@
             "speculative_loading.json", 
             "webgl.json", 
             "webrtc.json", 
+            "clipboard.json", 
             "search_suggest.json", 
             "search_keyword.json", 
             "fixup_urls.json"

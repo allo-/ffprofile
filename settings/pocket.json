@@ -22,7 +22,8 @@
                 "browser.toolbarbuttons.introduced.pocket-button": true
             },
             {
-                "extensions.pocket.enabled": false
+                "extensions.pocket.enabled": false,
+                "browser.newtabpage.activity-stream.section.highlights.includePocket": false
             }
         ]
     }

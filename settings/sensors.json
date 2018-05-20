@@ -4,7 +4,7 @@
     "type": "boolean",
     "initial": true,
     "label": "Disable device sensor data",
-    "help_text": "Avoid leaking sensor data from your device to an website."
+    "help_text": "Avoid leaking sensor data from your device to an website.",
     "addons": [],
     "config": {
       "device.sensors.ambientLight.enabled": false,

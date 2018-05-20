@@ -9,9 +9,9 @@
     "config": {
       "device.sensors.ambientLight.enabled": false,
       "device.sensors.enabled": false,
-      "device.sensors.motion.enabled" false,
-      "device.sensors.orientation.enabled" false,
-      "device.sensors.proximity.enabled" false
+      "device.sensors.motion.enabled": false,
+      "device.sensors.orientation.enabled": false,
+      "device.sensors.proximity.enabled": false
     }
   }
 ]

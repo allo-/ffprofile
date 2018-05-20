@@ -1,0 +1,17 @@
+[
+  {
+    "name": "sensors",
+    "type": "boolean",
+    "initial": true,
+    "label": "Disable device sensor data",
+    "help_text": "Avoid leaking sensor data from your device to an website.",
+    "addons": [],
+    "config": {
+      "device.sensors.ambientLight.enabled": false,
+      "device.sensors.enabled": false,
+      "device.sensors.motion.enabled": false,
+      "device.sensors.orientation.enabled": false,
+      "device.sensors.proximity.enabled": false
+    }
+  }
+]

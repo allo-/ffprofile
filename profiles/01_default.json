@@ -22,6 +22,7 @@
             "addon_data.json", 
             "google_safebrowsing.json", 
             "malware_scan.json", 
+            "dns_over_https.json",
             "newtab_preload.json",
             "addons_pane.json",
             "captive_portal_service.json"

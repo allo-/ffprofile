@@ -1,0 +1,13 @@
+[
+   {
+      "name" : "doh-trr",
+      "initial" : 0,
+      "help_text" : "DNS over HTTP (DoH), aka. <a href=\"https://wiki.mozilla.org/Trusted_Recursive_Resolver\">Trusted Recursive Resolver (TRR)</a>, might be introduced soon and send all DNS queries to Cloudflare, a company under US legislation.  Set this to `5` to disable this feature.",
+      "addons" : [],
+      "label" : "How to use DoH TRR.",
+      "config" : {
+         "network.trr.mode" : 5
+      },
+      "type" : "number"
+   }
+]

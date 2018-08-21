@@ -2,7 +2,7 @@
     {
         "name": "punycode",
         "type": "boolean",
-        "initial": true,
+        "initial": false,
         "label": "Show Punycode.",
         "help_text": "This helps to protect against possible character spoofing.",
         "addons": [],

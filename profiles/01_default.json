@@ -60,7 +60,8 @@
         "Security": [
             "autoupdate.json", 
             "updatecheck.json",
-            "extension_blocklist.json"
+            "extension_blocklist.json",
+            "punycode.json"
         ], 
         "Addons": [
             "canvasblocker.json", 

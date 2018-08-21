@@ -1,0 +1,13 @@
+[
+    {
+        "name": "punycode",
+        "type": "boolean",
+        "initial": true,
+        "label": "Show Punycode.",
+        "help_text": "This helps to protect against possible character spoofing.",
+        "addons": [],
+        "config": {
+           "network.IDN_show_punycode":true
+        }
+    }
+]

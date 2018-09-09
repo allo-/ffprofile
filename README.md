@@ -8,9 +8,7 @@ Currently they are:
 - [https-everywhere@eff.org.xpi](https://addons.mozilla.org/en-US/firefox/addon/https-everywhere/)
 - [uBlock0@raymondhill.net.xpi](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/)
 - [uMatrix@raymondhill.net.xpi](https://addons.mozilla.org/en-US/firefox/addon/umatrix/)
-- [xclear@as-computer.de.xpi](https://addons.mozilla.org/en-US/firefox/addon/xclear/)
-- [{455D905A-D37C-4643-A9E2-F6FEFAA0424A}.xpi](https://addons.mozilla.org/en-US/firefox/addon/refcontrol/)
-- [jid1-MnnxcxisBPnSXQ@jetpack.xpi](https://addons.cdn.mozilla.net/user-media/addons/506646/privacy_badger-2017.1.26.1-an+fx.xpi)
+- [privacy_badger-2018.8.22-an+fx.xpi](https://addons.cdn.mozilla.net/user-media/addons/506646/privacy_badger-2017.1.26.1-an+fx.xpi)
 
 Things, that will not be included:
 

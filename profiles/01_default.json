@@ -69,8 +69,7 @@
             "https_everywhere.json", 
             "privacybadger.json", 
             "ublock.json", 
-            "umatrix.json", 
-            "xclear.json"
+            "umatrix.json"
         ]
     }
 ]

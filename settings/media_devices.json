@@ -4,7 +4,7 @@
         "type": "boolean", 
         "initial": true, 
         "label": "Disable media device queries", 
-        "help_text": "Prevent websites from accessing <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/enumerateDevices\">information about webcam and microphone</a> (possible fingerprinting).", 
+        "help_text": "Prevent websites from accessing <a href=\"https://developer.mozilla.org/docs/Web/API/MediaDevices/enumerateDevices\">information about webcam and microphone</a> (possible fingerprinting).", 
         "addons": [], 
         "config": {
             "media.navigator.enabled": false

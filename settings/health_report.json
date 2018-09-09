@@ -4,7 +4,7 @@
         "type": "boolean", 
         "initial": true, 
         "label": "Disable health report", 
-        "help_text": "Disable sending <a href=\"https://www.mozilla.org/en-US/privacy/firefox/#health-report\">Firefox health reports</a> to Mozilla", 
+        "help_text": "Disable sending <a href=\"https://www.mozilla.org/privacy/firefox/#health-report\">Firefox health reports</a> to Mozilla", 
         "addons": [], 
         "config": {
             "datareporting.healthreport.uploadEnabled": false, 

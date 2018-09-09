@@ -17,7 +17,7 @@
             [], 
             [] 
         ], 
-        "help_text": "Firefox tells a website, from which site you're coming (the so called <a href=\"http://kb.mozillazine.org/Network.http.sendRefererHeader\">referer</a>). You can find more detailed settings in this <a href=\"http://www.ghacks.net/2015/01/22/improve-online-privacy-by-controlling-referrer-information/\">ghacks article</a> or install the <a href=\"https://addons.mozilla.org/en-US/firefox/addon/refcontrol/\">RefControl</a> extension for per domain settings.", 
+        "help_text": "Firefox tells a website, from which site you're coming (the so called <a href=\"http://kb.mozillazine.org/Network.http.sendRefererHeader\">referer</a>). You can find more detailed settings in this <a href=\"http://www.ghacks.net/2015/01/22/improve-online-privacy-by-controlling-referrer-information/\">ghacks article</a> or install the <a href=\"https://addons.mozilla.org/firefox/addon/refcontrol/\">RefControl</a> extension for per domain settings.", 
         "config": [
             {
                 "network.http.sendRefererHeader": 0

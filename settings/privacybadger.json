@@ -11,6 +11,6 @@
         "config": {}, 
         "initial": true, 
         "type": "boolean", 
-        "label": "Install the <a href=\"https://addons.mozilla.org/en-US/firefox/addon/privacy-badger17/\">Privacy Badger</a> extension."
+        "label": "Install the <a href=\"https://addons.mozilla.org/firefox/addon/privacy-badger17/\">Privacy Badger</a> extension."
     }
 ]

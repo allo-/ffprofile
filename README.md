@@ -3,11 +3,11 @@ The Extension needs to have the name of its install.rdf file.
 
 Currently they are:
 
-- [CanvasBlocker@kkapsner.de.xpi](https://addons.mozilla.org/en-US/firefox/addon/canvasblocker/)
-- [jid1-zUrvDCat3xoDSQ@jetpack.xpi](https://addons.mozilla.org/de/firefox/addon/google-no-tracking-url/)
-- [https-everywhere@eff.org.xpi](https://addons.mozilla.org/en-US/firefox/addon/https-everywhere/)
-- [uBlock0@raymondhill.net.xpi](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/)
-- [uMatrix@raymondhill.net.xpi](https://addons.mozilla.org/en-US/firefox/addon/umatrix/)
+- [CanvasBlocker@kkapsner.de.xpi](https://addons.mozilla.org/firefox/addon/canvasblocker/)
+- [jid1-zUrvDCat3xoDSQ@jetpack.xpi](https://addons.mozilla.org/firefox/addon/google-no-tracking-url/)
+- [https-everywhere@eff.org.xpi](https://addons.mozilla.org/firefox/addon/https-everywhere/)
+- [uBlock0@raymondhill.net.xpi](https://addons.mozilla.org/firefox/addon/ublock-origin/)
+- [uMatrix@raymondhill.net.xpi](https://addons.mozilla.org/firefox/addon/umatrix/)
 - [privacy_badger-2018.8.22-an+fx.xpi](https://addons.cdn.mozilla.net/user-media/addons/506646/privacy_badger-2017.1.26.1-an+fx.xpi)
 
 Things, that will not be included:

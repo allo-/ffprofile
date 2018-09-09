@@ -3,7 +3,7 @@
         "name": "ublock", 
         "type": "boolean", 
         "initial": true, 
-        "label": "Install <a href=\"https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/\">uBlock Origin</a> extension.", 
+        "label": "Install <a href=\"https://addons.mozilla.org/firefox/addon/ublock-origin/\">uBlock Origin</a> extension.", 
         "help_text": "Efficient blocker, which does not only block ads, but also supports Anti-Tracking and Anti-Malware Blocklists", 
         "addons": [
             "uBlock0@raymondhill.net.xpi"

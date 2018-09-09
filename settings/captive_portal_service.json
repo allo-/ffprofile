@@ -3,7 +3,7 @@
         "name": "captive_portal_service",
         "type": "boolean",
         "label": "Disable check for captive portal.",
-        "help_text": "By default, Firefox checks for the presence of a captive portal on every startup.  This involves <a href=\"https://support.mozilla.org/en-US/questions/1169302\">traffic to Akamai</a>.",
+        "help_text": "By default, Firefox checks for the presence of a captive portal on every startup.  This involves <a href=\"https://support.mozilla.org/questions/1169302\">traffic to Akamai</a>.",
         "initial": true,
         "addons": [],
         "config": {

@@ -1,0 +1,13 @@
+[
+    {
+        "name": "ublock", 
+        "type": "boolean", 
+        "initial": false, 
+        "label": "Install the <a href=\"https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/\">Cookie Autodelete</a> extension.", 
+        "help_text": "The extension allows you to automatically delete the cookies of a site when you close the tab.", 
+        "addons": [
+            "CookieAutoDelete@kennydo.com.xpi"
+        ], 
+        "config": {}
+    }
+]

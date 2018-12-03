@@ -69,6 +69,7 @@
             "https_everywhere.json", 
             "privacybadger.json", 
             "ublock.json", 
+            "cookieautodelete.json",
             "umatrix.json"
         ]
     }

@@ -9,6 +9,7 @@ Currently they are:
 - [uBlock0@raymondhill.net.xpi](https://addons.mozilla.org/firefox/addon/ublock-origin/)
 - [uMatrix@raymondhill.net.xpi](https://addons.mozilla.org/firefox/addon/umatrix/)
 - [privacy_badger-2018.8.22-an+fx.xpi](https://addons.cdn.mozilla.net/user-media/addons/506646/privacy_badger-2017.1.26.1-an+fx.xpi)
+- [CookieAutoDelete@kennydo.com.xpi](https://addons.mozilla.org/firefox/downloads/file/954445/cookie_autodelete-2.2.0-an+fx.xpi)
 
 Things, that will not be included:
 

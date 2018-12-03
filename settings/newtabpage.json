@@ -1,8 +1,8 @@
 [
     {
         "choices": [
-            "Thumbnails of the most visisted pages and suggestions from Mozilla", 
-            "Thumbnails of the most visisted pages", 
+            "Thumbnails of the most visited pages and suggestions from Mozilla", 
+            "Thumbnails of the most visited pages", 
             "Empty"
         ], 
         "name": "newtabpage", 

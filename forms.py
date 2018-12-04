@@ -64,7 +64,7 @@ class ConfigForm(forms.Form):
                     if "addons" in option:
                         addons += option['addons'][choice]
                     if 'files_inline' in option:
-                        files.update(option['files_inline'][choice])
+                        files_inline.update(option['files_inline'][choice])
                 elif option['type'] == "text":
                     if option.get('blank_means_default', False) and self.cleaned_data[option['name']] == "":
                         continue

@@ -56,6 +56,7 @@
             "battery.json", 
             "media_devices.json", 
             "autofillforms.json", 
+            "webaudio.json",
             "video_stats.json"
         ], 
         "Security": [

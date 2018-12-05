@@ -1,0 +1,13 @@
+[
+    {
+        "name": "webaudio", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable webaudio API", 
+        "help_text": "Disable webaudio API to prevent browser fingerprinting. See <a href=\"https://bugzilla.mozilla.org/show_bug.cgi?id=1288359\">Mozilla Bug #1288359</a>", 
+        "addons": [], 
+        "config": {
+            "dom.webaudio.enabled": false
+        }
+    }
+]

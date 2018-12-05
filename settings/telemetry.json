@@ -21,6 +21,7 @@
             "toolkit.telemetry.bhrPing.enabled": false,
             "toolkit.telemetry.firstShutdownPing.enabled": false,
             "toolkit.telemetry.hybridContent.enabled": false
+            "toolkit.telemetry.reportingpolicy.firstRun": false
         }
     }
 ]

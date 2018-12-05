@@ -1,0 +1,13 @@
+[
+    {
+        "name": "newtab_page_thumbnails_container",
+        "type": "boolean",
+        "initial": true,
+        "label": "Use a private container for new tab page thumbnails",
+        "help_text": "Load the pages displayed on the new tab page in a private container when creating thumbnails.",
+        "addons": [],
+        "config": {
+            "privacy.usercontext.about_newtab_segregation.enabled": true
+        }
+    }
+]

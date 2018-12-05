@@ -35,6 +35,7 @@
             "indexed_db.json", 
             "prefetch_next.json", 
             "speculative_loading.json", 
+            "newtab_page_thumbnails_container.json",
             "webgl.json", 
             "webrtc.json", 
             "clipboard.json", 

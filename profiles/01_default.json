@@ -33,6 +33,7 @@
             "referer.json", 
             "dom_storage.json", 
             "indexed_db.json", 
+            "offline_cache.json",
             "prefetch_next.json", 
             "speculative_loading.json", 
             "newtab_page_thumbnails_container.json",

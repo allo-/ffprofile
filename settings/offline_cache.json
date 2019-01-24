@@ -1,0 +1,13 @@
+[
+    {
+        "name": "offline_cache",
+        "type": "boolean",
+        "initial": true,
+        "label": "Disable the Offline Cache.",
+        "help_text": "Websites can store up to 500 MB of data in an <a href=\"http://kb.mozillazine.org/Browser.cache.offline.enable\">offline cache</a>, to be able to run even when there is no working internet connection. This could possibly be used to store an user id.",
+        "addons": [],
+        "config": {
+            "browser.cache.offline.enable": false
+        }
+    }
+]

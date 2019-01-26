@@ -1,0 +1,13 @@
+[
+    {
+        "name": "tls_session_identifiers", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable TLS session identifiers", 
+        "help_text": "TLS allows for session identifieres, which speed up the session resumption when a connection was lost. These identifiers can be <a href=\"https://youbroketheinternet.org/trackedanyway\">used for tracking</a>.",
+        "addons": [], 
+        "config": {
+            "security.ssl.disable_session_identifiers": false
+        }
+    }
+]

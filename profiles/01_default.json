@@ -53,6 +53,7 @@
             "trackingprotection.json", 
             "firstparty-isolation.json", 
             "ping.json", 
+            "tls_session_identifiers.json",
             "beacons.json", 
             "battery.json", 
             "media_devices.json", 

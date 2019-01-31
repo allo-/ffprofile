@@ -7,7 +7,7 @@
         "help_text": "TLS allows for session identifieres, which speed up the session resumption when a connection was lost. These identifiers can be <a href=\"https://youbroketheinternet.org/trackedanyway\">used for tracking</a>.",
         "addons": [], 
         "config": {
-            "security.ssl.disable_session_identifiers": false
+            "security.ssl.disable_session_identifiers": true
         }
     }
 ]

@@ -1,0 +1,13 @@
+[
+    {
+        "name": "screenshot",
+        "type": "boolean",
+        "initial": false,
+        "label": "Save screenshots locally",
+        "help_text": "Disable uploading screenshots online.",
+        "addons": [],
+        "config": {
+            "extensions.screenshots.upload-disabled": true
+        }
+    }
+]

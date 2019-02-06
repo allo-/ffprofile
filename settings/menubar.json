@@ -1,0 +1,13 @@
+[
+    {
+        "name": "menubar",
+        "type": "boolean",
+        "initial": true,
+        "label": "Disable the Alt key Menu Bar toggle",
+        "help_text": "The Menu Bar will not pop up when the Alt key is hit. F10 can be used instead.",
+        "addons": [],
+        "config": {
+            "ui.key.menuAccessKeyFocuses": false
+        }
+    }
+]

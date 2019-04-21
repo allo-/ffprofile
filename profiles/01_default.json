@@ -38,6 +38,7 @@
             "speculative_loading.json", 
             "newtab_page_thumbnails_container.json",
             "webgl.json", 
+            "webgl_renderer.json", 
             "webrtc.json", 
             "clipboard.json", 
             "search_suggest.json", 

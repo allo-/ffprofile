@@ -1,0 +1,14 @@
+[
+    {
+        "name": "webgl_graphics_card", 
+        "type": "boolean", 
+        "initial": true,
+        "label": "Override graphics card vendor and model strings in the WebGL API", 
+        "help_text": "Websites can read the graphics card vendor and model using a WebGL API. This setting overrides both with \" \" without disabling WebGL.", 
+        "addons": [], 
+        "config": {
+            "webgl.renderer-string-override": " ",
+            "webgl.vendor-string-override": " "
+        }
+    }
+]

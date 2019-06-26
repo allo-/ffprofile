@@ -23,7 +23,7 @@
                 "network.http.sendRefererHeader": 0
             }, 
             {
-                "network.http.referer.XOriginPolicy": 1
+                "network.http.referer.XOriginPolicy": 2
             }, 
             {
                 "network.http.referer.spoofSource": true

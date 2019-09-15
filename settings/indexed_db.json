@@ -2,7 +2,7 @@
     {
         "name": "indexed_db", 
         "type": "boolean", 
-        "initial": true, 
+        "initial": false, 
         "label": "Disable IndexedDB", 
         "help_text": "<a href=\"http://www.w3.org/TR/IndexedDB/\">IndexedDB</a> is a way, websites can store structured data. This can be <a href=\"http://arstechnica.com/apple/2010/09/rldguid-tracking-cookies-in-safari-database-form/\">abused for tracking</a>, too. Disabling may cause problems when sites depend on it like Tweetdeck or Reddit. Some users reported crashing tabs when IndexedDB is disabled.",
         "addons": [], 

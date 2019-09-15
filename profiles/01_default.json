@@ -69,7 +69,6 @@
         ], 
         "Addons": [
             "canvasblocker.json", 
-            "google_redirect_cleaner.json", 
             "https_everywhere.json", 
             "privacybadger.json", 
             "ublock.json", 

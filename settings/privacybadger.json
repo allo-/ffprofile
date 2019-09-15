@@ -5,7 +5,7 @@
         }, 
         "name": "privacybadger", 
         "addons": [
-            "privacy_badger-2018.8.22-an+fx.xpi"
+            "jid1-MnnxcxisBPnSXQ@jetpack.xpi"
         ], 
         "help_text": "The Privacy Badger addon automatically detects trackers and blocks them. You can manually block and unblock urls as well.", 
         "config": {}, 

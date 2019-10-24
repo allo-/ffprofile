@@ -13,7 +13,7 @@
             "newtabpage.json", 
             "html5_video_autoplay.json"
         ], 
-        "Firefox Tracking": [
+        "Browser Features": [
             "telemetry.json", 
             "health_report.json", 
             "shield_studies.json",
@@ -45,9 +45,6 @@
             "search_keyword.json", 
             "fixup_urls.json"
         ], 
-        "Addon Tracking": [
-            "greasemonkey_stats.json"
-        ], 
         "Website Tracking": [
             "dnt.json", 
             "resist-fingerprinting.json", 
@@ -73,7 +70,8 @@
             "privacybadger.json", 
             "ublock.json", 
             "cookieautodelete.json",
-            "umatrix.json"
+            "umatrix.json",
+            "greasemonkey_stats.json"
         ]
     }
 ]

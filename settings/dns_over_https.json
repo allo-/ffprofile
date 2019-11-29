@@ -2,7 +2,7 @@
    {
       "name" : "doh-trr",
       "initial" : true,
-      "help_text" : "DNS over HTTP (DoH), aka. <a href=\"https://wiki.mozilla.org/Trusted_Recursive_Resolver\">Trusted Recursive Resolver (TRR)</a>, uses a server run by Cloudfare to resolve hostnames, even when the system uses another (normal) DNS server. This setting disables it and sets the mode to explicit opt-out (5).",
+      "help_text" : "DNS over HTTP (DoH), aka. <a href=\"https://wiki.mozilla.org/Trusted_Recursive_Resolver\">Trusted Recursive Resolver (TRR)</a>, uses a server run by Cloudflare to resolve hostnames, even when the system uses another (normal) DNS server. This setting disables it and sets the mode to explicit opt-out (5).",
       "addons" : [],
       "label" : "Disable DNS over HTTPS",
       "config" : {

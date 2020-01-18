@@ -47,6 +47,7 @@ class ConfigForm(forms.Form):
         config = {}
         addons = []
         files_inline = {}
+        enterprise_policy = {}
         if self.is_valid():
             for option in self.options:
                 if option['type'] == "boolean":
@@ -57,6 +58,8 @@ class ConfigForm(forms.Form):
                             addons += option['addons']
                         if 'files_inline' in option:
                             files_inline.update(option['files_inline'])
+                        for key in option.get('enterprise_policy', {}):
+                            enterprise_policy[key] = option['enterprise_policy'][key]
                 elif option['type'] == "choice":
                     choice = int(self.cleaned_data[option['name']])
                     for key in option['config'][choice]:
@@ -65,13 +68,16 @@ class ConfigForm(forms.Form):
                         addons += option['addons'][choice]
                     if 'files_inline' in option:
                         files_inline.update(option['files_inline'][choice])
+                    for key in option.get('enterprise_policy', {}):
+                        enterprise_policy[key] = option['enterprise_policy'][key]
                 elif option['type'] == "text":
                     if option.get('blank_means_default', False) and self.cleaned_data[option['name']] == "":
                         continue
                     else:
                         config[option['setting']] = self.cleaned_data[option['name']]
+                    # TODO: support text fields for enterprise policies
 
-        return config, addons, files_inline
+        return config, addons, files_inline, enterprise_policy
 
 def create_configform(id, name, options):
     class DynamicConfigForm(ConfigForm):

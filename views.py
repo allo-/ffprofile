@@ -6,7 +6,10 @@ from django.http import HttpResponse
 import os
 import zipfile
 from StringIO import StringIO
+import json
 
+AUTOCONFIG_JS = """pref("general.config.filename", "firefox.cfg");
+pref("general.config.obscure_value", 0);"""
 
 
 def get_forms(request, FormClasses):
@@ -68,26 +71,33 @@ def main(request):
             return redirect(reverse(main) + "#" + form_name)
     else:
         # nothing posted, just render the current page
-        prefs_js, addons, files_inline = generate_prefsjs_and_addonlist(forms, False)
+        prefs_js, addons, files_inline, enterprise_policy = generate_prefsjs_and_addonlist(forms, False)
         return render(request, "main.html", {
             'profiles': [(name, PROFILES[name][0]) for name in sorted(PROFILES)],
             'active_profile': request.session.get('profile'),
             'forms': forms,
             'prefs_js': prefs_js,
+            'enterprise_policy': enterprise_policy,
             'filenames': addons + files_inline.keys(),
             'finished': finished
         })
 
-def generate_prefsjs_and_addonlist(forms, prefsjs_only):
+def generate_prefsjs_and_addonlist(forms, prefsjs_only, pref_type='user_pref'):
     config = {}
     addons = []
     files_inline = {}
+    enterprise_policy = {}
     for form in forms:
-        form_config, form_addons, files_inline = form.get_config_and_addons()
+        form_config, form_addons, files_inline, form_enterprise_policy = form.get_config_and_addons()
         for key in form_config:
             config[key] = form_config[key]
+        for key in form_enterprise_policy:
+            enterprise_policy[key] = form_enterprise_policy[key]
         addons += form_addons
     addons = sorted(addons)
+
+    enterprise_policy = { "policies": enterprise_policy }
+    enterprise_policy = json.dumps(enterprise_policy, indent=2)
 
     prefs = ""
     if addons and not prefsjs_only:
@@ -101,18 +111,23 @@ def generate_prefsjs_and_addonlist(forms, prefsjs_only):
             value = "true" if value else "false"
         else:
             value = str(value)
-        prefs += 'user_pref("{key}", {value});\r\n'.format(
+        prefs += pref_type + '("{key}", {value});\r\n'.format(
             key=key, value=value)
 
-    return prefs, addons, files_inline
+    return prefs, addons, files_inline, enterprise_policy
 
 def download(request, what):
     form_classes = PROFILES.get(request.session.get("profile", sorted(PROFILES)[0]), ["empty", []])[1]
     forms, invalid_data = get_forms(request, form_classes)
+
     prefsjs_only = False
     prefsjs_text = False
     addons_only = False
+    as_enterprise_policy = False
+    pref_type = "user_pref"
+
     zipfilename = "profile.zip"
+
     if what == "prefs.js":
         prefsjs_only = True
     elif what == "prefs.js.txt":
@@ -121,13 +136,37 @@ def download(request, what):
     elif what == "addons.zip":
         addons_only = True
         zipfilename = "addons.zip"
+    elif what == "enterprise_policy.zip":
+        as_enterprise_policy = True
+        zipfilename = "enterprise_policy.zip"
+        pref_type = "pref"
 
     if invalid_data:
         return redirect(reverse(main) + "#finish")
 
-    prefs, addons, files_inline = generate_prefsjs_and_addonlist(forms, prefsjs_only)
+    prefs, addons, files_inline, enterprise_policy = generate_prefsjs_and_addonlist(forms, prefsjs_only, pref_type)
 
-    if not prefsjs_only:
+    if prefsjs_only:
+        response = HttpResponse(prefs, content_type="text/plain")
+        if prefsjs_text:
+            response['Content-Disposition'] = 'filename="prefs.js"'
+        else:
+            response['Content-Disposition'] = 'attachment; filename="prefs.js"'
+    elif as_enterprise_policy:
+        memoryFile = StringIO()
+        zip_file = zipfile.ZipFile(memoryFile, "w", zipfile.ZIP_DEFLATED)
+        autoconfig_header = "// IMPORTANT: Start your code on the 2nd line"
+        zip_file.writestr("firefox.cfg", autoconfig_header + "\n" + prefs, compress_type=zipfile.ZIP_DEFLATED)
+        zip_file.writestr("defaults/pref/autoconfig.js", AUTOCONFIG_JS, compress_type=zipfile.ZIP_DEFLATED)
+        zip_file.writestr("distribution/policies.json", enterprise_policy, compress_type=zipfile.ZIP_DEFLATED)
+
+        zip_file.close()
+
+        memoryFile.seek(0)
+        response = HttpResponse(memoryFile.read(),
+                                content_type="application/zip")
+        response['Content-Disposition'] = 'attachment; filename="' + zipfilename + '"'
+    else:
         memoryFile = StringIO()
         zip_file = zipfile.ZipFile(memoryFile, "w", zipfile.ZIP_DEFLATED)
         if not addons_only:
@@ -147,11 +186,5 @@ def download(request, what):
         response = HttpResponse(memoryFile.read(),
                                 content_type="application/zip")
         response['Content-Disposition'] = 'attachment; filename="' + zipfilename + '"'
-    else:
-        response = HttpResponse(prefs, content_type="text/plain")
-        if prefsjs_text:
-            response['Content-Disposition'] = 'filename="prefs.js"'
-        else:
-            response['Content-Disposition'] = 'attachment; filename="prefs.js"'
 
     return response

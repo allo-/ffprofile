@@ -9,5 +9,17 @@
         "config": {
             "app.update.auto": false
         }
+    },
+    {
+        "name": "update_search", 
+        "type": "boolean", 
+        "initial": false, 
+        "label": "Disable searching for updates.", 
+        "help_text": "Disable searching for updates. This only works with the enterprise policy download..", 
+        "addons": [], 
+        "config": {},
+        "enterprise_policy": {
+            "DisableAppUpdate": true
+        }
     }
 ]

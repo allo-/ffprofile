@@ -19,6 +19,10 @@
            background-color: white;
            border: thin solid black;
        }
+       dd {
+           margin-left: 2em;
+           margin-bottom: 0.5em;
+       }
     </style>
 </head>
 <body>
@@ -111,14 +115,28 @@
                         <p />
                     {% endif %}
 
+                    {% blocktrans %}
+                    There are four types of downloads:
+                    <dl>
+                        <dt>profile.zip:</dt>
+                        <dd>Unzip the file into a fresh profile folder to create a profile with the chosen defaults.</dd>
+                        <dt>enterprise_policy.zip:</dt>
+                        <dd>Unzip this in the Firefox <b>installation</b> folder, to reset the defaults every time Firefox starts.</dd>
+                        <dt>prefs.js:</dt>
+                        <dd>Preferences file, that can be placed in the Firefox profile folder or appended to existing preferences.</dd>
+                        <dt>addons.zip:</dt>
+                        <dd>An archive that only contains the chosen addons.</dd>
+                    </dl>
+                    {% endblocktrans %}
                     <a href="{% url 'profilemaker.views.download' 'profile.zip' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} {% trans "Download profile.zip" %}</a>
+                    <a href="{% url 'profilemaker.views.download' 'enterprise_policy.zip' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} {% trans "Download enterprise_policy.zip" %}</a>
                     <br />
                     <a href="{% url 'profilemaker.views.download' 'prefs.js' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} {% trans "Download only prefs.js" %}</a>
                     <a href="{% url 'profilemaker.views.download' 'prefs.js.txt' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} {% trans "Open prefs.js in the browser" %}</a>
                     <br />
                     <a href="{% url 'profilemaker.views.download' 'addons.zip' %}" class="btn btn-primary" style="margin-bottom: 1ex">{% bootstrap_icon "download" %} {% trans "Download only addons.zip" %}</a>
                     <br />
-                    {% trans "When you download only the addons.zip, you need to copy the <code>user_pref(\"extensions.autoDisableScopes\", 14);</code> line into your prefs.js, else firefox won't install the addons." %}
+                    {% trans "When you download only the addons.zip, you need to copy the <code>user_pref(\"extensions.autoDisableScopes\", 14);</code> line into your prefs.js, otherwise firefox won't install the addons." %}
 
 
                     <form action="#" method="post" class="form">
@@ -151,6 +169,11 @@
 
                     prefs.js:
                     <pre>{{ prefs_js }}</pre>
+
+                    {% if enterprise_policy %}
+                    policies.json:
+                    <pre>{{ enterprise_policy }}</pre>
+                    {% endif %}
 
                     {% if filenames %}
                         {% trans "Files:" %}

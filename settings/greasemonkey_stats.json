@@ -4,7 +4,7 @@
         "type": "boolean", 
         "initial": true, 
         "label": "Explicitly disable Greasemonkey user tracking", 
-        "help_text": "Greasemonkey has a (currently opt-in) function to submit user stats. This explicitely disables it, in case that it will get opt-out in the future.", 
+        "help_text": "Greasemonkey has a (currently opt-in) function to submit user stats. This explicitely disables it, in case that it will become opt-out in the future.", 
         "addons": [], 
         "config": {
             "extensions.greasemonkey.stats.optedin": false, 

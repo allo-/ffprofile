@@ -8,6 +8,14 @@
         "addons": [
             "uMatrix@raymondhill.net.xpi"
         ], 
-        "config": {}
+        "config": {},
+        "enterprise_policy": {
+			"ExtensionSettings": {
+				"uMatrix@raymondhill.net": {
+					"install_url": "https://addons.mozilla.org/firefox/downloads/latest/umatrix/latest.xpi",
+					"installation_mode": "normal_installed"
+				}
+			}
+		}
     }
 ]

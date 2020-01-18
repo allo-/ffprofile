@@ -8,6 +8,14 @@
         "addons": [
             "CookieAutoDelete@kennydo.com.xpi"
         ], 
-        "config": {}
+        "config": {},
+        "enterprise_policy": {
+			"ExtensionSettings": {
+				"CookieAutoDelete@kennydo.com": {
+					"install_url": "https://addons.mozilla.org/firefox/downloads/latest/cookie-autodelete/latest.xpi",
+					"installation_mode": "normal_installed"
+				}
+			}
+		}
     }
 ]

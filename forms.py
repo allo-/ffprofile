@@ -2,6 +2,8 @@ from django import forms
 from django.utils.translation import ugettext as _
 import json, glob, os
 
+from merge import merge
+
 # current structure:
 # - FirefoxTracking: builtin features, which send data to Mozilla,
 #   google and other thirdparties
@@ -58,8 +60,7 @@ class ConfigForm(forms.Form):
                             addons += option['addons']
                         if 'files_inline' in option:
                             files_inline.update(option['files_inline'])
-                        for key in option.get('enterprise_policy', {}):
-                            enterprise_policy[key] = option['enterprise_policy'][key]
+                    enterprise_policy = merge(enterprise_policy, option.get('enterprise_policy', {}))
                 elif option['type'] == "choice":
                     choice = int(self.cleaned_data[option['name']])
                     for key in option['config'][choice]:
@@ -68,8 +69,7 @@ class ConfigForm(forms.Form):
                         addons += option['addons'][choice]
                     if 'files_inline' in option:
                         files_inline.update(option['files_inline'][choice])
-                    for key in option.get('enterprise_policy', {}):
-                        enterprise_policy[key] = option['enterprise_policy'][key]
+                    enterprise_policy = merge(enterprise_policy, option.get('enterprise_policy', {}))
                 elif option['type'] == "text":
                     if option.get('blank_means_default', False) and self.cleaned_data[option['name']] == "":
                         continue

@@ -8,9 +8,10 @@ import zipfile
 from StringIO import StringIO
 import json
 
+from merge import merge
+
 AUTOCONFIG_JS = """pref("general.config.filename", "firefox.cfg");
 pref("general.config.obscure_value", 0);"""
-
 
 def get_forms(request, FormClasses):
 
@@ -91,9 +92,8 @@ def generate_prefsjs_and_addonlist(forms, prefsjs_only, pref_type='user_pref'):
         form_config, form_addons, files_inline, form_enterprise_policy = form.get_config_and_addons()
         for key in form_config:
             config[key] = form_config[key]
-        for key in form_enterprise_policy:
-            enterprise_policy[key] = form_enterprise_policy[key]
         addons += form_addons
+        enterprise_policy = merge(enterprise_policy, form_enterprise_policy)
     addons = sorted(addons)
 
     enterprise_policy = { "policies": enterprise_policy }

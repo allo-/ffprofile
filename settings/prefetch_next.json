@@ -9,6 +9,9 @@
         "config": {
             "network.prefetch-next": false, 
             "network.dns.disablePrefetch": true
-        }
+        },
+        "enterprise_policy": {
+            "NetworkPrediction": false
+		}
     }
 ]

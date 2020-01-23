@@ -72,6 +72,9 @@
             "cookieautodelete.json",
             "umatrix.json",
             "greasemonkey_stats.json"
+        ],
+        "Enterprise Policies": [
+            "enterprise_policies.json"
         ]
     }
 ]

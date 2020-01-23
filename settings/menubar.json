@@ -1,6 +1,6 @@
 [
     {
-        "name": "menubar",
+        "name": "menubar_toggle",
         "type": "boolean",
         "initial": true,
         "label": "Disable the Alt key Menu Bar toggle",

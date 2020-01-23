@@ -8,6 +8,9 @@
         "addons": [],
         "config": {
             "network.captive-portal-service.enabled": false
+        },
+        "enterprise_policy": {
+            "CaptivePortal": false
         }
     }
 ]

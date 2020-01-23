@@ -8,6 +8,11 @@
       "config" : {
          "network.trr.mode" : 5
       },
-      "type" : "boolean"
+      "type" : "boolean",
+      "enterprise_policy": {
+          "DNSOverHTTPS": {
+               "Enabled": false
+          }
+      }
    }
 ]

@@ -12,6 +12,9 @@
             "app.shield.optoutstudies.enabled": false,
             "extensions.shield-recipe-client.enabled": false,
             "extensions.shield-recipe-client.api_url": ""
-        }
+        },
+        "enterprise_policy": {
+            "DisableFirefoxStudies": false
+		}
     }
 ]

@@ -102,6 +102,11 @@ for profile_file in profile_files:
             for item in data:
                 item['label'] = _(item['label'] or "")
                 item['help_text'] = _(item['help_text'] or "")
+                if item.get("enterprise_policy_only", False):
+                    if item.get('help_text'):
+                        item['help_text'] += "<br /><i>" + _("(enterprise policy download only)") + "</i>"
+                    else:
+                        item['help_text'] += "<i>" + _("(enterprise policy download only)") + "</i>"
             options += data
         items[category] = options
     form_list = []

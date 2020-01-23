@@ -1,0 +1,93 @@
+[
+    {
+        "name": "pdf_viewer", 
+        "type": "boolean", 
+        "initial": false, 
+        "label": "Disable PDF viewer", 
+        "help_text": "",
+        "enterprise_policy_only": true,
+        "addons": [], 
+        "config": {},
+        "enterprise_policy": {
+            "DisableBuiltinPDFViewer": true
+		}
+    },
+    {
+        "name": "firefox_accounts", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable Firefox accounts", 
+        "help_text": "Disable features related to Firefox accounts.",
+        "enterprise_policy_only": true,
+        "addons": [], 
+        "config": {},
+        "enterprise_policy": {
+            "DisableBuiltinPDFViewer": true
+		}
+    },
+    {
+        "name": "form_history", 
+        "type": "boolean", 
+        "initial": false, 
+        "label": "Disable form and search history", 
+        "help_text": "",
+        "enterprise_policy_only": true,
+        "addons": [], 
+        "config": {},
+        "enterprise_policy": {
+            "DisableFormHistory": true
+		}
+    },
+    {
+        "name": "menubar", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Show the menubar by default", 
+        "help_text": "Display the menu bar by default instead of only when the alt key is pressed.",
+        "enterprise_policy_only": true,
+        "addons": [], 
+        "config": {},
+        "enterprise_policy": {
+            "DisplayMenuBar": true
+		}
+    },
+    {
+        "name": "bookmarks_toolbar", 
+        "type": "boolean", 
+        "initial": false, 
+        "label": "Show the bookmarks toolbar by default", 
+        "help_text": "",
+        "enterprise_policy_only": true,
+        "addons": [], 
+        "config": {},
+        "enterprise_policy": {
+            "DisplayMenuBar": true
+		}
+    },
+    {
+        "name": "newtab_page_enterprise_policy", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable the new tab page", 
+        "help_text": "",
+        "enterprise_policy_only": true,
+        "addons": [], 
+        "config": {},
+        "enterprise_policy": {
+            "NewTabPage": false
+		}
+    },
+    {
+        "name": "disable_system_addon_update", 
+        "type": "boolean", 
+        "initial": false, 
+        "label": "Disable system addon update", 
+        "help_text": "Disables installation and updating of system addons by Firefox.",
+        "enterprise_policy_only": true,
+        "addons": [], 
+        "config": {},
+        "enterprise_policy": {
+            "DisableSystemAddonUpdate": false
+		}
+    }
+]

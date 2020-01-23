@@ -8,6 +8,9 @@
         "addons": [],
         "config": {
             "extensions.screenshots.upload-disabled": true
-        }
+        },
+        "enterprise_policy": {
+            "DisableFirefoxScreenshots": true
+		}
     }
 ]

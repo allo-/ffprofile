@@ -22,6 +22,9 @@
             "toolkit.telemetry.firstShutdownPing.enabled": false,
             "toolkit.telemetry.hybridContent.enabled": false,
             "toolkit.telemetry.reportingpolicy.firstRun": false
-        }
+        },
+        "enterprise_policy": {
+            "DisableTelemetry": false
+		}
     }
 ]

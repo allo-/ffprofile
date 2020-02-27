@@ -2,7 +2,7 @@ from django import forms
 from django.utils.translation import ugettext as _
 import json, glob, os
 
-from merge import merge
+from .merge import merge
 
 # current structure:
 # - FirefoxTracking: builtin features, which send data to Mozilla,
@@ -37,7 +37,7 @@ class ConfigForm(forms.Form):
                 self.fields[option['name']] = forms.ChoiceField(
                     label=option['label'],
                     help_text=option['help_text'],
-                    choices = zip(range(len(choices)), choices),
+                    choices = list(zip(list(range(len(choices))), choices)),
                     initial=option['initial'], required=False)
             elif option['type'] == "text":
                 self.fields[option['name']] = forms.CharField(

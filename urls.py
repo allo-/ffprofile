@@ -1,6 +1,7 @@
 from django.conf.urls import include, url
+from profilemaker.views import main, download
 
 urlpatterns = [
-    url('^$', 'profilemaker.views.main'),
-    url('^download/(?P<what>.*)$', 'profilemaker.views.download'),
+    url('^$', main, name="main"),
+    url('^download/(?P<what>.*)$', download, name="download"),
 ]

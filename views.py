@@ -1,14 +1,14 @@
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
-from forms import *
+from .forms import *
 from django import forms
 from django.http import HttpResponse
 import os
 import zipfile
-from StringIO import StringIO
+from io import StringIO
 import json
 
-from merge import merge
+from .merge import merge
 
 AUTOCONFIG_JS = """pref("general.config.filename", "firefox.cfg");
 pref("general.config.obscure_value", 0);"""
@@ -58,7 +58,7 @@ def main(request):
                 request.session['profile'] = profile_name
                 form_classes = PROFILES.get(profile_name)[1]
                 forms, invalid_data = get_forms(request, form_classes)
-            return redirect(reverse(main) + "#" + forms[0].id)
+            return redirect(reverse("main") + "#" + forms[0].id)
         # start over again
         elif request.POST.get("reset", None) == "reset":
             request.session.clear()
@@ -67,9 +67,9 @@ def main(request):
         next = request.POST.get("next", "")
         form_name = request.POST.get("form_name", "")
         if next and not invalid_data:
-            return redirect(reverse(main) + "#" + next)
+            return redirect(reverse("main") + "#" + next)
         else:
-            return redirect(reverse(main) + "#" + form_name)
+            return redirect(reverse("main") + "#" + form_name)
     else:
         # nothing posted, just render the current page
         prefs_js, addons, files_inline, enterprise_policy = generate_prefsjs_and_addonlist(forms, False)
@@ -79,7 +79,7 @@ def main(request):
             'forms': forms,
             'prefs_js': prefs_js,
             'enterprise_policy': enterprise_policy,
-            'filenames': addons + files_inline.keys(),
+            'filenames': addons + list(files_inline.keys()),
             'finished': finished
         })
 
@@ -105,7 +105,7 @@ def generate_prefsjs_and_addonlist(forms, prefsjs_only, pref_type='user_pref'):
         config['extensions.autoDisableScopes'] = 14
     for key in sorted(config):
         value = config[key]
-        if isinstance(value, basestring):
+        if isinstance(value, str):
             value = '"{0}"'.format(value)
         elif isinstance(value, bool):
             value = "true" if value else "false"
@@ -142,7 +142,7 @@ def download(request, what):
         pref_type = "pref"
 
     if invalid_data:
-        return redirect(reverse(main) + "#finish")
+        return redirect(reverse("main") + "#finish")
 
     prefs, addons, files_inline, enterprise_policy = generate_prefsjs_and_addonlist(forms, prefsjs_only, pref_type)
 

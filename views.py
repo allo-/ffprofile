@@ -5,7 +5,7 @@ from django import forms
 from django.http import HttpResponse
 import os
 import zipfile
-from io import StringIO
+from io import BytesIO
 import json
 
 from .merge import merge
@@ -153,7 +153,7 @@ def download(request, what):
         else:
             response['Content-Disposition'] = 'attachment; filename="prefs.js"'
     elif as_enterprise_policy:
-        memoryFile = StringIO()
+        memoryFile = BytesIO()
         zip_file = zipfile.ZipFile(memoryFile, "w", zipfile.ZIP_DEFLATED)
         autoconfig_header = "// IMPORTANT: Start your code on the 2nd line"
         zip_file.writestr("firefox.cfg", autoconfig_header + "\n" + prefs, compress_type=zipfile.ZIP_DEFLATED)
@@ -167,7 +167,7 @@ def download(request, what):
                                 content_type="application/zip")
         response['Content-Disposition'] = 'attachment; filename="' + zipfilename + '"'
     else:
-        memoryFile = StringIO()
+        memoryFile = BytesIO()
         zip_file = zipfile.ZipFile(memoryFile, "w", zipfile.ZIP_DEFLATED)
         if not addons_only:
             zip_file.writestr("prefs.js", prefs,

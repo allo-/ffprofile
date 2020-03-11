@@ -1,6 +1,6 @@
 [
     {
-        "name": "ublock", 
+        "name": "cookieautodelete",
         "type": "boolean", 
         "initial": false, 
         "label": "Install the <a href=\"https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/\">Cookie Autodelete</a> extension.", 

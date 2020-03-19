@@ -60,7 +60,7 @@ class ConfigForm(forms.Form):
                             addons += option['addons']
                         if 'files_inline' in option:
                             files_inline.update(option['files_inline'])
-                    enterprise_policy = merge(enterprise_policy, option.get('enterprise_policy', {}))
+                        enterprise_policy = merge(enterprise_policy, option.get('enterprise_policy', {}))
                 elif option['type'] == "choice":
                     choice = int(self.cleaned_data[option['name']])
                     for key in option['config'][choice]:

@@ -87,7 +87,7 @@
         "addons": [], 
         "config": {},
         "enterprise_policy": {
-            "DisableSystemAddonUpdate": false
+            "DisableSystemAddonUpdate": true
 		}
     }
 ]

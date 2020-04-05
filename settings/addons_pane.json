@@ -9,10 +9,7 @@
 			"extensions.getAddons.showPane": false,
 			"extensions.webservice.discoverURL": ""
 		},
-		"addons": [],
-        "enterprise_policy": {
-            "extensions.getAddons.showPane": false
-		}
+		"addons": []
 	}
 ]   
 

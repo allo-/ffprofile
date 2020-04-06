@@ -24,7 +24,7 @@
             "toolkit.telemetry.reportingpolicy.firstRun": false
         },
         "enterprise_policy": {
-            "DisableTelemetry": false
+            "DisableTelemetry": true
 		}
     }
 ]

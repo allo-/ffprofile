@@ -14,7 +14,7 @@
             "extensions.shield-recipe-client.api_url": ""
         },
         "enterprise_policy": {
-            "DisableFirefoxStudies": false
+            "DisableFirefoxStudies": true
 		}
     }
 ]

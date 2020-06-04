@@ -1,0 +1,13 @@
+[
+    {
+        "name": "https_only", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Use only HTTPS on sites", 
+        "help_text": "",
+        "addons": [], 
+        "config": {
+            "dom.security.https_only_mode": true
+        }
+    }
+]

@@ -25,7 +25,8 @@
             "dns_over_https.json",
             "newtab_preload.json",
             "addons_pane.json",
-            "captive_portal_service.json"
+            "captive_portal_service.json",
+            "screenshot.json"
         ], 
         "Privacy": [
             "useragent.json", 

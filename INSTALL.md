@@ -16,5 +16,6 @@ urlpatterns = [
 ]
 urlpatterns += staticfiles_urlpatterns()
 ```
+- Init db with ``./manage.py migrate``
 - Start with ``./manage.py runserver``
 - Optional: To avoid using bootstrap from a CDN add: ``BOOTSTRAP3 = {'base_url': '/static/bootstrap/'}`` (and install bootstrap into the ``STATIC_ROOT``)

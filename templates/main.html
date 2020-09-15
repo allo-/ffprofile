@@ -41,7 +41,7 @@
 						</li>
 						{% endfor %}
 						<li><a href="#finish" data-toggle="tab" style="{% if finished %}font-weight: bold{% endif %}">{% if finished %}{% bootstrap_icon "star" %} {% endif %}{% trans "Finish" %}</a></li>
-					</ul> 
+					</ul>
 				</nav>
 			</div>
             <div class="col-lg-9 col-sm-8 col-xs-8 tab-content">
@@ -188,7 +188,7 @@
         // Javascript to enable link to tab
         var url = document.location.toString();
         if (url.match('#')) {
-            $('.nav-pills a[href=#'+url.split('#')[1]+']').tab('show');
+            $('.nav-pills a[href="#'+url.split('#')[1]+'"]').tab('show');
         }
         // Change hash for page-reload
         $('.nav-pills a').on('shown.bs.tab', function (e) {

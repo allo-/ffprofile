@@ -1,6 +1,12 @@
-Quickstart for a Testserver:
+# Quickstart for a Testserver:
 
-- Create a virtual environment: ``virtualenv venv;cd venv;source bin/activate``.
+## Prerequisite
+
+Both `python` and `virtualenv` are already installed
+
+## Manual procedure
+
+- Create a virtual environment: ``virtualenv venv;source venv/bin/activate``.
 - Install requirements: ``pip install -r requirements.txt``.
 - Create a project: ``django-admin.py startproject project;cd project``
 - Link the project (TODO: add a setup.py): ``ln -s /path/to/firefox-profilemaker profilemaker``.
@@ -19,3 +25,12 @@ urlpatterns += staticfiles_urlpatterns()
 - Init db with ``./manage.py migrate``
 - Start with ``./manage.py runserver``
 - Optional: To avoid using bootstrap from a CDN add: ``BOOTSTRAP3 = {'base_url': '/static/bootstrap/'}`` (and install bootstrap into the ``STATIC_ROOT``)
+
+## Automatic procedure
+
+> :warning: Installation will remove `venv` & `project` forlders
+
+- Install the environment: `make install`
+  - Manually edit ``project/settings.py`` (as mentionned during the install)
+- Run the server: `make run`
+- Clean the project: `make remove`

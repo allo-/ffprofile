@@ -5,8 +5,7 @@ SHELL = bash
 run:
 	@echo Run server
 	. venv/bin/activate
-	cd project
-	./manage.py runserver
+	./project/manage.py runserver
 
 .PHONY: install
 install: remove
@@ -15,6 +14,10 @@ install: remove
 	. venv/bin/activate
 	@echo Install dependencies
 	pip install -r requirements.txt
+	make -s create-project
+
+.PHONY: create-project
+create-project:
 	@echo Create django project
 	django-admin.py startproject project
 	@echo Create symlink
@@ -52,3 +55,19 @@ install: remove
 remove:
 	@echo "Erase 'venv' & 'project' directories"
 	rm -rf venv project
+
+.PHONY: up
+up:
+	docker run -d --rm --name profilemaker -p 8000:8000 -v ${PWD}/extensions:/code/extensions firefox-profilemaker:latest
+
+.PHONY: down
+down:
+	docker stop profilemaker
+
+.PHONY: build
+build:
+	docker build . -t firefox-profilemaker:latest
+
+.PHONY: shell
+shell:
+	docker exec -it profilemaker /bin/sh

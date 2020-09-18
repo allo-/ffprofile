@@ -17,3 +17,4 @@ Things, that will not be included:
 - Your favourite performance setting. It's not the scope of the project and not all people need the same performance settings.
 
 You're welcome to create an own [profile](profiles/) for such settings or fork the whole project.
+For that, you can check the [installation](INSTALL.md) procedure.

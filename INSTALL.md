@@ -34,3 +34,12 @@ urlpatterns += staticfiles_urlpatterns()
   - Manually edit ``project/settings.py`` (as mentionned during the install)
 - Run the server: `make run`
 - Clean the project: `make remove`
+
+## Docker
+
+- `make build`: build the docker image
+- `make up`: run the container
+- `make down`: stop the container
+- `make shell`: open a shell on the running container
+
+> :information_source: The addons should be placed in the `extensions` folder as well

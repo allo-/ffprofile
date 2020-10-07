@@ -1,5 +1,5 @@
 For the functions installing addons, you need to create a folder "extensions" from where you run the django project and place there the XPIs.
-The Extension needs to have the name of its install.rdf file.
+The Extension needs to have the name of its install.rdf / manifest.json file.
 
 Currently they are:
 
@@ -10,10 +10,10 @@ Currently they are:
 - [uMatrix@raymondhill.net.xpi](https://addons.mozilla.org/firefox/addon/umatrix/)
 - [jid1-MnnxcxisBPnSXQ@jetpack.xpi](https://addons.mozilla.org/en-US/firefox/addon/privacy-badger17/)
 - [CookieAutoDelete@kennydo.xpi](https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/)
-- [Decentraleyes@ThomasRientjes.xpi](https://addons.mozilla.org/en-US/firefox/addon/decentraleyes/)
-- [ClearURLs@kevinr.xpi](https://addons.mozilla.org/en-US/firefox/addon/clearurls/)
-- [TemporaryContainers@stoically.xpi](https://addons.mozilla.org/en-US/firefox/addon/temporary-containers/)
-- [FirefoxMulti-AccountContainers@mozilla.org.xpi](https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/)
+- [jid1-BoFifL9Vbdl2zQ@jetpack.xpi](https://addons.mozilla.org/en-US/firefox/addon/decentraleyes/)
+- [{74145f27-f039-47ce-a470-a662b129930a}.xpi](https://addons.mozilla.org/en-US/firefox/addon/clearurls/)
+- [{c607c8df-14a7-4f28-894f-29e8722976af}.xpi](https://addons.mozilla.org/en-US/firefox/addon/temporary-containers/)
+- [@testpilot-containers.xpi](https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/)
 
 Things, that will not be included:
 

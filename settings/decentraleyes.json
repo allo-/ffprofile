@@ -6,7 +6,7 @@
         "label": "Install <a href=\"https://decentraleyes.org\">Decentraleyes</a> extension.",
         "help_text": "Emulates Content Delivery Networks locally by intercepting requests, finding the required resource, and injecting it into the environment.",
         "addons": [
-            "Decentraleyes@ThomasRientjes.xpi"
+            "jid1-BoFifL9Vbdl2zQ@jetpack.xpi"
         ],
         "config": {
             "extensions.Decentraleyes@ThomasRientjes.whiteList": ""

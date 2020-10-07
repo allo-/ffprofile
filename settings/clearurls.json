@@ -2,11 +2,11 @@
     {
         "name": "clearurls",
         "type": "boolean",
-        "initial": true,
+        "initial": false,
         "label": "Install <a href=\"https://gitlab.com/KevinRoebert/ClearUrls\">ClearURLs</a> extension.",
         "help_text": "This addon will automatically remove tracking elements from URLs to help protect your privacy when browsing through the Internet.",
         "addons": [
-            "ClearURLs@kevinr.xpi"
+            "{74145f27-f039-47ce-a470-a662b129930a}.xpi"
         ],
         "config": {
             "extensions.ClearURLs@kevinr.whiteList": ""

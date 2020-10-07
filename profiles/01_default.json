@@ -28,7 +28,8 @@
             "captive_portal_service.json",
             "screenshot.json",
             "media_drm.json",
-            "media_widevinecdm.json"
+            "media_widevinecdm.json",
+            "sensors.json"
         ], 
         "Privacy": [
             "useragent.json", 

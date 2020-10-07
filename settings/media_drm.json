@@ -1,0 +1,13 @@
+[
+    {
+        "name": "media_drm",
+        "type": "boolean",
+        "initial": true,
+        "label": "Disables playback of DRM-controlled HTML5 content",
+        "help_text": "if enabled, automatically downloads the Widevine Content Decryption Module provided by Google Inc. <a href=\"https://support.mozilla.org/en-US/kb/enable-drm#w_opt-out-of-cdm-playback-uninstall-cdms-and-stop-all-cdm-downloads\">Details</a>",
+        "addons": [],
+        "config": {
+            "media.eme.enabled": false
+        }
+    }
+]

@@ -1,0 +1,23 @@
+[
+    {
+        "name": "firefoxmulti-accountcontainers",
+        "type": "boolean",
+        "initial": true,
+        "label": "Install <a href=\"https://support.mozilla.org/en-US/kb/containers\">Firefox Multi-Account Containers</a> extension.",
+        "help_text": "Allow you to create containers for specific websites.",
+        "addons": [
+            "FirefoxMulti-AccountContainers@mozilla.org.xpi"
+        ],
+        "config": {
+            "extensions.FirefoxMulti-AccountContainers@mozilla.whiteList": ""
+        },
+        "enterprise_policy": {
+			"ExtensionSettings": {
+				"FirefoxMulti-AccountContainers@mozilla.org": {
+					"install_url": "https://addons.mozilla.org/firefox/downloads/latest/multi-account-containers/latest.xpi",
+					"installation_mode": "normal_installed"
+				}
+			}
+		}
+    }
+]

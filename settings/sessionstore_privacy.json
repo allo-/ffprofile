@@ -1,0 +1,30 @@
+[
+    {
+        "choices": [
+            "Store extra session data for any site (Default starting with Firefox 4)",
+            "Store extra session data for unencrypted (non-HTTPS) sites only (Default before Firefox 4)",
+            "Never store extra session data"
+        ],
+        "name": "sessionstore_privacy",
+        "addons": [
+            [],
+            [],
+            []
+        ],
+        "help_text": "This preference controls when to store extra information about a session: contents of forms, scrollbar positions, cookies, and POST data.",
+        "config": [
+            {
+                "browser.sessionstore.privacy_level": 0
+            },
+            {
+                "browser.sessionstore.privacy_level": 1
+            },
+            {
+                "browser.sessionstore.privacy_level": 2
+            }
+        ],
+        "initial": 2,
+        "type": "choice",
+        "label": "Sessionstore Privacy"
+    }
+]

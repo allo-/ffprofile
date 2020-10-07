@@ -7,8 +7,11 @@
         "help_text": "Firefox prefetches the next site on some links, so the site is loaded even when you never click.", 
         "addons": [], 
         "config": {
-            "network.prefetch-next": false, 
-            "network.dns.disablePrefetch": true
+            "network.prefetch-next": false,
+            "network.dns.disablePrefetch": true,
+            "network.dns.disablePrefetchFromHTTPS": true,
+            "network.predictor.enabled": false,
+            "network.predictor.enable-prefetch": false
         },
         "enterprise_policy": {
             "NetworkPrediction": false

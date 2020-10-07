@@ -26,7 +26,9 @@
             "newtab_preload.json",
             "addons_pane.json",
             "captive_portal_service.json",
-            "screenshot.json"
+            "screenshot.json",
+            "media_drm.json",
+            "media_widevinecdm.json"
         ], 
         "Privacy": [
             "useragent.json", 
@@ -35,6 +37,7 @@
             "dom_storage.json", 
             "indexed_db.json", 
             "offline_cache.json",
+            "sessionstore_privacy.json",
             "prefetch_next.json", 
             "speculative_loading.json", 
             "newtab_page_thumbnails_container.json",
@@ -72,6 +75,10 @@
             "ublock.json", 
             "cookieautodelete.json",
             "umatrix.json",
+            "decentraleyes.json",
+            "clearurls.json",
+            "temporarycontainers.json",
+            "firefoxmulti-accountcontainers.json",
             "greasemonkey_stats.json"
         ],
         "Enterprise Policies": [

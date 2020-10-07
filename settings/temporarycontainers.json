@@ -1,0 +1,23 @@
+[
+    {
+        "name": "temporarycontainers",
+        "type": "boolean",
+        "initial": true,
+        "label": "Install <a href=\"https://addons.mozilla.org/en-US/firefox/addon/temporary-containers/\">Temporary Containers</a> extension.",
+        "help_text": "Allows you to open tabs, websites, and links in automatically managed disposable containers.",
+        "addons": [
+            "TemporaryContainers@stoically.xpi"
+        ],
+        "config": {
+            "extensions.TemporaryContainers@stoically.whiteList": ""
+        },
+        "enterprise_policy": {
+			"ExtensionSettings": {
+				"TemporaryContainers@stoically": {
+					"install_url": "https://addons.mozilla.org/firefox/downloads/latest/temporary-containers/latest.xpi",
+					"installation_mode": "normal_installed"
+				}
+			}
+		}
+    }
+]

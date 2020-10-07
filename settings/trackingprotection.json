@@ -8,7 +8,9 @@
         "addons": [], 
         "config": {
             "privacy.trackingprotection.pbmode.enabled": true, 
-            "privacy.trackingprotection.enabled": true
+            "privacy.trackingprotection.enabled": true,
+            "privacy.trackingprotection.fingerprinting.enabled": true,
+            "privacy.trackingprotection.cryptomining.enabled": true
         }
     }
 ]

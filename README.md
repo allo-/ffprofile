@@ -8,8 +8,12 @@ Currently they are:
 - [https-everywhere@eff.org.xpi](https://addons.mozilla.org/firefox/addon/https-everywhere/)
 - [uBlock0@raymondhill.net.xpi](https://addons.mozilla.org/firefox/addon/ublock-origin/)
 - [uMatrix@raymondhill.net.xpi](https://addons.mozilla.org/firefox/addon/umatrix/)
-- [jid1-MnnxcxisBPnSXQ@jetpack.xpi](https://addons.cdn.mozilla.net/user-media/addons/506646/privacy_badger-2017.1.26.1-an+fx.xpi)
-- [CookieAutoDelete@kennydo.com.xpi](https://addons.mozilla.org/firefox/downloads/file/954445/cookie_autodelete-2.2.0-an+fx.xpi)
+- [jid1-MnnxcxisBPnSXQ@jetpack.xpi](https://addons.mozilla.org/en-US/firefox/addon/privacy-badger17/)
+- [CookieAutoDelete@kennydo.xpi](https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/)
+- [Decentraleyes@ThomasRientjes.xpi](https://addons.mozilla.org/en-US/firefox/addon/decentraleyes/)
+- [ClearURLs@kevinr.xpi](https://addons.mozilla.org/en-US/firefox/addon/clearurls/)
+- [TemporaryContainers@stoically.xpi](https://addons.mozilla.org/en-US/firefox/addon/temporary-containers/)
+- [FirefoxMulti-AccountContainers@mozilla.org.xpi](https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/)
 
 Things, that will not be included:
 

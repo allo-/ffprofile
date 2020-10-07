@@ -1,0 +1,23 @@
+[
+    {
+        "name": "decentraleyes",
+        "type": "boolean",
+        "initial": false,
+        "label": "Install <a href=\"https://decentraleyes.org\">Decentraleyes</a> extension.",
+        "help_text": "Emulates Content Delivery Networks locally by intercepting requests, finding the required resource, and injecting it into the environment.",
+        "addons": [
+            "Decentraleyes@ThomasRientjes.xpi"
+        ],
+        "config": {
+            "extensions.Decentraleyes@ThomasRientjes.whiteList": ""
+        },
+        "enterprise_policy": {
+			"ExtensionSettings": {
+				"Decentraleyes@ThomasRientjes": {
+					"install_url": "https://addons.mozilla.org/firefox/downloads/latest/decentraleyes/latest.xpi",
+					"installation_mode": "normal_installed"
+				}
+			}
+		}
+    }
+]

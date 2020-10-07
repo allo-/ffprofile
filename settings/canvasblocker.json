@@ -14,7 +14,7 @@
         "enterprise_policy": {
 			"ExtensionSettings": {
 				"CanvasBlocker@kkapsner.net": {
-					"install_url": "https://addons.mozilla.org/firefox/downloads/file/3488342/canvasblocker-1.0-an+fx.xpi",
+					"install_url": "https://addons.mozilla.org/firefox/downloads/latest/canvasblocker/latest.xpi",
 					"installation_mode": "normal_installed"
 				}
 			}

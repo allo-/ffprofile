@@ -1,0 +1,23 @@
+[
+    {
+        "name": "clearurls",
+        "type": "boolean",
+        "initial": true,
+        "label": "Install <a href=\"https://gitlab.com/KevinRoebert/ClearUrls\">ClearURLs</a> extension.",
+        "help_text": "This addon will automatically remove tracking elements from URLs to help protect your privacy when browsing through the Internet.",
+        "addons": [
+            "ClearURLs@kevinr.xpi"
+        ],
+        "config": {
+            "extensions.ClearURLs@kevinr.whiteList": ""
+        },
+        "enterprise_policy": {
+			"ExtensionSettings": {
+				"ClearURLs@kevinr": {
+					"install_url": "https://addons.mozilla.org/firefox/downloads/latest/clearurls/latest.xpi",
+					"installation_mode": "normal_installed"
+				}
+			}
+		}
+    }
+]

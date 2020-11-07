@@ -33,8 +33,6 @@ create-project:
 		"    'django.contrib.messages'," \
 		"    'django.contrib.staticfiles'," \
 		"    'profilemaker'," \
-		"    'bootstrap3'," \
-		"    'jquery'," \
 		"]" \
 		>> project/project/settings.py
 	@echo Edit "'project/project/urls.py'"

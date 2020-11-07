@@ -4,7 +4,7 @@
         "type": "boolean", 
         "initial": true, 
         "label": "Install <a href=\"https://addons.mozilla.org/firefox/addon/canvasblocker/\">CanvasBlocker</a> extension.", 
-        "help_text": "Blocks the JS-API for the &lt;canvas&gt; element to prevent <a href=\"https://en.wikipedia.org/wiki/Canvas_fingerprinting\">Canvas-Fingerprinting</a>.", 
+        "help_text": "Blocks the JS-API for the <code>&lt;canvas&gt;</code> element to prevent <a href=\"https://en.wikipedia.org/wiki/Canvas_fingerprinting\">Canvas-Fingerprinting</a>.", 
         "addons": [
             "CanvasBlocker@kkapsner.de.xpi"
         ], 

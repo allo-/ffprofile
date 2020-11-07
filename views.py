@@ -66,6 +66,10 @@ def main(request):
         # redirect to the current form or to the next one?
         next = request.POST.get("next", "")
         form_name = request.POST.get("form_name", "")
+        save = "save" in request.POST
+        if "profile" not in request.session and (next or save):
+            request.session["profile"] = sorted(PROFILES)[0]
+
         if next and not invalid_data:
             return redirect(reverse("main") + "#" + next)
         else:

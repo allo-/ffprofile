@@ -4,7 +4,7 @@
         "type": "boolean", 
         "initial": false, 
         "label": "Enable resistFingerprinting", 
-        "help_text": "The <tt>privacy.resistFingerprinting</tt> setting coming from the tor-browser hides some system properties. See <a href=\"https://bugzilla.mozilla.org/show_bug.cgi?id=1308340\">Bug #1308340</a> for more information. This option may interfere with other privacy related settings, see the <a href=\"https://github.com/allo-/firefox-profilemaker/issues/56#issuecomment-333397712\">discussion in our bug tracker.</a>", 
+        "help_text": "The <code>privacy.resistFingerprinting</code> setting coming from the tor-browser hides some system properties. See <a href=\"https://bugzilla.mozilla.org/show_bug.cgi?id=1308340\">Bug #1308340</a> for more information. This option may interfere with other privacy related settings, see the <a href=\"https://github.com/allo-/firefox-profilemaker/issues/56#issuecomment-333397712\">discussion in our bug tracker.</a>", 
         "addons": [], 
         "config": {
             "privacy.resistFingerprinting": true

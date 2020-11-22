@@ -1,0 +1,13 @@
+[
+    {
+        "name": "sponsored_top_sites",
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable Sponsored Top Sites", 
+        "help_text": "Firefox 83 introduced <a href=\"https://support.mozilla.org/en-US/kb/sponsor-privacy\">sponsored top sites</a>, which are sponsored ads displayed as suggestions in the URL bar.", 
+        "addons": [], 
+        "config": {
+            "services.sync.prefs.sync.browser.newtabpage.activity-stream.showSponsoredTopSite": false
+        }
+    }
+]

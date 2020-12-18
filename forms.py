@@ -4,23 +4,6 @@ import json, glob, os
 
 from .merge import merge
 
-# current structure:
-# - FirefoxTracking: builtin features, which send data to Mozilla,
-#   google and other thirdparties
-# - WebsiteTracking: Features, which are made for tracking (i.e. ping, beacons)
-#   or may used for it (i.e. battery api)
-# - Privacy: General privacy related settings like referer, cookies, etc.
-#   which may be harmless or needed (i.e. cookies)
-# - Security: No direct privacy problems, but maybe security issues
-#   (i.e. webgl may hang Firefox)
-# - Bloatware: Settings, which disable unwanted features like hello or pocket
-# - Annoyances: Settings, which disable first-run
-#   "did you know, here is our new tab page" popups.
-#
-# TODO: WebsiteTracking could be split into Tracking (ping, beacon, ...) and
-#       Fingerprinting (battery, canvas, ...), when there are more settings.
-
-
 
 class ConfigForm(forms.Form):
     def __init__(self, *args, **kwargs):

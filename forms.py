@@ -39,8 +39,7 @@ class ConfigForm(forms.Form):
                     if self.cleaned_data[option['name']]:
                         for key in option['config']:
                             config[key] = option['config'][key]
-                        if "addons" in option:
-                            addons += option['addons']
+                        addons += option.get('addons', [])
                         if 'files_inline' in option:
                             files_inline.update(option['files_inline'])
                         enterprise_policy = merge(enterprise_policy, option.get('enterprise_policy', {}))
@@ -87,9 +86,8 @@ for profile_file in profile_files:
                 item['help_text'] = _(item['help_text'] or "")
                 if item.get("enterprise_policy_only", False):
                     if item.get('help_text'):
-                        item['help_text'] += "<br /><i>" + _("(enterprise policy download only)") + "</i>"
-                    else:
-                        item['help_text'] += "<i>" + _("(enterprise policy download only)") + "</i>"
+                        item['help_text'] += "<br />"
+                    item['help_text'] += "<i>" + _("(enterprise policy download only)") + "</i>"
             options += data
         items[category] = options
     form_list = []

@@ -6,22 +6,6 @@ import json, glob, os
 
 from .merge import merge
 
-# current structure:
-# - FirefoxTracking: builtin features, which send data to Mozilla,
-#   google and other thirdparties
-# - WebsiteTracking: Features, which are made for tracking (i.e. ping, beacons)
-#   or may used for it (i.e. battery api)
-# - Privacy: General privacy related settings like referer, cookies, etc.
-#   which may be harmless or needed (i.e. cookies)
-# - Security: No direct privacy problems, but maybe security issues
-#   (i.e. webgl may hang Firefox)
-# - Bloatware: Settings, which disable unwanted features like hello or pocket
-# - Annoyances: Settings, which disable first-run
-#   "did you know, here is our new tab page" popups.
-#
-# TODO: WebsiteTracking could be split into Tracking (ping, beacon, ...) and
-#       Fingerprinting (battery, canvas, ...), when there are more settings.
-
 class CustomCheckbox(forms.CheckboxInput):
     template_name = "checkbox.html"
 
@@ -148,8 +132,7 @@ class ConfigForm(forms.Form):
                     if self.cleaned_data[option['name']]:
                         for key in option['config']:
                             config[key] = option['config'][key]
-                        if "addons" in option:
-                            addons += option['addons']
+                        addons += option.get('addons', [])
                         if 'files_inline' in option:
                             files_inline.update(option['files_inline'])
                         enterprise_policy = merge(enterprise_policy, option.get('enterprise_policy', {}))
@@ -196,9 +179,8 @@ for profile_file in profile_files:
                 item['help_text'] = _(item['help_text'] or "")
                 if item.get("enterprise_policy_only", False):
                     if item.get('help_text'):
-                        item['help_text'] += "<br /><i>" + _("(enterprise policy download only)") + "</i>"
-                    else:
-                        item['help_text'] += "<i>" + _("(enterprise policy download only)") + "</i>"
+                        item['help_text'] += "<br />"
+                    item['help_text'] += "<i>" + _("(enterprise policy download only)") + "</i>"
             options += data
         items[category] = options
     form_list = []

@@ -7,7 +7,7 @@
         "help_text": null, 
         "addons": [], 
         "config": {
-            "general.warnOnAboutConfig": false
+            "browser.aboutConfig.showWarning": false
         }
     }
 ]

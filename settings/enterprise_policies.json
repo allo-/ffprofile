@@ -22,7 +22,7 @@
         "addons": [], 
         "config": {},
         "enterprise_policy": {
-            "DisableBuiltinPDFViewer": true
+            "DisableFirefoxAccounts": true
 		}
     },
     {

@@ -30,7 +30,8 @@
             "screenshot.json",
             "media_drm.json",
             "media_widevinecdm.json",
-            "sensors.json"
+            "sensors.json",
+            "firefox_suggest.json"
         ], 
         "Privacy": [
             "useragent.json", 

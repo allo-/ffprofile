@@ -1,0 +1,14 @@
+[
+    {
+        "name": "firefox_suggest",
+        "type": "boolean",
+        "initial": true,
+        "label": "Disable Firefox Suggest",
+        "help_text": "The <a href=\"https://support.mozilla.org/en-US/kb/navigate-web-faster-firefox-suggest\">Firefox Suggest</a> feature allows Mozilla to provide search suggestions in the US, which uses your city location and search keywords to send suggestions. This is also used to serve advertisements.",
+        "addons": [],
+        "config": {
+            "browser.urlbar.groupLabels.enabled": false,
+            "browser.urlbar.quicksuggest.enabled": false
+        }
+    }
+]

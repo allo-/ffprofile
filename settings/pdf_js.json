@@ -1,0 +1,13 @@
+[
+    {
+        "name": "pdf_js", 
+        "type": "boolean", 
+        "initial": false, 
+        "label": "Disable Javascript in PDF viewer", 
+        "help_text": "Disables executing of JavaScript in the PDF form viewer. It is possible that some PDFs are not rendered correctly due to missing functions.", 
+        "addons": [], 
+        "config": {
+            "pdfjs.enableScripting": false
+        }
+    }
+]

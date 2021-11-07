@@ -31,7 +31,8 @@
             "media_drm.json",
             "media_widevinecdm.json",
             "sensors.json",
-            "firefox_suggest.json"
+            "firefox_suggest.json",
+            "pdf_js.json"
         ], 
         "Privacy": [
             "useragent.json", 

@@ -64,7 +64,8 @@
             "media_devices.json", 
             "autofillforms.json", 
             "webaudio.json",
-            "video_stats.json"
+            "video_stats.json",
+            "utm_protection.json"
         ], 
         "Security": [
             "autoupdate.json", 

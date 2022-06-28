@@ -1,0 +1,13 @@
+[
+    {
+        "name": "utm_protection", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Enable query parameter stripping", 
+        "help_text": "Firefox 102 introduced query parameter stripping like utm_source. Enabled by default with Strict Enhanced Tracking Protection.",
+        "addons": [], 
+        "config": {
+            "privacy.query_stripping": true
+        }
+    }
+]

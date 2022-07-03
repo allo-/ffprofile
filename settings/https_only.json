@@ -1,0 +1,14 @@
+[
+    {
+        "name": "https_only", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Enable HTTPS only mode", 
+        "help_text": "If enabled, allows connections only to sites that use the HTTPS protocol.", 
+        "addons": [], 
+        "config": {
+            "dom.security.https_only_mode": true,
+            "dom.security.https_only_mode_ever_enabled": true
+        }
+    }
+]

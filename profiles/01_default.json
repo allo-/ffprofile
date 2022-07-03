@@ -70,6 +70,7 @@
         "Security": [
             "autoupdate.json", 
             "extension_blocklist.json",
+            "https_only.json",
             "punycode.json"
         ], 
         "Addons": [

@@ -2,7 +2,7 @@
     {
         "name": "dnt", 
         "type": "boolean", 
-        "initial": true, 
+        "initial": false, 
         "label": "Enable Do-not-Track", 
         "help_text": "With the do not track feature, you tell websites, that you do not want to be tracked. Most websites ignore this, so you need other privacy options as well.", 
         "addons": [], 

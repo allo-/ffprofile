@@ -9,7 +9,7 @@
         ], 
         "help_text": "The Privacy Badger addon automatically detects trackers and blocks them. You can manually block and unblock urls as well.", 
         "config": {}, 
-        "initial": true, 
+        "initial": false,
         "type": "boolean", 
         "label": "Install the <a href=\"https://addons.mozilla.org/firefox/addon/privacy-badger17/\">Privacy Badger</a> extension.",
         "enterprise_policy": {

@@ -26,8 +26,12 @@
                 "browser.newtabpage.activity-stream.section.highlights.includePocket": false
             }
         ],
-        "enterprise_policy": {
-            "DisablePocket": true
-		}
+        "enterprise_policy": [
+			{ },
+			{ },
+			{
+				"DisablePocket": true
+            }
+		]
     }
 ]

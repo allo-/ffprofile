@@ -144,7 +144,8 @@ class ConfigForm(forms.Form):
                         addons += option['addons'][choice]
                     if 'files_inline' in option:
                         files_inline.update(option['files_inline'][choice])
-                    enterprise_policy = merge(enterprise_policy, option.get('enterprise_policy', {}))
+                    if "enterprise_policy" in option:
+                        enterprise_policy = merge(enterprise_policy, option['enterprise_policy'][choice])
                 elif option['type'] == "text":
                     if option.get('blank_means_default', False) and self.cleaned_data[option['name']] == "":
                         continue

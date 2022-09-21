@@ -1,3 +1,7 @@
+The repo contains the source code for the Firefox Profilemaker at [ffprofile.com](https://ffprofile.com).
+
+The code is also intended to serve as an option to generate profiles locally and should work with the simple django testserver by creating a project, installing the app and running `manage.py runserver`.
+
 For the functions installing addons, you need to create a folder "extensions" from where you run the django project and place there the XPIs.
 The Extension needs to have the name of its install.rdf / manifest.json file.
 
@@ -15,7 +19,7 @@ Currently they are:
 - [{c607c8df-14a7-4f28-894f-29e8722976af}.xpi](https://addons.mozilla.org/en-US/firefox/addon/temporary-containers/)
 - [@testpilot-containers.xpi](https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/)
 
-Things, that will not be included:
+Things, that will not be included in the main project:
 
 - Some cool addons. The addons list should be short and mostly privacy addons.
 - Your favourite performance setting. It's not the scope of the project and not all people need the same performance settings.

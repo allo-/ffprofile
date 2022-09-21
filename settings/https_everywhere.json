@@ -2,7 +2,7 @@
     {
         "name": "https_everywhere", 
         "type": "boolean", 
-        "initial": true, 
+        "initial": false, 
         "label": "Install the <a href=\"https://addons.mozilla.org/firefox/addon/https-everywhere/\">HTTPS Everywhere</a> extension.", 
         "help_text": "HTTPS Everywhere is a Firefox extension that  enables HTTPS encryption automatically on sites that support it.", 
         "addons": [

@@ -4,7 +4,7 @@
         "type": "boolean", 
         "initial": true, 
         "label": "Disable the clipboardevents.", 
-        "help_text": "Disable that websites can get notifications if you copy, paste, or cut something from a web page, and it lets them know which part of the page had been selected.", 
+        "help_text": "Disable that websites can get notifications if you copy, paste, or cut something from a web page, and it lets them know which part of the page had been selected. This can break pasting copied images.", 
         "addons": [], 
         "config": {
             "dom.event.clipboardevents.enabled": false

@@ -1,0 +1,13 @@
+[
+    {
+        "name": "firefox_view", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disable Firefox View", 
+        "help_text": "Firefox 106 introduced a pinned tab that can not be closed like other tabs for a feature called Firefox View. You can either disable it with this setting or use the \"remove from toolbar\" function, like for navigation buttons later.", 
+        "addons": [], 
+        "config": {
+            "browser.tabs.firefox-view": false
+        }
+    }
+]

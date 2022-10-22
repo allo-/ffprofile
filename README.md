@@ -32,8 +32,6 @@ simple Django test-server.
 
 *Things that will not be included:*
 
-<br>
-
 -   Non-privacy related addons.
 
 -   Performance settings.
@@ -46,6 +44,8 @@ simple Django test-server.
 You are welcome to create a [`/profiles/`][Profiles] for settings <br>
 that are outside of the project's scope or alternatively <br>
 just fork the project.
+
+<br>
 
 *Check the **[Installation][Install]** if that's the case.*
 

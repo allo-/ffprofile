@@ -64,7 +64,7 @@
     
     <br>
     
-6.  For `INSTALLED_APPS` add:
+6.  For  `INSTALLED_APPS`  add:
     
     ```
     'profilemaker', 'bootstrap3', 'jquery',
@@ -72,7 +72,7 @@
     
     <br>
     
-7.  Replace `project/urls.py` with:
+7.  Replace  `project/urls.py`  with:
 
     ```python
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -108,7 +108,7 @@ To avoid using bootstrap from a CDN add:
 BOOTSTRAP3 = { 'base_url' : '/static/bootstrap/' }
 ```
 
-and install bootstrap into `STATIC_ROOT`
+and install bootstrap into  `STATIC_ROOT`
 
 <br>
 <br>
@@ -140,6 +140,8 @@ and install bootstrap into `STATIC_ROOT`
     make run
     ```
     
+    <br>
+    
 -   Clean the project.
 
     ```sh
@@ -161,17 +163,23 @@ and install bootstrap into `STATIC_ROOT`
 make build
 ```
 
+<br>
+
 #### Run the container.
 
 ```sh
 make up
 ```
 
+<br>
+
 #### Stop the container.
 
 ```sh
 make down
 ```
+
+<br>
 
 #### Open a shell in the container.
 
@@ -183,7 +191,7 @@ make shell
 
 ### Note
 
-The addons should be placed in the `/extensions/` folder as well.
+The addons should be placed in the  `/extensions/`  folder as well.
 
 <br>
 

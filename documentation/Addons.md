@@ -5,7 +5,7 @@
 
 <br>
 
-## Steps
+## Prerequisites
 
 <br>
 

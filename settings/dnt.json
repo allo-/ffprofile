@@ -3,8 +3,8 @@
         "name": "dnt", 
         "type": "boolean", 
         "initial": true, 
-        "label": "Enable Do-not-Track", 
-        "help_text": "With the do not track feature, you tell websites, that you do not want to be tracked. Most websites ignore this, so you need other privacy options as well.", 
+        "label": "Enable Do-not-Track (DNT)", 
+        "help_text": "With the do not track feature, you tell websites, that you do not want to be tracked. Most websites ignore this, so you need other privacy options as well, but some privacy-friendly webanalytics tools honor it and store less data. Firefox sends the DNT header by default only in private mode, so enabling it adds a bit to the browser fingerprint and sites may assume the you're using private mode.", 
         "addons": [], 
         "config": {
             "privacy.donottrackheader.enabled": true, 

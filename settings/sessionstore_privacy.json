@@ -23,7 +23,7 @@
                 "browser.sessionstore.privacy_level": 2
             }
         ],
-        "initial": 2,
+        "initial": 0,
         "type": "choice",
         "label": "Sessionstore Privacy"
     }

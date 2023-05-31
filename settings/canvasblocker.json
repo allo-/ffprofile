@@ -8,9 +8,7 @@
         "addons": [
             "CanvasBlocker@kkapsner.de.xpi"
         ], 
-        "config": {
-            "extensions.CanvasBlocker@kkapsner.de.whiteList": ""
-        },
+        "config": {},
         "enterprise_policy": {
 			"ExtensionSettings": {
 				"CanvasBlocker@kkapsner.net": {

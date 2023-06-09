@@ -160,10 +160,15 @@ def download(request, what):
         memoryFile = BytesIO()
         zip_file = zipfile.ZipFile(memoryFile, "w", zipfile.ZIP_DEFLATED)
         autoconfig_header = "// IMPORTANT: Start your code on the 2nd line"
-        zip_file.writestr("firefox.cfg", autoconfig_header + "\n" + prefs, compress_type=zipfile.ZIP_DEFLATED)
-        zip_file.writestr("defaults/pref/autoconfig.js", AUTOCONFIG_JS, compress_type=zipfile.ZIP_DEFLATED)
-        zip_file.writestr("distribution/policies.json", enterprise_policy, compress_type=zipfile.ZIP_DEFLATED)
-
+        zip_info = zipfile.ZipInfo("firefox.cfg")
+        zip_info.external_attr |= 0o644 << 16
+        zip_file.writestr(zip_info, autoconfig_header + "\n" + prefs, compress_type=zipfile.ZIP_DEFLATED)
+        zip_info = zipfile.ZipInfo("defaults/pref/autoconfig.js")
+        zip_info.external_attr |= 0o644 << 16
+        zip_file.writestr(zip_info, AUTOCONFIG_JS, compress_type=zipfile.ZIP_DEFLATED)
+        zip_info = zipfile.ZipInfo("distribution/policies.json")
+        zip_info.external_attr |= 0o644 << 16
+        zip_file.writestr(zip_info, enterprise_policy, compress_type=zipfile.ZIP_DEFLATED)
         zip_file.close()
 
         memoryFile.seek(0)
@@ -174,7 +179,9 @@ def download(request, what):
         memoryFile = BytesIO()
         zip_file = zipfile.ZipFile(memoryFile, "w", zipfile.ZIP_DEFLATED)
         if not addons_only:
-            zip_file.writestr("prefs.js", prefs,
+            zip_info = zipfile.ZipInfo("prefs.js")
+            zip_info.external_attr |= 0o644 << 16
+            zip_file.writestr(zip_info, prefs,
                               compress_type=zipfile.ZIP_DEFLATED)
 
         for addon in addons:
@@ -182,7 +189,9 @@ def download(request, what):
                            compress_type=zipfile.ZIP_DEFLATED)
 
         for file in files_inline:
-            zip_file.writestr(file, files_inline[file],
+            zip_info = zipfile.ZipInfo(file)
+            zip_info.external_attr |= 0o644 << 16
+            zip_file.writestr(zip_info, files_inline[file],
                               compress_type=zipfile.ZIP_DEFLATED)
         zip_file.close()
 

@@ -12,7 +12,6 @@
             "reset_firefox.json", 
             "heartbeat.json", 
             "newtabpage.json", 
-			"firefox_view.json",
             "html5_video_autoplay.json"
         ], 
         "Browser Features": [

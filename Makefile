@@ -14,16 +14,19 @@ install: remove
 	. venv/bin/activate
 	@echo Install dependencies
 	pip install -r requirements.txt
+	cp .env.example .env
 	make -s create-project
 
 .PHONY: create-project
 create-project:
 	@echo Create django project
-	django-admin.py startproject project
+	django-admin startproject project
 	@echo Create symlink
 	ln -s ${CURDIR} project/profilemaker
 	@echo Edit "'project/project/settings.py'"
 	printf '%s\n' \
+		"import os" \
+		"from dotenv import load_dotenv" \
 		"" \
 		"INSTALLED_APPS = [" \
 		"    'django.contrib.admin'," \
@@ -33,17 +36,25 @@ create-project:
 		"    'django.contrib.messages'," \
 		"    'django.contrib.staticfiles'," \
 		"    'profilemaker'," \
+		"    'bootstrap3'," \
+		"    'jquery'," \
 		"]" \
+		"" \
+		"    'ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS')'" \
+		"    'CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS')'" \
+		"    'DEBUG = os.getenv('DEBUG')'" \
+		"    'SECRET_KEY = os.getenv('SECRET_KEY')'"
 		>> project/project/settings.py
 	@echo Edit "'project/project/urls.py'"
 	printf '%s\n' \
 		"" \
-		"from django.conf.urls import include, url" \
+		"from django.urls import include, path" \
 		"from django.contrib.staticfiles.urls import staticfiles_urlpatterns" \
 		"" \
 		"urlpatterns = [" \
-		"    url(r'', include(\"profilemaker.urls\"))," \
-		"] + urlpatterns + staticfiles_urlpatterns()" \
+		"    path(\"\", include(\"profilemaker.urls\"))," \
+		"]" \
+		"urlpatterns += staticfiles_urlpatterns()" \
 		>> project/project/urls.py
 	@echo Init db
 	cd project
@@ -53,6 +64,7 @@ create-project:
 remove:
 	@echo "Erase 'venv' & 'project' directories"
 	rm -rf venv project
+	rm -f .env
 
 .PHONY: up
 up:

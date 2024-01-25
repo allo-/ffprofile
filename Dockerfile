@@ -1,14 +1,14 @@
 # docker run -it --rm --name profilemaker -v $PWD:/code -w /code python:3.8.5-alpine3.12 /bin/sh
 
 # First stage
-FROM python:3.8.5-alpine3.12 AS builder
+FROM python:3.11.7-alpine3.19 AS builder
 COPY requirements.txt .
 
 # Install dependencies to the local user directory (eg. /root/.local)
 RUN pip install --no-cache-dir --user --no-warn-script-location -r requirements.txt
 
 # Second unnamed stage
-FROM python:3.8.5-alpine3.12
+FROM python:3.11.7-alpine3.19
 
 RUN apk add --no-cache make bash
 

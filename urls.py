@@ -1,7 +1,7 @@
-from django.conf.urls import include, url
-from profilemaker.views import main, download
+from django.urls import path, re_path
+from profilemaker.views import download, main
 
 urlpatterns = [
-    url('^$', main, name="main"),
-    url('^download/(?P<what>.*)$', download, name="download"),
+    path("", main, name="main"),
+    re_path(r"^download/(?P<what>.*)$", download, name="download"),
 ]

@@ -11,15 +11,20 @@ Both `python` and `virtualenv` are already installed
 - Create a project: ``django-admin.py startproject project;cd project``
 - Link the project (TODO: add a setup.py): ``ln -s /path/to/firefox-profilemaker profilemaker``.
 - Edit ``project/settings.py`` (from the venv ``project/project/settings.py``)
+  - Add `import os` and `from dotenv import load_dotenv` to load `.env` variables from environment
   - ``INSTALLED_APPS``: Add ``'profilemaker', 'bootstrap3', 'jquery',``
+  - ``ALLOWED_HOSTS`` : Specify your allowed hosts, for example, `['*']`, to grant access from all hosts.
+  - ``CSRF_TRUSTED_ORIGINS`` : Specify your trusted origins, for instance, `['*']`, to permit access from all hosts.
+  - ``SECRET_KEY`` : Update this field with your unique secret key. You can generate one using the command base64 /dev/urandom | head -c50
 - Edit ``project/urls.py`` and replace by:
 ```python
-from django.conf.urls import include, url
+from django.urls import include, path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-    url(r'', include("profilemaker.urls")),
+    path("", include("profilemaker.urls")),
 ]
+
 urlpatterns += staticfiles_urlpatterns()
 ```
 - Init db with ``./manage.py migrate``

@@ -1,0 +1,13 @@
+[
+    {
+        "name": "privacy_preserving_attribution", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Disble Privacy-Preserving Attribution", 
+        "help_text": "The misleadingly named <a href=\"https://support.mozilla.org/en-US/kb/privacy-preserving-attribution\">Privacy-Preserving Attribution</a> is a tracking technique introduced in Firefox 128 in which the browser sends attribution data about ad views to advertisers.",
+        "addons": [], 
+        "config": {
+            "dom.private-attribution.submission.enabled": false
+        }
+    }
+]

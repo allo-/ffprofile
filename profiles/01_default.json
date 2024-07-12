@@ -34,6 +34,7 @@
             "pdf_js.json"
         ], 
         "Privacy": [
+            "privacy_preserving_attribution.json", 
             "useragent.json", 
             "cookies.json", 
             "referer.json", 

@@ -76,7 +76,6 @@
         ], 
         "Addons": [
             "canvasblocker.json", 
-            "https_everywhere.json", 
             "privacybadger.json", 
             "ublock.json", 
             "cookieautodelete.json",

@@ -11,7 +11,7 @@
         "config": {},
         "enterprise_policy": {
 			"ExtensionSettings": {
-				"CanvasBlocker@kkapsner.net": {
+				"CanvasBlocker@kkapsner.de": {
 					"install_url": "https://addons.mozilla.org/firefox/downloads/latest/canvasblocker/latest.xpi",
 					"installation_mode": "normal_installed"
 				}

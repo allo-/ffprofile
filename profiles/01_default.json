@@ -55,6 +55,7 @@
         ], 
         "Website Tracking": [
             "dnt.json", 
+            "gpc.json", 
             "resist-fingerprinting.json", 
             "trackingprotection.json", 
             "firstparty-isolation.json", 

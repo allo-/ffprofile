@@ -1,0 +1,14 @@
+[
+    {
+        "name": "gpc", 
+        "type": "boolean", 
+        "initial": true, 
+        "label": "Enable Global Privacy Control (GPC)", 
+		"help_text": "Similar to Do-Not-Track, <a href=\"https://globalprivacycontrol.org\">Global Privacy Control</a> is a way to tell websites that you do not want to be tracked. Like DNT, it only helps if sites implement it, and it adds a bit to the browser fingerprint, but in some countries it may carry more legal weight than Do-Not-Track.",
+        "addons": [], 
+        "config": {
+            "privacy.globalprivacycontrol.enabled": true, 
+            "privacy.globalprivacycontrol.functionality.enabled": true
+        }
+    }
+]

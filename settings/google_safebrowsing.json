@@ -2,20 +2,12 @@
     {
         "name": "google_safebrowsing", 
         "type": "boolean", 
-        "initial": true, 
+        "initial": false, 
         "label": "Disable google safebrowsing", 
-        "help_text": "Google safebrowsing can detect phishing and malware but it also sends informations to google together with an unique id called <a href=\"http://electroholiker.de/?p=1594\">wrkey</a>.", 
+        "help_text": "Google safebrowsing can detect phishing and malware but one might not want to rely on a URL list provided by Google.", 
         "addons": [], 
         "config": {
-            "browser.safebrowsing.enabled": false,
-            "browser.safebrowsing.downloads.remote.url": "", 
-            "browser.safebrowsing.phishing.enabled": false, 
-            "browser.safebrowsing.blockedURIs.enabled": false, 
-            "browser.safebrowsing.downloads.enabled": false,
-            "browser.safebrowsing.downloads.remote.enabled": false,
-            "browser.safebrowsing.appRepURL": "", 
-            "browser.safebrowsing.malware.enabled": false
-
+            "browser.safebrowsing.enabled": false
         }
     }
 ]

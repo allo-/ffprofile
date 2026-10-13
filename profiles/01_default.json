@@ -54,7 +54,6 @@
             "fixup_urls.json"
         ], 
         "Website Tracking": [
-            "dnt.json", 
             "gpc.json", 
             "resist-fingerprinting.json", 
             "trackingprotection.json", 
